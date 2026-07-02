@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CR Stays — Checkout</title>
+<link href="https://fonts.googleapis.com/css2?family=Hammersmith+One&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --forest:   #1A3D2B;
+  --forest-d: #122B1E;
+  --gold:     #FABC3D;
+  --gold-d:   #C9963A;
+  --ivory:    #FAF7F0;
+  --white:    #FFFFFF;
+  --charcoal: #3E3E3E;
+  --muted:    #6B6660;
+  --light:    #9A9690;
+  --border:   #E8E3DA;
+  --red:      #C0392B;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Montserrat',sans-serif;background:#F2EFE8;color:var(--charcoal);}
+
+/* ── TOP NAV ── */
+.top-nav {
+  background:var(--forest);
+  padding:0 5vw;
+  height:64px;
+  display:flex;align-items:center;justify-content:space-between;
+  position:sticky;top:0;z-index:100;
+}
+.nav-brand {
+  font-family:'Hammersmith One',sans-serif;
+  font-size:20px;color:var(--white);letter-spacing:.06em;text-decoration:none;
+}
+.nav-brand span{color:var(--gold);}
+.nav-steps {
+  display:flex;align-items:center;gap:8px;
+  font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+}
+.nav-step {color:rgba(255,255,255,.4);}
+.nav-step.active{color:var(--gold);}
+.nav-step-sep{color:rgba(255,255,255,.2);font-size:16px;}
+.nav-secure {
+  display:flex;align-items:center;gap:6px;
+  font-size:11px;font-weight:500;color:rgba(255,255,255,.5);
+}
+.nav-secure svg{color:var(--gold);}
+
+/* ── STEP HEADER ── */
+.step-header {
+  background:var(--white);
+  padding:20px 5vw;
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:12px;
+}
+.step-tag {
+  font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted);
+}
+.step-sep{color:var(--border);font-size:18px;}
+.step-title {
+  font-family:'Hammersmith One',sans-serif;
+  font-size:22px;color:var(--forest);
+}
+
+/* ── MAIN LAYOUT ── */
+.checkout-layout {
+  display:grid;
+  grid-template-columns:1fr 380px;
+  gap:24px;
+  padding:32px 5vw 120px;
+  max-width:1200px;
+  margin:0 auto;
+  align-items:start;
+}
+
+/* ── FORM BLOCKS ── */
+.form-block {
+  background:var(--white);
+  border:1px solid var(--border);
+  margin-bottom:16px;
+  overflow:hidden;
+}
+.form-block-header {
+  padding:18px 24px;
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.form-block-title {
+  font-family:'Hammersmith One',sans-serif;
+  font-size:17px;color:var(--charcoal);
+}
+.form-block-body {padding:24px;}
+
+/* Returning guest */
+.returning-guest {
+  display:flex;align-items:center;gap:10px;
+  margin-bottom:20px;padding:14px 16px;
+  background:rgba(26,61,43,.04);border:1px solid rgba(26,61,43,.1);
+  cursor:pointer;
+}
+.returning-guest span {
+  font-size:13px;font-weight:400;color:var(--forest);
+}
+.returning-guest a {
+  font-size:13px;font-weight:600;color:var(--forest);
+}
+
+/* Checkbox behalf */
+.checkbox-row {
+  display:flex;align-items:center;gap:10px;margin-bottom:20px;
+}
+.custom-check {
+  width:18px;height:18px;border:2px solid var(--border);
+  flex-shrink:0;cursor:pointer;position:relative;
+  display:flex;align-items:center;justify-content:center;
+}
+.custom-check.checked{background:var(--forest);border-color:var(--forest);}
+.custom-check.checked::after{content:'✓';color:white;font-size:11px;font-weight:700;}
+.check-label{font-size:13px;font-weight:400;color:var(--charcoal);cursor:pointer;}
+
+/* Form grid */
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.frow-3{display:grid;grid-template-columns:160px 1fr 1fr;gap:16px;margin-bottom:16px;}
+.frow-full{margin-bottom:16px;}
+.fgroup{display:flex;flex-direction:column;}
+.flabel {
+  font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:6px;
+}
+.flabel span{color:var(--red);margin-left:2px;}
+.finput,.fselect {
+  font-family:'Montserrat',sans-serif;font-size:13px;font-weight:400;
+  color:var(--charcoal);background:var(--white);
+  border:1px solid var(--border);padding:11px 14px;
+  outline:none;transition:border-color .2s;width:100%;
+  -webkit-appearance:none;appearance:none;
+}
+.finput:focus,.fselect:focus{border-color:var(--forest);}
+.finput::placeholder{color:var(--light);}
+.fselect-wrap{position:relative;}
+.fselect-wrap::after{
+  content:'▾';position:absolute;right:12px;top:50%;
+  transform:translateY(-50%);color:var(--muted);pointer-events:none;font-size:12px;
+}
+
+/* Policies tabs */
+.policy-tabs {
+  display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:20px;
+}
+.policy-tab {
+  padding:12px 20px;font-size:13px;font-weight:600;
+  color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;
+  margin-bottom:-1px;transition:color .2s,border-color .2s;
+}
+.policy-tab.active{color:var(--forest);border-bottom-color:var(--forest);}
+.policy-content{display:none;}
+.policy-content.active{display:block;}
+.policy-text{font-size:13px;font-weight:300;line-height:1.8;color:var(--muted);}
+
+/* Payment */
+.payment-cards{display:flex;gap:10px;margin:14px 0 20px;}
+.card-logo{
+  padding:6px 12px;border:1px solid var(--border);
+  font-size:12px;font-weight:700;letter-spacing:.05em;
+  display:flex;align-items:center;gap:4px;
+}
+.card-amex{color:#2671b5;}
+.card-mc{color:#eb001b;}
+.card-visa{color:#1a1f71;}
+
+.card-number-wrap{position:relative;}
+.card-lock{
+  position:absolute;right:12px;top:50%;transform:translateY(-50%);
+  font-size:14px;color:var(--light);
+}
+
+.exp-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:16px;}
+
+/* Checkboxes */
+.checks-section{margin:20px 0;}
+.check-item{display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;}
+.check-item .check-label{font-size:12px;font-weight:400;color:var(--muted);line-height:1.5;}
+.check-item a{color:var(--forest);text-decoration:underline;}
+
+/* Book Now button */
+.book-now-btn {
+  width:100%;background:var(--forest);color:var(--white);
+  border:none;font-family:'Montserrat',sans-serif;
+  font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  padding:18px;cursor:pointer;margin-top:8px;
+  transition:background .2s;display:flex;align-items:center;justify-content:center;gap:10px;
+}
+.book-now-btn:hover{background:var(--forest-d);}
+.book-now-btn:disabled{background:var(--light);cursor:not-allowed;}
+.book-lock-icon{font-size:15px;}
+
+/* ── SIDEBAR ── */
+.sidebar{}
+.sidebar-sticky{position:sticky;top:88px;}
+
+/* Reservation card */
+.res-card{background:var(--white);border:1px solid var(--border);margin-bottom:16px;}
+.res-card-header{
+  padding:16px 20px;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.res-card-title{font-family:'Hammersmith One',sans-serif;font-size:16px;color:var(--charcoal);}
+.res-prop-row{
+  padding:16px 20px;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.res-prop-name{
+  font-family:'Hammersmith One',sans-serif;font-size:15px;color:var(--charcoal);
+  display:flex;align-items:center;gap:8px;
+}
+.res-prop-actions{display:flex;gap:12px;}
+.res-action-btn{
+  background:none;border:none;cursor:pointer;
+  color:var(--muted);font-size:15px;transition:color .2s;
+}
+.res-action-btn:hover{color:var(--forest);}
+.res-detail{padding:16px 20px;border-bottom:1px solid var(--border);}
+.res-rate-tag{
+  font-size:11px;font-weight:600;color:var(--forest);
+  text-decoration:underline;margin-bottom:8px;display:block;
+}
+.res-dates{font-size:13px;font-weight:400;color:var(--charcoal);margin-bottom:4px;}
+.res-guests{font-size:12px;font-weight:300;color:var(--muted);margin-bottom:12px;}
+.res-subtotal-row{
+  display:flex;justify-content:space-between;align-items:center;
+}
+.res-subtotal-left{}
+.res-subtotal-old{font-size:11px;font-weight:400;color:var(--light);text-decoration:line-through;}
+.res-subtotal-new{font-size:14px;font-weight:700;color:var(--charcoal);}
+.res-subtotal-nights{font-size:11px;font-weight:300;color:var(--muted);margin-top:2px;}
+
+/* Total breakdown */
+.res-breakdown{padding:16px 20px;border-bottom:1px solid var(--border);}
+.breakdown-row{
+  display:flex;justify-content:space-between;
+  font-size:13px;font-weight:400;color:var(--muted);
+  margin-bottom:8px;
+}
+.res-total-row{
+  padding:16px 20px;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.res-total-label{font-family:'Hammersmith One',sans-serif;font-size:16px;color:var(--charcoal);}
+.res-total-amount{font-family:'Hammersmith One',sans-serif;font-size:20px;color:var(--forest);}
+
+/* Actions row */
+.res-actions-row{
+  padding:14px 20px;
+  display:flex;justify-content:space-between;
+  border-top:1px solid var(--border);
+}
+.res-small-btn{
+  background:none;border:none;cursor:pointer;
+  font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);display:flex;align-items:center;gap:6px;
+  transition:color .2s;
+}
+.res-small-btn:hover{color:var(--forest);}
+
+/* ── STICKY BOTTOM BAR ── */
+.sticky-bar {
+  position:fixed;bottom:0;left:0;right:0;z-index:300;
+  background:rgba(5,5,5,0.96);
+  backdrop-filter:blur(10px);
+  border-top:1px solid rgba(250,188,61,.2);
+  padding:16px 5vw;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:20px;
+  transform:translateY(100%);
+  transition:transform .35s cubic-bezier(.4,0,.2,1);
+}
+.sticky-bar.visible{transform:translateY(0);}
+.sticky-bar-info{display:flex;align-items:center;gap:32px;}
+.sticky-info-item{}
+.sticky-info-label{
+  font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(250,247,240,.4);margin-bottom:2px;
+}
+.sticky-info-value{
+  font-family:'Hammersmith One',sans-serif;
+  font-size:18px;color:var(--white);
+}
+.sticky-info-value span{font-size:12px;font-weight:300;color:rgba(250,247,240,.5);}
+.sticky-rate{
+  font-size:11px;font-weight:300;
+  color:rgba(250,247,240,.4);
+}
+.sticky-rate s{color:rgba(250,247,240,.25);}
+.sticky-actions{display:flex;align-items:center;gap:12px;}
+.sticky-prop-name{
+  font-size:13px;font-weight:600;color:rgba(250,247,240,.7);
+  max-width:200px;
+}
+.sticky-checkout-btn {
+  background:var(--gold);color:var(--charcoal);
+  border:none;font-family:'Montserrat',sans-serif;
+  font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  padding:14px 32px;cursor:pointer;
+  display:flex;align-items:center;gap:10px;
+  transition:background .2s;white-space:nowrap;
+}
+.sticky-checkout-btn:hover{background:var(--gold-d);color:var(--white);}
+.sticky-checkout-btn svg{width:16px;height:16px;}
+.sticky-close{
+  background:none;border:none;cursor:pointer;
+  color:rgba(250,247,240,.35);font-size:20px;
+  transition:color .2s;padding:4px;
+}
+.sticky-close:hover{color:rgba(250,247,240,.7);}
+
+/* ── SUCCESS MODAL ── */
+.modal-overlay{
+  position:fixed;inset:0;background:rgba(5,5,5,.7);z-index:500;
+  display:none;align-items:center;justify-content:center;
+}
+.modal-overlay.show{display:flex;}
+.modal-box{
+  background:var(--white);max-width:520px;width:90%;padding:48px;
+  text-align:center;
+}
+.modal-icon{font-size:52px;margin-bottom:16px;}
+.modal-title{
+  font-family:'Hammersmith One',sans-serif;font-size:26px;
+  color:var(--forest);margin-bottom:10px;
+}
+.modal-sub{font-size:14px;font-weight:300;line-height:1.75;color:var(--muted);margin-bottom:28px;}
+.modal-ref{
+  background:rgba(26,61,43,.06);padding:14px 20px;
+  font-size:13px;font-weight:600;color:var(--forest);
+  margin-bottom:28px;border-left:3px solid var(--gold);
+}
+.modal-btn{
+  background:var(--forest);color:var(--white);border:none;
+  font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;
+  padding:14px 36px;cursor:pointer;transition:background .2s;
+}
+.modal-btn:hover{background:var(--forest-d);}
+
+/* Responsive */
+@media(max-width:960px){
+  .checkout-layout{grid-template-columns:1fr;}
+  .sidebar{order:-1;}
+  .sidebar-sticky{position:static;}
+  .frow,.frow-3{grid-template-columns:1fr;}
+  .exp-row{grid-template-columns:1fr 1fr;}
+  .sticky-bar-info{gap:16px;}
+}
+</style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<nav class="top-nav">
+  <a href="crstays-booking.html" class="nav-brand">CR<span> Stays</span></a>
+  <div class="nav-steps">
+    <span class="nav-step">Selección</span>
+    <span class="nav-step-sep">›</span>
+    <span class="nav-step active">Checkout</span>
+    <span class="nav-step-sep">›</span>
+    <span class="nav-step">Confirmación</span>
+  </div>
+  <div class="nav-secure">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+    Pago seguro
+  </div>
+</nav>
+
+<!-- STEP HEADER -->
+<div class="step-header">
+  <span class="step-tag">Paso 2/2</span>
+  <span class="step-sep">|</span>
+  <span class="step-title">Check-out</span>
+</div>
+
+<!-- MAIN -->
+<div class="checkout-layout">
+
+  <!-- LEFT COLUMN -->
+  <div>
+
+    <!-- GUEST INFO -->
+    <div class="form-block">
+      <div class="form-block-header">
+        <span class="form-block-title">Información del huésped</span>
+      </div>
+      <div class="form-block-body">
+        <div class="returning-guest">
+          <span>¿Ya has reservado con nosotros?</span>
+          <a href="#">Ingresa aquí</a>
+        </div>
+        <div class="checkbox-row">
+          <div class="custom-check" id="behalfCheck" onclick="toggleCheck('behalfCheck')"></div>
+          <span class="check-label">Estoy reservando en nombre de otra persona</span>
+        </div>
+        <div class="frow-3">
+          <div class="fgroup">
+            <label class="flabel">Tratamiento<span>*</span></label>
+            <div class="fselect-wrap">
+              <select class="fselect">
+                <option value="">—</option>
+                <option>Sr.</option>
+                <option>Sra.</option>
+                <option>Srta.</option>
+                <option>Dr.</option>
+              </select>
+            </div>
+          </div>
+          <div class="fgroup">
+            <label class="flabel">Nombre<span>*</span></label>
+            <input class="finput" type="text" placeholder="Tu nombre" id="gFirstName">
+          </div>
+          <div class="fgroup">
+            <label class="flabel">Apellido<span>*</span></label>
+            <input class="finput" type="text" placeholder="Tu apellido" id="gLastName">
+          </div>
+        </div>
+        <div class="frow">
+          <div class="fgroup">
+            <label class="flabel">Correo electrónico<span>*</span></label>
+            <input class="finput" type="email" placeholder="tu@email.com" id="gEmail">
+          </div>
+          <div class="fgroup">
+            <label class="flabel">Teléfono / WhatsApp<span>*</span></label>
+            <input class="finput" type="tel" placeholder="+506 7187-6500" id="gPhone">
+          </div>
+        </div>
+        <div class="frow-full">
+          <div class="fgroup">
+            <label class="flabel">País de residencia<span>*</span></label>
+            <div class="fselect-wrap">
+              <select class="fselect" id="gCountry">
+                <option value="">Seleccionar</option>
+                <option>Costa Rica</option>
+                <option>Estados Unidos</option>
+                <option>Canadá</option>
+                <option>México</option>
+                <option>Colombia</option>
+                <option>España</option>
+                <option>Otro</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PREPARE YOUR STAY -->
+    <div class="form-block">
+      <div class="form-block-header">
+        <span class="form-block-title">Prepara tu llegada</span>
+      </div>
+      <div class="form-block-body">
+        <p style="font-size:13px;font-weight:600;color:var(--charcoal);margin-bottom:6px;">¿Tienes alguna solicitud especial?</p>
+        <p style="font-size:12px;font-weight:300;color:var(--muted);margin-bottom:4px;">Tu solicitud será comunicada al equipo de CR Stays antes de tu llegada.</p>
+        <p style="font-size:11px;font-style:italic;color:var(--light);margin-bottom:16px;">Nota: Las solicitudes especiales no están garantizadas.</p>
+        <div class="fgroup">
+          <label class="flabel">Comentarios u observaciones</label>
+          <textarea class="finput" rows="4" placeholder="Ej: Llegamos tarde en la noche, necesitamos cuna, alergias alimentarias..." style="resize:vertical;" id="gComments"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- POLICIES -->
+    <div class="form-block">
+      <div class="form-block-header">
+        <span class="form-block-title">Políticas</span>
+      </div>
+      <div class="form-block-body">
+        <div class="policy-tabs">
+          <div class="policy-tab active" onclick="switchTab('cancel')">Cancelación</div>
+          <div class="policy-tab" onclick="switchTab('deposit')">Depósito</div>
+          <div class="policy-tab" onclick="switchTab('checkin')">Check-in / out</div>
+        </div>
+        <div id="tab-cancel" class="policy-content active">
+          <p class="policy-text">Esta es una tarifa No Reembolsable. Para confirmar tu reserva, se cobrará el 100% del monto total al momento de completar la reserva. No se permiten cambios ni modificaciones una vez confirmada. Escríbenos a <strong>crstays@gmail.com</strong> si tienes consultas adicionales.</p>
+        </div>
+        <div id="tab-deposit" class="policy-content">
+          <p class="policy-text">El 100% del monto total será cargado a tu tarjeta de crédito al completar la reserva. Esta acción confirma y asegura tu estadía. El cargo aparecerá en tu estado de cuenta como <strong>CR STAYS PROPERTY MANAGEMENT</strong>.</p>
+        </div>
+        <div id="tab-checkin" class="policy-content">
+          <p class="policy-text">Check-in: a partir de las <strong>3:00 PM</strong>. Check-out: antes de las <strong>11:00 AM</strong>. Late check-out sujeto a disponibilidad. Para llegadas fuera del horario estándar, coordinar directamente con nuestro equipo por WhatsApp con al menos 24 horas de anticipación.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAYMENT -->
+    <div class="form-block">
+      <div class="form-block-header">
+        <span class="form-block-title">Detalles de pago</span>
+      </div>
+      <div class="form-block-body">
+        <p style="font-size:13px;font-weight:600;color:var(--charcoal);margin-bottom:4px;">Pagar con tarjeta de crédito / débito</p>
+        <p style="font-size:12px;font-weight:300;color:var(--muted);margin-bottom:0;">Se requerirá una forma de pago válida al momento de la reserva.</p>
+        <div class="payment-cards">
+          <div class="card-logo card-amex">AMEX</div>
+          <div class="card-logo card-mc">
+            <span style="color:#eb001b;font-size:18px;">●</span>
+            <span style="color:#f79e1b;font-size:18px;margin-left:-8px;">●</span>
+            <span style="font-size:10px;color:#333;margin-left:4px;">Mastercard</span>
+          </div>
+          <div class="card-logo card-visa">
+            <span style="font-style:italic;font-size:14px;">VISA</span>
+          </div>
+        </div>
+        <div class="frow">
+          <div class="fgroup">
+            <label class="flabel">Nombre en la tarjeta<span>*</span></label>
+            <input class="finput" type="text" placeholder="Nombre completo en la tarjeta" id="cardName">
+          </div>
+          <div class="fgroup">
+            <label class="flabel">Número de tarjeta<span>*</span></label>
+            <div class="card-number-wrap">
+              <input class="finput" type="text" placeholder="0000 0000 0000 0000" id="cardNum" maxlength="19" oninput="formatCard(this)">
+              <span class="card-lock">🔒</span>
+            </div>
+          </div>
+        </div>
+        <div class="exp-row">
+          <div class="fgroup">
+            <label class="flabel">Mes<span>*</span></label>
+            <div class="fselect-wrap">
+              <select class="fselect" id="cardMM">
+                <option>MM</option>
+                <option>01</option><option>02</option><option>03</option>
+                <option>04</option><option>05</option><option>06</option>
+                <option>07</option><option>08</option><option>09</option>
+                <option>10</option><option>11</option><option>12</option>
+              </select>
+            </div>
+          </div>
+          <div class="fgroup">
+            <label class="flabel">Año<span>*</span></label>
+            <div class="fselect-wrap">
+              <select class="fselect" id="cardYY">
+                <option>AA</option>
+                <option>26</option><option>27</option><option>28</option>
+                <option>29</option><option>30</option><option>31</option>
+              </select>
+            </div>
+          </div>
+          <div class="fgroup">
+            <label class="flabel">CVV<span>*</span></label>
+            <input class="finput" type="text" placeholder="•••" maxlength="4" id="cardCVV">
+          </div>
+        </div>
+
+        <div class="checks-section">
+          <div class="check-item">
+            <div class="custom-check checked" id="sameAddress" onclick="toggleCheck('sameAddress')"></div>
+            <span class="check-label">Usar la misma dirección como información de contacto</span>
+          </div>
+          <div class="check-item">
+            <div class="custom-check checked" id="newsletter" onclick="toggleCheck('newsletter')"></div>
+            <span class="check-label">Notificarme sobre ofertas y estadías especiales de CR Stays</span>
+          </div>
+          <div class="check-item">
+            <div class="custom-check" id="termsCheck" onclick="toggleCheck('termsCheck')"></div>
+            <span class="check-label">He leído y acepto los <a href="#">Términos & Condiciones</a> y la <a href="#">Política de Privacidad</a> <span style="color:var(--red);">*</span></span>
+          </div>
+        </div>
+
+        <button class="book-now-btn" id="bookNowBtn" onclick="doBooking()">
+          <span class="book-lock-icon">🔒</span>
+          Confirmar reserva
+        </button>
+        <p style="font-size:10px;font-weight:300;color:var(--light);text-align:center;margin-top:12px;">Tu información está protegida con encriptación SSL de 256 bits</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sidebar-sticky">
+      <div class="res-card">
+        <div class="res-card-header">
+          <span class="res-card-title">Tu reserva</span>
+        </div>
+        <div class="res-prop-row">
+          <span class="res-prop-name">
+            <span id="resPropName">Cabaña R1</span>
+            <span style="font-size:14px;color:var(--muted);">∨</span>
+          </span>
+          <div class="res-prop-actions">
+            <button class="res-action-btn" title="Editar">✏️</button>
+            <button class="res-action-btn" title="Eliminar">🗑️</button>
+          </div>
+        </div>
+        <div class="res-detail">
+          <span class="res-rate-tag" id="resRateTag">Tarifa Directa CR Stays con beneficios</span>
+          <div class="res-dates" id="resDates">Vie, 4 Jul 2025 – Dom, 6 Jul 2025</div>
+          <div class="res-guests" id="resGuests">2 adultos · 2 noches</div>
+          <div class="res-subtotal-row">
+            <div class="res-subtotal-left">
+              <div class="res-subtotal-old" id="resOldPrice">USD 190</div>
+              <div class="res-subtotal-new" id="resNewPrice">USD 150</div>
+              <div class="res-subtotal-nights" id="resNightsCalc">USD 75 x 2 noches</div>
+            </div>
+          </div>
+        </div>
+        <div class="res-breakdown">
+          <div class="breakdown-row"><span>Subtotal reserva</span><span id="bSubtotal">USD 150</span></div>
+          <div class="breakdown-row"><span>Impuestos (13% IVA)</span><span id="bTaxes">USD 19.50</span></div>
+          <div class="breakdown-row"><span>Cargo de servicio</span><span id="bService">USD 0</span></div>
+        </div>
+        <div class="res-total-row">
+          <span class="res-total-label">Total reserva</span>
+          <span class="res-total-amount" id="resTotal">USD 169.50</span>
+        </div>
+        <div class="res-actions-row">
+          <button class="res-small-btn" onclick="window.location='crstays-booking.html'">
+            ↩ Volver
+          </button>
+          <button class="res-small-btn" onclick="window.location='crstays-booking.html'">
+            🔄 Reiniciar
+          </button>
+        </div>
+      </div>
+
+      <div style="background:rgba(26,61,43,.06);padding:14px 16px;border-left:3px solid var(--gold);font-size:12px;font-weight:300;color:var(--muted);line-height:1.65;">
+        <strong style="color:var(--forest);font-weight:600;">Reserva directa</strong> — Estás obteniendo la mejor tarifa disponible. Sin comisiones de plataformas externas.
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- STICKY BOTTOM BAR -->
+<div class="sticky-bar" id="stickyBar">
+  <div class="sticky-bar-info">
+    <div class="sticky-info-item">
+      <div class="sticky-info-label">Propiedad</div>
+      <div class="sticky-info-value" id="sbProp">Cabaña R1</div>
+    </div>
+    <div class="sticky-info-item">
+      <div class="sticky-info-label">Fechas</div>
+      <div class="sticky-info-value" id="sbDates" style="font-size:14px;">4 Jul → 6 Jul</div>
+    </div>
+    <div class="sticky-info-item">
+      <div class="sticky-info-label">Noches</div>
+      <div class="sticky-info-value" id="sbNights">2 <span>noches</span></div>
+    </div>
+    <div class="sticky-info-item">
+      <div class="sticky-info-label">Tarifa directa</div>
+      <div class="sticky-info-value" id="sbPrice">$75 <span>/ noche</span></div>
+    </div>
+    <div>
+      <div class="sticky-rate" id="sbOldRate"><s>$95</s> en Airbnb</div>
+      <div style="font-size:10px;font-weight:600;color:var(--gold);margin-top:2px;" id="sbSavings">Ahorras $40</div>
+    </div>
+  </div>
+  <div class="sticky-actions">
+    <button class="sticky-checkout-btn" onclick="scrollToPayment()">
+      Ir al pago
+      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h12M10 4l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <button class="sticky-close" onclick="closeStickyBar()">✕</button>
+  </div>
+</div>
+
+<!-- SUCCESS MODAL -->
+<div class="modal-overlay" id="successModal">
+  <div class="modal-box">
+    <div class="modal-icon">✅</div>
+    <h2 class="modal-title">¡Reserva confirmada!</h2>
+    <p class="modal-sub">Tu reserva ha sido recibida y confirmada. En los próximos minutos recibirás un correo de confirmación con todos los detalles de tu estadía.</p>
+    <div class="modal-ref" id="modalRef">Referencia: CRS-2025-0001</div>
+    <p style="font-size:13px;font-weight:300;color:var(--muted);margin-bottom:24px;">Nuestro equipo se pondrá en contacto contigo para coordinar el check-in y cualquier detalle adicional.</p>
+    <button class="modal-btn" onclick="window.location='crstays-booking.html'">Volver al inicio</button>
+  </div>
+</div>
+
+<script>
+// ── URL PARAMS (passed from booking page) ──
+const params = new URLSearchParams(window.location.search);
+const propName  = params.get('prop')    || 'Cabaña R1';
+const checkIn   = params.get('ci')      || '2025-07-04';
+const checkOut  = params.get('co')      || '2025-07-06';
+const nightsNum = parseInt(params.get('nights') || '2');
+const guestsNum = parseInt(params.get('guests') || '2');
+const priceN    = parseInt(params.get('price')  || '75');
+const otaPrice  = parseInt(params.get('ota')    || '95');
+
+// ── POPULATE ──
+function formatDateES(str) {
+  const months = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+  const days = ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
+  const d = new Date(str + 'T12:00:00');
+  return days[d.getDay()] + ', ' + d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
+}
+function formatShort(str) {
+  const months = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+  const d = new Date(str + 'T12:00:00');
+  return d.getDate() + ' ' + months[d.getMonth()];
+}
+
+const subtotal  = priceN * nightsNum;
+const otaTotal  = otaPrice * nightsNum;
+const taxes     = Math.round(subtotal * 0.13 * 100) / 100;
+const total     = Math.round((subtotal + taxes) * 100) / 100;
+const savings   = (otaPrice - priceN) * nightsNum;
+
+// Sidebar
+document.getElementById('resPropName').textContent  = propName;
+document.getElementById('resDates').textContent     = formatDateES(checkIn) + ' – ' + formatDateES(checkOut);
+document.getElementById('resGuests').textContent    = guestsNum + ' adulto' + (guestsNum > 1 ? 's' : '') + ' · ' + nightsNum + ' noche' + (nightsNum > 1 ? 's' : '');
+document.getElementById('resOldPrice').textContent  = 'USD ' + otaTotal;
+document.getElementById('resNewPrice').textContent  = 'USD ' + subtotal;
+document.getElementById('resNightsCalc').textContent = 'USD ' + priceN + ' x ' + nightsNum + ' noches';
+document.getElementById('bSubtotal').textContent   = 'USD ' + subtotal;
+document.getElementById('bTaxes').textContent      = 'USD ' + taxes.toFixed(2);
+document.getElementById('resTotal').textContent    = 'USD ' + total.toFixed(2);
+
+// Sticky bar
+document.getElementById('sbProp').textContent    = propName;
+document.getElementById('sbDates').textContent   = formatShort(checkIn) + ' → ' + formatShort(checkOut);
+document.getElementById('sbNights').innerHTML    = nightsNum + ' <span>noche' + (nightsNum > 1 ? 's' : '') + '</span>';
+document.getElementById('sbPrice').innerHTML     = '$' + priceN + ' <span>/ noche</span>';
+document.getElementById('sbOldRate').innerHTML   = '<s>$' + otaPrice + '</s> en Airbnb';
+document.getElementById('sbSavings').textContent = savings > 0 ? 'Ahorras $' + savings : 'Mejor precio directo';
+
+// Show sticky bar after a moment
+setTimeout(() => {
+  document.getElementById('stickyBar').classList.add('visible');
+}, 600);
+
+// ── HELPERS ──
+function toggleCheck(id) {
+  document.getElementById(id).classList.toggle('checked');
+}
+
+function switchTab(tab) {
+  document.querySelectorAll('.policy-tab').forEach((t,i) => {
+    const tabs = ['cancel','deposit','checkin'];
+    t.classList.toggle('active', tabs[i] === tab);
+  });
+  document.querySelectorAll('.policy-content').forEach(c => c.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+}
+
+function formatCard(el) {
+  let v = el.value.replace(/\D/g,'');
+  let formatted = '';
+  for(let i=0; i<v.length; i++) {
+    if(i>0 && i%4===0) formatted += ' ';
+    formatted += v[i];
+  }
+  el.value = formatted;
+}
+
+function closeStickyBar() {
+  document.getElementById('stickyBar').classList.remove('visible');
+}
+
+function scrollToPayment() {
+  document.querySelector('.form-block:last-child').scrollIntoView({behavior:'smooth'});
+}
+
+function doBooking() {
+  // Validate required fields
+  const firstName = document.getElementById('gFirstName').value.trim();
+  const lastName  = document.getElementById('gLastName').value.trim();
+  const email     = document.getElementById('gEmail').value.trim();
+  const phone     = document.getElementById('gPhone').value.trim();
+  const cardName  = document.getElementById('cardName').value.trim();
+  const cardNum   = document.getElementById('cardNum').value.trim();
+  const cardMM    = document.getElementById('cardMM').value;
+  const cardYY    = document.getElementById('cardYY').value;
+  const terms     = document.getElementById('termsCheck').classList.contains('checked');
+
+  if (!firstName || !lastName || !email || !phone) {
+    alert('Por favor completa toda la información del huésped.'); return;
+  }
+  if (!email.includes('@')) {
+    alert('Por favor ingresa un correo electrónico válido.'); return;
+  }
+  if (!cardName || cardNum.replace(/\s/g,'').length < 13) {
+    alert('Por favor ingresa los datos de tu tarjeta correctamente.'); return;
+  }
+  if (cardMM === 'MM' || cardYY === 'AA') {
+    alert('Por favor selecciona la fecha de vencimiento de tu tarjeta.'); return;
+  }
+  if (!terms) {
+    alert('Debes aceptar los Términos & Condiciones para continuar.'); return;
+  }
+
+  // Show loading state
+  const btn = document.getElementById('bookNowBtn');
+  btn.disabled = true;
+  btn.textContent = 'Procesando...';
+
+  // Simulate payment processing
+  setTimeout(() => {
+    const ref = 'CRS-' + new Date().getFullYear() + '-' + String(Math.floor(Math.random()*9000)+1000);
+    document.getElementById('modalRef').textContent = 'Referencia: ' + ref;
+    document.getElementById('successModal').classList.add('show');
+    document.getElementById('stickyBar').classList.remove('visible');
+  }, 2000);
+}
+</script>
+</body>
+</html>

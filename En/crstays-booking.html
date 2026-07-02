@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CR Stays — Book Direct · Best Rate Guaranteed</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hammersmith+One&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --forest:#1A3D2B;--forest-d:#122B1E;--forest-m:#224E38;
+  --black:#050505;--charcoal:#3E3E3E;
+  --gold:#FABC3D;--gold-d:#C9963A;--gold-pale:#FDF0CC;
+  --ivory:#FAF7F0;--white:#FFFFFF;
+  --muted:#6B6660;--light:#9A9690;--border:#E8E3DA;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Montserrat',sans-serif;background:var(--ivory);color:var(--charcoal);}
+
+/* PAGE HEADER */
+.page-header{background:var(--forest);padding:0 5vw;height:56px;display:flex;align-items:center;justify-content:space-between;}
+.page-header a{text-decoration:none;}
+.ph-back{font-family:'Hammersmith One',sans-serif;font-size:14px;color:white;letter-spacing:.06em;display:flex;align-items:center;gap:8px;}
+.ph-back span{color:var(--gold);}
+.ph-label{font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.4);}
+.ph-lang{font-size:11px;font-weight:600;letter-spacing:.1em;color:rgba(255,255,255,.5);text-decoration:none;transition:color .2s;}
+.ph-lang:hover{color:var(--gold);}
+
+/* HERO */
+.page-hero{background:var(--black);padding:56px 5vw 52px;text-align:center;}
+.page-hero h1{font-family:'Hammersmith One',sans-serif;font-size:clamp(32px,5vw,60px);color:var(--white);line-height:1.1;margin-bottom:14px;}
+.page-hero h1 span{color:var(--gold);}
+.page-hero p{font-size:13px;font-weight:300;letter-spacing:.08em;color:rgba(250,247,240,.45);}
+.hero-badges{display:flex;justify-content:center;gap:24px;margin-top:20px;flex-wrap:wrap;}
+.hbadge{font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(250,247,240,.3);display:flex;align-items:center;gap:8px;}
+.hbadge::before{content:'✦';color:var(--gold);font-size:8px;}
+
+/* BOOKING WIDGET */
+.booking-widget-wrap{display:flex;justify-content:center;margin-top:-28px;position:relative;z-index:10;padding:0 5vw;}
+.booking-widget{background:var(--white);box-shadow:0 8px 48px rgba(26,61,43,.18);padding:28px 32px;display:flex;align-items:center;gap:0;width:100%;max-width:920px;}
+.bw-field{flex:1;display:flex;flex-direction:column;padding:0 24px;border-right:1px solid var(--border);}
+.bw-field:first-child{padding-left:0;}
+.bw-field:last-of-type{border-right:none;}
+.bw-label{font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--forest);margin-bottom:6px;}
+.bw-date-display{cursor:pointer;}
+.bw-date-day{font-family:'Hammersmith One',sans-serif;font-size:32px;color:var(--forest);line-height:1;}
+.bw-date-month{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:2px;}
+.bw-guests-ctrl{display:flex;align-items:center;gap:14px;margin-top:4px;}
+.bw-guest-btn{width:28px;height:28px;border:1px solid var(--forest);background:transparent;cursor:pointer;font-size:16px;color:var(--forest);display:flex;align-items:center;justify-content:center;transition:background .15s;}
+.bw-guest-btn:hover{background:var(--forest);color:white;}
+.bw-guest-count{font-family:'Hammersmith One',sans-serif;font-size:28px;color:var(--forest);}
+.bw-search-btn{background:var(--gold);color:var(--black);border:none;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:18px 32px;cursor:pointer;transition:background .2s;white-space:nowrap;flex-shrink:0;margin-left:24px;}
+.bw-search-btn:hover{background:var(--gold-d);}
+.bw-date-input{position:absolute;opacity:0;width:0;height:0;}
+
+/* CALENDAR */
+.calendar-wrap{display:none;position:absolute;top:100%;left:0;z-index:100;background:var(--white);box-shadow:0 12px 40px rgba(0,0,0,.15);padding:24px;min-width:560px;margin-top:8px;}
+.calendar-wrap.open{display:flex;gap:32px;}
+.cal-month{flex:1;}
+.cal-month-title{font-family:'Hammersmith One',sans-serif;font-size:16px;color:var(--forest);margin-bottom:16px;display:flex;justify-content:space-between;align-items:center;}
+.cal-nav{background:none;border:1px solid var(--border);cursor:pointer;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--charcoal);transition:border-color .2s;}
+.cal-nav:hover{border-color:var(--forest);}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;}
+.cal-dow{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--light);text-align:center;padding:4px 0;}
+.cal-day{font-size:12px;font-weight:400;text-align:center;padding:7px 4px;cursor:pointer;transition:background .15s,color .15s;border-radius:2px;}
+.cal-day:hover:not(.cal-day-disabled):not(.cal-day-empty){background:var(--gold-pale);color:var(--forest);}
+.cal-day-selected{background:var(--forest)!important;color:var(--white)!important;}
+.cal-day-in-range{background:var(--gold-pale);color:var(--forest);}
+.cal-day-disabled{color:var(--light);cursor:not-allowed;text-decoration:line-through;}
+.cal-day-empty{cursor:default;}
+.cal-day-price{font-size:8px;font-weight:600;color:var(--gold-d);display:block;margin-top:1px;}
+.cal-day-selected .cal-day-price{color:rgba(250,188,61,.7);}
+
+/* RESULTS SECTION */
+.results-section{max-width:1200px;margin:52px auto 0;padding:0 5vw 80px;display:grid;grid-template-columns:1fr 360px;gap:32px;align-items:start;}
+
+/* PROPERTY CARDS */
+.properties-section .section-label-sm{font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:18px;}
+.prop-card{background:var(--white);display:grid;grid-template-columns:260px 1fr;gap:0;margin-bottom:16px;transition:box-shadow .25s;}
+.prop-card:hover{box-shadow:0 6px 32px rgba(26,61,43,.1);}
+.prop-card-img{width:260px;aspect-ratio:4/3;object-fit:cover;display:block;}
+.prop-card-body{padding:22px 24px;display:flex;flex-direction:column;justify-content:space-between;}
+.prop-card-zone{font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-d);margin-bottom:4px;}
+.prop-card-name{font-family:'Hammersmith One',sans-serif;font-size:18px;color:var(--charcoal);margin-bottom:6px;line-height:1.2;}
+.prop-card-rating{font-size:11px;color:var(--gold-d);margin-bottom:8px;}
+.prop-card-rating span{color:var(--light);font-weight:300;}
+.prop-card-beds{font-size:11px;font-weight:400;color:var(--light);margin-bottom:14px;}
+.prop-card-amenities{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px;}
+.amenity-tag{font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--ivory);color:var(--muted);padding:4px 10px;}
+.prop-card-footer{display:flex;align-items:center;justify-content:space-between;padding-top:14px;border-top:1px solid var(--border);}
+.prop-price-wrap{display:flex;flex-direction:column;}
+.prop-price-direct{font-family:'Hammersmith One',sans-serif;font-size:26px;color:var(--forest);}
+.prop-price-direct small{font-size:12px;font-weight:300;color:var(--light);}
+.prop-price-ota{font-size:10px;font-weight:300;color:var(--light);text-decoration:line-through;}
+.prop-price-save{font-size:10px;font-weight:600;color:var(--forest);margin-top:2px;}
+.prop-select-btn{background:var(--gold);color:var(--black);border:none;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:13px 22px;cursor:pointer;transition:background .2s;}
+.prop-select-btn:hover{background:var(--gold-d);}
+.prop-card.selected{outline:2px solid var(--gold);}
+
+/* RATE MODAL */
+.rate-overlay{display:none;position:fixed;inset:0;background:rgba(5,5,5,.65);z-index:200;backdrop-filter:blur(4px);}
+.rate-overlay.open{display:flex;align-items:center;justify-content:center;}
+.rate-modal{background:var(--white);width:90%;max-width:760px;max-height:88vh;overflow-y:auto;position:relative;}
+.rate-modal-header{background:var(--black);padding:28px 32px;display:flex;justify-content:space-between;align-items:center;}
+.rate-modal-close{background:none;border:none;font-size:20px;color:rgba(250,247,240,.4);cursor:pointer;transition:color .2s;}
+.rate-modal-close:hover{color:var(--white);}
+.rate-modal-body{padding:32px;}
+.rate-modal-name{font-family:'Hammersmith One',sans-serif;font-size:22px;color:var(--white);margin-bottom:4px;}
+.rate-modal-sub{font-size:11px;font-weight:300;color:rgba(250,247,240,.4);}
+.rate-options{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px;}
+.rate-card{border:2px solid var(--border);padding:22px;cursor:pointer;transition:border-color .2s;position:relative;}
+.rate-card:hover{border-color:var(--gold);}
+.rate-card.selected-rate{border-color:var(--forest);background:rgba(26,61,43,.03);}
+.rate-card-badge{position:absolute;top:-1px;right:16px;background:var(--gold);color:var(--black);font-size:8px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;}
+.rate-type{font-family:'Hammersmith One',sans-serif;font-size:16px;color:var(--charcoal);margin-bottom:6px;}
+.rate-price{font-family:'Hammersmith One',sans-serif;font-size:28px;color:var(--forest);margin-bottom:6px;}
+.rate-price small{font-size:13px;color:var(--light);}
+.rate-desc{font-size:11px;font-weight:300;line-height:1.65;color:var(--muted);}
+.rate-confirm-btn{background:var(--gold);color:var(--black);border:none;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:16px 36px;cursor:pointer;width:100%;transition:background .2s;}
+.rate-confirm-btn:hover{background:var(--gold-d);}
+
+/* SIDEBAR */
+.sidebar-sticky{position:sticky;top:24px;}
+.direct-card{background:var(--forest);padding:28px;}
+.direct-card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;cursor:pointer;}
+.direct-card-title{font-family:'Hammersmith One',sans-serif;font-size:16px;color:var(--white);}
+.direct-card-chevron{color:var(--gold);font-size:18px;transition:transform .3s;}
+.direct-card-body{display:block;}
+.compare-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(250,247,240,.1);}
+.compare-row:last-child{border-bottom:none;}
+.compare-platform{font-size:11px;font-weight:500;color:rgba(250,247,240,.6);}
+.compare-price{font-size:13px;font-weight:600;color:rgba(250,247,240,.6);}
+.compare-price.best{color:var(--gold);font-size:15px;}
+.compare-label{font-size:8px;font-weight:700;letter-spacing:.1em;background:var(--gold);color:var(--black);padding:2px 6px;margin-left:6px;}
+.wa-card{background:var(--white);padding:24px;margin-top:2px;}
+.wa-card-title{font-family:'Hammersmith One',sans-serif;font-size:15px;color:var(--charcoal);margin-bottom:8px;}
+.wa-card-desc{font-size:12px;font-weight:300;line-height:1.65;color:var(--muted);margin-bottom:16px;}
+.wa-btn{display:flex;align-items:center;gap:10px;background:#25D366;color:white;padding:13px 18px;text-decoration:none;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;transition:background .2s;}
+.wa-btn:hover{background:#1da851;}
+.info-card{background:var(--white);padding:24px;margin-top:2px;}
+.info-card-title{font-family:'Hammersmith One',sans-serif;font-size:14px;color:var(--charcoal);margin-bottom:14px;}
+.info-item{display:flex;gap:12px;margin-bottom:10px;align-items:flex-start;}
+.info-icon{font-size:14px;flex-shrink:0;margin-top:1px;}
+.info-text{font-size:11px;font-weight:300;line-height:1.6;color:var(--muted);}
+.info-text strong{color:var(--charcoal);font-weight:600;}
+
+/* STICKY BAR */
+.sticky-bar{position:fixed;bottom:0;left:0;right:0;z-index:300;background:rgba(5,5,5,0.96);backdrop-filter:blur(10px);border-top:2px solid var(--gold);padding:16px 5vw;display:flex;align-items:center;justify-content:space-between;gap:20px;transform:translateY(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);}
+.sticky-bar.visible{transform:translateY(0);}
+.sb-info{display:flex;align-items:center;gap:32px;flex-wrap:wrap;}
+.sb-item-lbl{font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(250,247,240,.35);margin-bottom:2px;}
+.sb-item-val{font-family:'Hammersmith One',sans-serif;font-size:18px;color:var(--white);}
+.sb-actions{display:flex;align-items:center;gap:10px;}
+.sb-checkout-btn{background:var(--gold);color:var(--charcoal);border:none;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:15px 36px;cursor:pointer;display:flex;align-items:center;gap:10px;transition:background .2s;white-space:nowrap;}
+.sb-checkout-btn:hover{background:var(--gold-d);}
+.sb-close{background:none;border:none;cursor:pointer;color:rgba(250,247,240,.3);font-size:20px;padding:4px;}
+.sb-close:hover{color:rgba(250,247,240,.65);}
+
+/* EMPTY STATE */
+.empty-state{text-align:center;padding:72px 32px;color:var(--muted);}
+.empty-icon{font-size:48px;margin-bottom:16px;opacity:.3;}
+.empty-title{font-family:'Hammersmith One',sans-serif;font-size:22px;color:var(--charcoal);margin-bottom:10px;}
+.empty-desc{font-size:13px;font-weight:300;line-height:1.75;}
+
+@media(max-width:900px){
+  .results-section{grid-template-columns:1fr;}
+  .prop-card{grid-template-columns:1fr;}
+  .prop-card-img{width:100%;aspect-ratio:16/9;}
+  .booking-widget{flex-wrap:wrap;}
+  .bw-field{min-width:140px;padding:12px;}
+  .calendar-wrap{min-width:320px;}
+  .calendar-wrap.open{flex-direction:column;}
+}
+
+@media(max-width:768px){
+  .page-header{padding:0 4vw;height:48px;}
+  .ph-back{font-size:13px;}
+  .page-hero{padding:40px 5vw 36px;}
+  .page-hero h1{font-size:clamp(28px,8vw,40px);}
+  .booking-widget{flex-direction:column;padding:20px;gap:16px;}
+  .bw-field{padding:0;border-right:none;border-bottom:1px solid var(--border);padding-bottom:14px;}
+  .bw-field:last-of-type{border-bottom:none;padding-bottom:0;}
+  .bw-search-btn{width:100%;margin-left:0;padding:14px;}
+  .results-section{grid-template-columns:1fr;padding:0 4vw 60px;}
+  .sidebar{display:none;}
+  .prop-card{grid-template-columns:1fr;}
+  .prop-card-img{width:100%;aspect-ratio:16/9;}
+  .calendar-wrap{min-width:300px;left:-10px;}
+  .calendar-wrap.open{flex-direction:column;}
+  .sticky-bar{padding:12px 4vw;}
+  .sb-info{gap:12px;}
+  .sb-item-val{font-size:14px;}
+  .sb-checkout-btn{padding:12px 20px;font-size:10px;}
+}
+</style>
+</head>
+<body>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <a href="../en/index.html" class="ph-back">← CR <span>Stays</span></a>
+  <span class="ph-label">Direct Booking</span>
+  <a href="../crstays-booking.html" class="ph-lang">🇨🇷 ES</a>
+</div>
+
+<!-- HERO -->
+<div class="page-hero">
+  <h1>Book <span>Direct</span></h1>
+  <p>Best rate guaranteed · No platform fees · Direct local support</p>
+  <div class="hero-badges">
+    <span class="hbadge">Best price guarantee</span>
+    <span class="hbadge">Flexible check-in</span>
+    <span class="hbadge">24/7 support in English</span>
+    <span class="hbadge">Airbnb Superhost quality</span>
+  </div>
+</div>
+
+<!-- BOOKING WIDGET -->
+<div class="booking-widget-wrap">
+  <div class="booking-widget">
+    <div class="bw-field" style="min-width:200px;">
+      <div class="bw-label">Destination / Property</div>
+      <select id="bwZone" style="background:transparent;border:none;outline:none;font-family:Montserrat,sans-serif;font-size:13px;font-weight:500;color:var(--charcoal);width:100%;padding:4px 0;cursor:pointer;-webkit-appearance:none;">
+        <option value="">All properties</option>
+        <optgroup label="San José · La Sabana">
+          <option>Apartment 270° · La Sabana</option>
+          <option>Family Nest · City View at Sunset</option>
+          <option>Elevated Family Retreat · Pool</option>
+          <option>Mountain View 270° · Wifi · Gym</option>
+        </optgroup>
+        <optgroup label="San José · Escazú">
+          <option>Magic Penthouse · Escazú · Cima Hospital</option>
+          <option>Modern Apartment · Escazú · Pubs &amp; Rest</option>
+          <option>Escazú Prime · Pool · Views · AC</option>
+        </optgroup>
+        <optgroup label="San José · Other">
+          <option>Urban Floor in the Sky · QBO Towers</option>
+          <option>Nunciatura Gem · Prime Location</option>
+        </optgroup>
+        <optgroup label="Heredia · SJO Airport">
+          <option>Near SJO Airport · Pool · Views</option>
+          <option>SJO Airport · Pool · Gym</option>
+          <option>Charming · Airport · Pool · AC</option>
+        </optgroup>
+        <optgroup label="Atenas · Central Valley">
+          <option>Serene Studio · Pool · Gardens · Atenas</option>
+          <option>Tranquil Retreat · Pool · Atenas ★5.0</option>
+          <option>Terrace · Pool View · Atenas ★5.0</option>
+        </optgroup>
+        <optgroup label="Zarcero · Mountain">
+          <option>Mountain Cabin · Spacious Terrace · Zarcero</option>
+          <option>Modern Cabin · Views · Zarcero</option>
+          <option>Above the Clouds · Quiet Cabin · Zarcero</option>
+          <option>The Red Door · BBQ · Unique Views · Zarcero</option>
+        </optgroup>
+      </select>
+    </div>
+    <div style="width:1px;background:var(--border);align-self:stretch;flex-shrink:0;"></div>
+    <div class="bw-field" style="position:relative;">
+      <div class="bw-label">Check In</div>
+      <div class="bw-date-display" onclick="toggleCalendar('ci')">
+        <div class="bw-date-day" id="ciDay">--</div>
+        <div class="bw-date-month" id="ciMonth">Select date</div>
+      </div>
+      <input type="date" id="ci" class="bw-date-input">
+      <div class="calendar-wrap" id="calWrap">
+        <div class="cal-month" id="calMonth1"></div>
+        <div class="cal-month" id="calMonth2"></div>
+      </div>
+    </div>
+    <div class="bw-field">
+      <div class="bw-label">Check Out</div>
+      <div class="bw-date-display" onclick="toggleCalendar('co')">
+        <div class="bw-date-day" id="coDay">--</div>
+        <div class="bw-date-month" id="coMonth">Select date</div>
+      </div>
+      <input type="date" id="co" class="bw-date-input">
+    </div>
+    <div class="bw-field">
+      <div class="bw-label">Guests</div>
+      <div class="bw-guests-ctrl">
+        <button class="bw-guest-btn" onclick="changeGuests(-1)">−</button>
+        <span class="bw-guest-count" id="guestCount">2</span>
+        <button class="bw-guest-btn" onclick="changeGuests(1)">+</button>
+      </div>
+    </div>
+    <button class="bw-search-btn" onclick="doSearch()">Check Availability</button>
+  </div>
+</div>
+
+<!-- RESULTS -->
+<div class="results-section" id="resultsSection">
+  <div>
+    <div class="properties-section">
+      <p class="section-label-sm">Available properties</p>
+      <div id="propsList"></div>
+    </div>
+  </div>
+  <div class="sidebar">
+    <div class="sidebar-sticky">
+      <div class="direct-card">
+        <div class="direct-card-header" onclick="toggleCompare()">
+          <span class="direct-card-title">Compare prices</span>
+          <span class="direct-card-chevron" id="compareChev">∨</span>
+        </div>
+        <div class="direct-card-body" id="compareBody">
+          <div class="compare-row">
+            <span class="compare-platform">CR Stays Direct</span>
+            <span class="compare-price best" id="cmpDirect">$— <span class="compare-label">BEST</span></span>
+          </div>
+          <div class="compare-row">
+            <span class="compare-platform">Airbnb</span>
+            <span class="compare-price" id="cmpAirbnb">$—</span>
+          </div>
+          <div class="compare-row">
+            <span class="compare-platform">Booking.com</span>
+            <span class="compare-price" id="cmpBooking">$—</span>
+          </div>
+          <div class="compare-row">
+            <span class="compare-platform">VRBO</span>
+            <span class="compare-price" id="cmpVrbo">$—</span>
+          </div>
+        </div>
+      </div>
+      <div class="wa-card">
+        <p class="wa-card-title">Questions? Write to us</p>
+        <p class="wa-card-desc">Our local team answers in English and Spanish, usually in under 30 minutes.</p>
+        <a href="https://wa.me/50671876500?text=Hello,%20I%20would%20like%20information%20about%20a%20property" class="wa-btn" target="_blank">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Chat on WhatsApp
+        </a>
+      </div>
+      <div class="info-card">
+        <p class="info-card-title">Good to know</p>
+        <div class="info-item"><span class="info-icon">✅</span><p class="info-text"><strong>Best price guarantee</strong> — direct bookings are always cheaper than OTA platforms.</p></div>
+        <div class="info-item"><span class="info-icon">🔑</span><p class="info-text"><strong>Flexible check-in</strong> — we coordinate arrival directly with your team.</p></div>
+        <div class="info-item"><span class="info-icon">🧹</span><p class="info-text"><strong>Hotel standards</strong> — every property cleaned and inspected before your arrival.</p></div>
+        <div class="info-item"><span class="info-icon">💬</span><p class="info-text"><strong>Local support 24/7</strong> — real people, in English and Spanish.</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RATE MODAL -->
+<div class="rate-overlay" id="rateOverlay" onclick="closeRateModal(event)">
+  <div class="rate-modal">
+    <div class="rate-modal-header">
+      <div>
+        <p class="rate-modal-name" id="modalPropName">—</p>
+        <p class="rate-modal-sub" id="modalPropSub">—</p>
+      </div>
+      <button class="rate-modal-close" onclick="closeRateModal()">✕</button>
+    </div>
+    <div class="rate-modal-body">
+      <div class="rate-options">
+        <div class="rate-card selected-rate" id="rateFlexible" onclick="selectRate('flexible')">
+          <span class="rate-card-badge">Most popular</span>
+          <p class="rate-type">Flexible</p>
+          <p class="rate-price" id="flexPrice">$—<small>/night</small></p>
+          <p class="rate-desc">Free cancellation up to 7 days before check-in. Full refund if cancelled on time.</p>
+        </div>
+        <div class="rate-card" id="rateNonRef" onclick="selectRate('nonref')">
+          <p class="rate-type">Non-refundable</p>
+          <p class="rate-price" id="nonrefPrice">$—<small>/night</small></p>
+          <p class="rate-desc">Save 10% on your stay. No refund if cancelled. Best for confirmed plans.</p>
+        </div>
+      </div>
+      <div style="background:var(--ivory);padding:20px;margin-bottom:20px;">
+        <div style="display:flex;justify-content:space-between;margin-bottom:8px;"><span style="font-size:12px;color:var(--muted);">Rate per night</span><span style="font-size:12px;font-weight:600;" id="summBaseRate">$—</span></div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:8px;"><span style="font-size:12px;color:var(--muted);">Nights</span><span style="font-size:12px;font-weight:600;" id="summNights">—</span></div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:8px;"><span style="font-size:12px;color:var(--muted);">Subtotal</span><span style="font-size:12px;font-weight:600;" id="summSubtotal">$—</span></div>
+        <div style="display:flex;justify-content:space-between;padding-top:12px;border-top:1px solid var(--border);"><span style="font-size:13px;font-weight:700;color:var(--charcoal);">Total (incl. taxes)</span><span style="font-size:16px;font-weight:700;color:var(--forest);font-family:'Hammersmith One',sans-serif;" id="summTotal">$—</span></div>
+      </div>
+      <button class="rate-confirm-btn" id="rateConfirmBtn" onclick="confirmRate()">Select this rate — Proceed to checkout</button>
+    </div>
+  </div>
+</div>
+
+<!-- STICKY BAR -->
+<div class="sticky-bar" id="stickyBar">
+  <div class="sb-info">
+    <div><p class="sb-item-lbl">Property</p><div class="sb-item-val" id="sbProp" style="font-size:14px;">—</div></div>
+    <div><p class="sb-item-lbl">Check-in</p><div class="sb-item-val" id="sbCi">—</div></div>
+    <div><p class="sb-item-lbl">Check-out</p><div class="sb-item-val" id="sbCo">—</div></div>
+    <div><p class="sb-item-lbl">Rate / night</p><div class="sb-item-val" id="sbRate">—</div></div>
+  </div>
+  <div class="sb-actions">
+    <button class="sb-checkout-btn" onclick="goCheckout()">Proceed to Checkout →</button>
+    <button class="sb-close" onclick="closeStickyBar()">✕</button>
+  </div>
+</div>
+
+<script>
+const BASE_PRICES = {
+  'Apartment 270° · La Sabana': { base:145, ota_mult:1.22, beds:'3 beds · 2.5 baths', max:7, rating:4.86, amenities:['Wifi','Pool','Gym','AC','Kitchen','Parking'], zone:'San José · La Sabana', img:'https://a0.muscache.com/im/pictures/hosting/Hosting-19848732/original/1a833edd-7205-48c8-a56c-e7afc34ed28b.png?im_w=720', airbnb:'https://es-l.airbnb.com/rooms/19848732', internal:'Ambar 10-3', short:'Penthouse 270° · La Sabana, San José' },
+  'Family Nest · City View at Sunset': { base:130, ota_mult:1.22, beds:'3 beds · 2.5 baths', max:6, rating:4.81, amenities:['Wifi','Pool','Gym','AC','Kitchen'], zone:'San José · La Sabana', img:'https://a0.muscache.com/im/pictures/miso/Hosting-710929068023205923/original/fe0ae78f-0ac1-4e0d-863b-aa4adb80427b.jpeg?im_w=720', airbnb:'https://es-l.airbnb.com/rooms/710929068023205923', internal:'Ambar 9-5', short:'Family Nest · City View · La Sabana' },
+  'Elevated Family Retreat · Pool': { base:135, ota_mult:1.22, beds:'3 beds · 2.5 baths', max:7, rating:4.83, amenities:['Wifi','Pool','Gym','AC','Kitchen'], zone:'San José · La Sabana', img:'https://a0.muscache.com/im/pictures/miso/Hosting-1141945282092877193/original/5ff474b8-fe6d-44b8-8f7a-12d32f294857.jpeg?im_w=720', airbnb:'https://es-l.airbnb.com/rooms/1141945282092877193', internal:'Ambar 6-8', short:'Family Retreat · Pool · La Sabana' },
+  'Mountain View 270° · Wifi · Gym': { base:110, ota_mult:1.22, beds:'2 beds · 2 baths', max:5, rating:4.9, amenities:['Wifi','Gym','AC','Kitchen','Self check-in'], zone:'San José · La Sabana', img:'https://a0.muscache.com/im/pictures/77c83877-30ce-4f58-ad79-2a17e7505f35.jpg?im_w=720', airbnb:'https://es-l.airbnb.com/rooms/53916016', internal:'Ambar 8-2', short:'Mountain View · Wifi · Gym · La Sabana' },
+  'Magic Penthouse · Escazú · Cima Hospital': { base:105, ota_mult:1.23, beds:'2 beds · 2 baths', max:5, rating:4.89, amenities:['Wifi','AC','Kitchen','Mountain view','Hospital Cima'], zone:'San José · Escazú', img:'https://a0.muscache.com/im/pictures/miso/Hosting-558513492490011144/original/0e790f5e-45ab-4d21-8807-82343ba5376b.jpeg?im_w=720', airbnb:'https://es-l.airbnb.com/rooms/558513492490011144', internal:'Milano 29', short:'Penthouse · Escazú · Mountain View' },
+  'Modern Apartment · Escazú · Pubs & Rest': { base:80, ota_mult:1.24, beds:'1 bed · 1 bath', max:3, rating:4.88, amenities:['Wifi','AC','Kitchen','Restaurants'], zone:'San José · Escazú', img:'https://a0.muscache.com/im/pictures/miso/Hosting-47996918/original/759ccc70-8f1d-4e58-ba00-4be8c3fbfb12.jpeg?im_w=720', airbnb:'https://es-l.airbnb.com/rooms/47996918', internal:'Milano 12', short:'Modern Apartment · Escazú' },
+  'Urban Floor in the Sky · QBO Towers': { base:95, ota_mult:1.22, beds:'2 beds · 2 baths', max:5, rating:4.87, amenities:['Wifi','AC','Kitchen','City view'], zone:'San José · La Sabana', img:'https://a0.muscache.com/im/pictures/hosting/Hosting-1140764891088244043/original/d3203e64-1943-44a9-9f4d-f0ac3b9e3d8e.jpeg?im_w=720', airbnb:'https://es-l.airbnb.com/rooms/1140764891088244043', internal:'QBO 1118', short:'Floor in the Sky · QBO Towers · La Sabana' },
+  'Nunciatura Gem · Prime Location': { base:75, ota_mult:1.24, beds:'1 bed · 1 bath', max:2, rating:4.88, amenities:['Wifi','AC','Kitchen','Restaurants'], zone:'San José · Nunciatura', img:'https://a0.muscache.com/im/pictures/miso/Hosting-980385666522595298/original/928b8c83-77b4-4dd2-a36a-a222e0272247.jpeg?im_w=720', airbnb:'https://es-l.airbnb.com/rooms/980385666522595298', internal:'N403', short:'Urban Gem · Nunciatura · San José' },
+  'Near SJO Airport · Pool · Views': { base:85, ota_mult:1.22, beds:'1 bed · 1.5 baths', max:3, rating:4.97, amenities:['Wifi','Pool','Gym','AC','Aeropuerto'], zone:'Heredia · Cariari', img:'https://a0.muscache.com/im/pictures/hosting/Hosting-1249371686908229470/original/49a80063-5e5a-47cc-8ba3-ade45342f7f4.png?im_w=720', airbnb:'https://es-l.airbnb.com/rooms/1249371686908229470', internal:'Cariari 508', short:'Near SJO Airport · Pool · Cariari' },
+  'SJO Airport · Pool · Gym': { base:78, ota_mult:1.22, beds:'1 bed · 1.5 baths', max:2, rating:4.65, amenities:['Wifi','Pool','Gym','AC','Aeropuerto'], zone:'Heredia · Cariari', img:'https://a0.muscache.com/im/pictures/hosting/Hosting-1299531069010719127/original/36734278-6edc-4c2f-8179-06e5befeea05.png?im_w=720', airbnb:'https://es-l.airbnb.com/rooms/1299531069010719127', internal:'Cariari 505', short:'SJO Airport · Pool · Gym' },
+  'Charming · Airport · Pool · AC': { base:78, ota_mult:1.22, beds:'1 bed · 1.5 baths', max:2, rating:4.82, amenities:['Wifi','Pool','AC','TV','Aeropuerto'], zone:'Heredia · Cariari', img:'https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTI5OTUzMTA2OTAxMDcxOTEyNw==/original/41ddf289-976a-4b73-ba01-bd460aa75d01.jpeg?im_w=720', airbnb:'https://es-l.airbnb.com/rooms/1409454866998261606', internal:'Cariari 305', short:'Charming · Airport · Pool' },
+  'Escazú Prime · Pool · Views · AC': { base:85, ota_mult:1.23, beds:'1 bed · 1 bath', max:3, rating:4.83, amenities:['Wifi','Pool','AC','Kitchen','Vista'], zone:'San Rafael de Escazú', img:'https://a0.muscache.com/im/pictures/26d43252-4590-45ec-9105-bdb36cdb1b28.jpg?im_w=720', airbnb:'https://es-l.airbnb.com/rooms/50719884', internal:'Terrazas 404', short:'Escazú Prime · Pool · Views' },
+  'Serene Studio · Pool · Gardens · Atenas': { base:72, ota_mult:1.24, beds:'1 bed · 1 bath', max:2, rating:4.92, amenities:['Wifi','AC','Pool','Jardines','Nature'], zone:'Atenas · Central Valley', img:'https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTI5NDQwMTUxNDc2MzYxMzM1NQ==/original/6571dd7e-4103-4170-a2bf-f590da66cd6b.jpeg?im_w=720', airbnb:'https://es-l.airbnb.com/rooms/1305783989454712990', internal:'Espaveles #3', short:'Serene Studio · Pool · Atenas' },
+  'Tranquil Retreat · Pool · Atenas ★5.0': { base:72, ota_mult:1.24, beds:'1 bed · 1 bath', max:2, rating:5.0, amenities:['Wifi','AC','Pool','Nature'], zone:'Atenas · Central Valley', img:'https://a0.muscache.com/im/pictures/miso/Hosting-1299624401592604290/original/5aad7c5b-860e-4420-8c6c-5e45a61b5639.jpeg?im_w=720', airbnb:'https://es-l.airbnb.com/rooms/1299624401592604290', internal:'Espaveles #4', short:'Tranquil Retreat · Pool · Atenas' },
+  'Terrace · Pool View · Atenas ★5.0': { base:75, ota_mult:1.24, beds:'1 bed · 1 bath', max:2, rating:5.0, amenities:['Wifi','AC','Pool','Terrace','Nature'], zone:'Atenas · Central Valley', img:'https://a0.muscache.com/im/pictures/hosting/Hosting-1604477146849923614/original/601aff4a-b569-4a06-b165-ae7344d84def.png?im_w=720', airbnb:'https://es-l.airbnb.com/rooms/1604477146849923614', internal:'Espaveles #8', short:'Terrace · Pool View · Atenas' },
+  'Mountain Cabin · Spacious Terrace · Zarcero': { base:90, ota_mult:1.25, beds:'2 beds · 1 bath', max:5, rating:4.94, amenities:['Wifi','Kitchen','Terrace','Mountain','Parking'], zone:'Zarcero · Mountain', img:'https://a0.muscache.com/im/pictures/hosting/Hosting-49706437/original/deb77b4b-3d91-4a91-bc5a-46adb99d0272.png?im_w=720', airbnb:'https://es-l.airbnb.com/rooms/49706437', internal:'Cabaña R1', short:'Mountain Cabin · Terrace · Zarcero' },
+  'Modern Cabin · Views · Zarcero': { base:90, ota_mult:1.25, beds:'2 beds · 1 bath', max:6, rating:4.95, amenities:['Wifi','Kitchen','Terrace','Views','Mountain'], zone:'Zarcero · Mountain', img:'https://a0.muscache.com/im/pictures/hosting/Hosting-51877989/original/753fa51d-186c-4141-ace0-29a46e68cec0.png?im_w=720', airbnb:'https://es-l.airbnb.com/rooms/51877989', internal:'Cabaña R2', short:'Modern Cabin · Views · Zarcero' },
+  'Above the Clouds · Quiet Cabin · Zarcero': { base:88, ota_mult:1.25, beds:'2 beds · 1 bath', max:5, rating:4.9, amenities:['Wifi','Kitchen','Fresh air','Views','Mountain'], zone:'Zarcero · Mountain', img:'https://a0.muscache.com/im/pictures/miso/Hosting-51693498/original/572e9ad7-2509-40c7-a2d8-dd14c1b43c7e.png?im_w=720', airbnb:'https://es-l.airbnb.com/rooms/51693498', internal:'Cabaña R3', short:'Above the Clouds · Tranquility · Zarcero' },
+  'The Red Door · BBQ · Unique Views · Zarcero': { base:115, ota_mult:1.24, beds:'2 beds · 2 baths', max:6, rating:4.92, amenities:['Wifi','Kitchen','BBQ','Vistas montaña','2 baños'], zone:'Zarcero · Mountain', img:'https://a0.muscache.com/im/pictures/miso/Hosting-851614544630746338/original/9293c552-d393-49fc-afe8-29a63d26c095.jpeg?im_w=720', airbnb:'https://es-l.airbnb.com/rooms/851614544630746338', internal:'Puerta Roja', short:'The Red Door · BBQ · Views · Zarcero' },
+};
+
+// State
+let checkinDate = null, checkoutDate = null, guests = 2;
+let calendarMode = null, calOffset = 0;
+let selectedProp = null, selectedRate = 'flexible';
+let selectedFilter = '';
+
+// Date helpers
+function fmtDate(d){ const m=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']; return `${d.getDate()} ${m[d.getMonth()]}`; }
+function fmtDateFull(d){ const m=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']; return `${m[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`; }
+function nightsBetween(a,b){ return Math.round((b-a)/(1000*60*60*24)); }
+
+// Calendar
+function toggleCalendar(mode){
+  const wrap = document.getElementById('calWrap');
+  if(calendarMode === mode && wrap.classList.contains('open')){ wrap.classList.remove('open'); calendarMode=null; return; }
+  calendarMode = mode; calOffset = 0;
+  wrap.classList.add('open');
+  renderCalendars();
+  document.addEventListener('click', closeCalOutside, true);
+}
+function closeCalOutside(e){
+  const wrap = document.getElementById('calWrap');
+  if(!wrap.contains(e.target) && !e.target.closest('.bw-date-display')){
+    wrap.classList.remove('open'); calendarMode=null;
+    document.removeEventListener('click', closeCalOutside, true);
+  }
+}
+function renderCalendars(){
+  const now = new Date(); now.setDate(1);
+  renderMonth('calMonth1', new Date(now.getFullYear(), now.getMonth() + calOffset, 1));
+  renderMonth('calMonth2', new Date(now.getFullYear(), now.getMonth() + calOffset + 1, 1));
+}
+function renderMonth(elId, date){
+  const el = document.getElementById(elId);
+  const m=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const dows=['Su','Mo','Tu','We','Th','Fr','Sa'];
+  let html = `<div class="cal-month-title">
+    ${elId==='calMonth1'?`<button class="cal-nav" onclick="calNav(-1)">‹</button>`:'<span></span>'}
+    <span>${m[date.getMonth()]} ${date.getFullYear()}</span>
+    ${elId==='calMonth2'?`<button class="cal-nav" onclick="calNav(1)">›</button>`:'<span></span>'}
+  </div><div class="cal-grid">`;
+  dows.forEach(d=>{ html+=`<div class="cal-dow">${d}</div>`; });
+  const first = new Date(date.getFullYear(), date.getMonth(), 1).getDay();
+  for(let i=0;i<first;i++) html+=`<div class="cal-day cal-day-empty"></div>`;
+  const days = new Date(date.getFullYear(), date.getMonth()+1, 0).getDate();
+  const today = new Date(); today.setHours(0,0,0,0);
+  for(let d=1;d<=days;d++){
+    const cur = new Date(date.getFullYear(), date.getMonth(), d);
+    const disabled = cur < today;
+    const isCI = checkinDate && cur.toDateString()===checkinDate.toDateString();
+    const isCO = checkoutDate && cur.toDateString()===checkoutDate.toDateString();
+    const inRange = checkinDate && checkoutDate && cur > checkinDate && cur < checkoutDate;
+    const price = getPriceMultiplier(cur);
+    let cls = 'cal-day';
+    if(disabled) cls+=' cal-day-disabled';
+    if(isCI||isCO) cls+=' cal-day-selected';
+    if(inRange) cls+=' cal-day-in-range';
+    html+=`<div class="${cls}" onclick="${disabled?'':'selectDay('+date.getFullYear()+','+date.getMonth()+','+d+')'}">${d}<span class="cal-day-price">${disabled?'':('$'+Math.round(80*price))}</span></div>`;
+  }
+  html+='</div>';
+  el.innerHTML = html;
+}
+function calNav(dir){ calOffset+=dir; renderCalendars(); }
+function selectDay(y,m,d){
+  const date = new Date(y,m,d);
+  if(calendarMode==='ci'||(!checkinDate)||(checkinDate && checkoutDate)){
+    checkinDate=date; checkoutDate=null;
+    calendarMode='co';
+  } else {
+    if(date<=checkinDate){ checkinDate=date; calendarMode='co'; }
+    else { checkoutDate=date; document.getElementById('calWrap').classList.remove('open'); calendarMode=null; document.removeEventListener('click',closeCalOutside,true); }
+  }
+  updateDateDisplay();
+  renderCalendars();
+}
+function updateDateDisplay(){
+  if(checkinDate){ document.getElementById('ciDay').textContent=checkinDate.getDate(); document.getElementById('ciMonth').textContent=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][checkinDate.getMonth()]+' '+checkinDate.getFullYear(); }
+  if(checkoutDate){ document.getElementById('coDay').textContent=checkoutDate.getDate(); document.getElementById('coMonth').textContent=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][checkoutDate.getMonth()]+' '+checkoutDate.getFullYear(); }
+}
+
+// Guests
+function changeGuests(d){ guests=Math.max(1,Math.min(12,guests+d)); document.getElementById('guestCount').textContent=guests; }
+
+// Pricing
+function getPriceMultiplier(d){
+  const m=d.getMonth(), day=d.getDay();
+  if(m>=11||m<=1) return day>=5?1.45:1.3;
+  if(m>=5&&m<=7) return day>=5?1.35:1.2;
+  return day>=5?1.2:1.0;
+}
+
+// Search
+function doSearch(){
+  if(!checkinDate||!checkoutDate){ alert('Please select check-in and check-out dates.'); return; }
+  selectedFilter = document.getElementById('bwZone') ? document.getElementById('bwZone').value : '';
+  showResults();
+}
+function showResults(){
+  const list = document.getElementById('propsList');
+  const nights = nightsBetween(checkinDate, checkoutDate);
+  if(nights<1){ list.innerHTML='<div class="empty-state"><div class="empty-title">Invalid dates</div><div class="empty-desc">Check-out must be after check-in.</div></div>'; return; }
+  const avg = (checkinDate && checkoutDate) ? getAvgMultiplier(checkinDate, checkoutDate) : 1;
+  const available = Object.entries(BASE_PRICES).filter(([name,prop])=>{
+    if(prop.max < guests) return false;
+    if(selectedFilter && selectedFilter!=='' && name!==selectedFilter) return false;
+    return true;
+  });
+  if(!available.length){ list.innerHTML='<div class="empty-state"><div class="empty-icon">🏡</div><div class="empty-title">No properties available</div><div class="empty-desc">Try adjusting your dates or number of guests.</div></div>'; return; }
+  list.innerHTML = available.map(([name,prop])=>{
+    const nightly = Math.round(prop.base * avg);
+    const otaNightly = Math.round(nightly * prop.ota_mult);
+    const total = nightly * nights;
+    const saving = Math.round((otaNightly - nightly) * nights);
+    const amenHTML = (prop.amenities||[]).slice(0,4).map(a=>`<span class="amenity-tag">${a}</span>`).join('');
+    return `<div class="prop-card ${selectedProp===name?'selected':''}" id="pc_${name.replace(/[^a-zA-Z0-9]/g,'_')}">
+      <img class="prop-card-img" src="${prop.img}" alt="${name}" loading="lazy">
+      <div class="prop-card-body">
+        <div>
+          <p class="prop-card-zone">${prop.zone}</p>
+          <p class="prop-card-name">${name}</p>
+          <p class="prop-card-rating">★ ${prop.rating} <span>· ${prop.internal}</span></p>
+          <p class="prop-card-beds">${prop.beds} · Max ${prop.max} guests</p>
+          <div class="prop-card-amenities">${amenHTML}</div>
+        </div>
+        <div class="prop-card-footer">
+          <div class="prop-price-wrap">
+            <span class="prop-price-direct">$${nightly}<small>/night</small></span>
+            <span class="prop-price-ota">$${otaNightly} on Airbnb</span>
+            <span class="prop-price-save">You save $${saving} total</span>
+          </div>
+          <button class="prop-select-btn" onclick="openRateModal('${name.replace(/'/g,"\'")}', ${nightly}, ${nights})">Select rate</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+  updateSidebar(available[0][1].base * avg);
+}
+function getAvgMultiplier(ci, co){
+  let total=0, days=0;
+  for(let d=new Date(ci); d<co; d.setDate(d.getDate()+1)){ total+=getPriceMultiplier(new Date(d)); days++; }
+  return days ? total/days : 1;
+}
+function updateSidebar(baseRate){
+  const ota = Math.round(baseRate * 1.22);
+  document.getElementById('cmpDirect').innerHTML = `$${Math.round(baseRate)} <span class="compare-label">BEST</span>`;
+  document.getElementById('cmpAirbnb').textContent = `$${Math.round(ota)}`;
+  document.getElementById('cmpBooking').textContent = `$${Math.round(baseRate * 1.20)}`;
+  document.getElementById('cmpVrbo').textContent = `$${Math.round(baseRate * 1.18)}`;
+}
+function toggleCompare(){
+  const body=document.getElementById('compareBody'), chev=document.getElementById('compareChev');
+  body.style.display=body.style.display==='none'?'block':'none';
+  chev.textContent=body.style.display==='none'?'›':'∨';
+}
+
+// Rate Modal
+function openRateModal(propName, nightly, nights){
+  selectedProp = propName;
+  document.getElementById('modalPropName').textContent = propName;
+  const prop = BASE_PRICES[propName];
+  document.getElementById('modalPropSub').textContent = prop ? `${prop.zone} · ${prop.beds}` : '';
+  const nonref = Math.round(nightly * 0.9);
+  document.getElementById('flexPrice').innerHTML = `$${nightly}<small>/night</small>`;
+  document.getElementById('nonrefPrice').innerHTML = `$${nonref}<small>/night</small>`;
+  updateSummary(nightly, nights, 'flexible');
+  document.getElementById('rateOverlay').classList.add('open');
+}
+function updateSummary(nightly, nights, type){
+  const rate = type==='nonref' ? Math.round(nightly*0.9) : nightly;
+  const sub = rate * nights;
+  const total = Math.round(sub * 1.13);
+  document.getElementById('summBaseRate').textContent = `$${rate}`;
+  document.getElementById('summNights').textContent = nights;
+  document.getElementById('summSubtotal').textContent = `$${sub}`;
+  document.getElementById('summTotal').textContent = `$${total}`;
+}
+function selectRate(type){
+  selectedRate = type;
+  document.getElementById('rateFlexible').classList.toggle('selected-rate', type==='flexible');
+  document.getElementById('rateNonRef').classList.toggle('selected-rate', type==='nonref');
+  if(checkinDate && checkoutDate){
+    const nights = nightsBetween(checkinDate, checkoutDate);
+    const avg = getAvgMultiplier(checkinDate, checkoutDate);
+    const base = Math.round(BASE_PRICES[selectedProp]?.base * avg || 100);
+    updateSummary(base, nights, type);
+  }
+}
+function closeRateModal(e){
+  if(!e || e.target===document.getElementById('rateOverlay') || e.type==='click'){
+    document.getElementById('rateOverlay').classList.remove('open');
+  }
+}
+function confirmRate(){
+  if(!selectedProp || !checkinDate || !checkoutDate){ alert('Please complete your selection.'); return; }
+  const prop = BASE_PRICES[selectedProp];
+  const nights = nightsBetween(checkinDate, checkoutDate);
+  const avg = getAvgMultiplier(checkinDate, checkoutDate);
+  const nightly = Math.round((prop?.base||100) * avg);
+  const rate = selectedRate==='nonref' ? Math.round(nightly*0.9) : nightly;
+  const total = Math.round(rate * nights * 1.13);
+  document.getElementById('rateOverlay').classList.remove('open');
+  showStickyBar(nightly, nights);
+}
+function showStickyBar(rate, nights){
+  document.getElementById('sbProp').textContent = selectedProp ? selectedProp.substring(0,30)+'...' : '—';
+  document.getElementById('sbCi').textContent = checkinDate ? fmtDate(checkinDate) : '—';
+  document.getElementById('sbCo').textContent = checkoutDate ? fmtDate(checkoutDate) : '—';
+  document.getElementById('sbRate').textContent = `$${rate}/night`;
+  document.getElementById('stickyBar').classList.add('visible');
+}
+function closeStickyBar(){ document.getElementById('stickyBar').classList.remove('visible'); }
+function goCheckout(){
+  if(!selectedProp||!checkinDate||!checkoutDate){ alert('Please select a property and dates first.'); return; }
+  const prop = BASE_PRICES[selectedProp];
+  const nights = nightsBetween(checkinDate,checkoutDate);
+  const avg = getAvgMultiplier(checkinDate,checkoutDate);
+  const nightly = Math.round((prop?.base||100)*avg);
+  const rate = selectedRate==='nonref'?Math.round(nightly*0.9):nightly;
+  const total = Math.round(rate*nights*1.13);
+  const params = new URLSearchParams({
+    prop: selectedProp, ci: checkinDate.toISOString().split('T')[0],
+    co: checkoutDate.toISOString().split('T')[0], guests, nights,
+    rate, total, rateType: selectedRate, lang: 'en'
+  });
+  window.location.href = `../crstays-checkout.html?${params.toString()}`;
+}
+
+// Initial empty state
+document.getElementById('propsList').innerHTML = `<div class="empty-state">
+  <div class="empty-icon">🔍</div>
+  <div class="empty-title">Find your ideal stay</div>
+  <div class="empty-desc">Select your destination, dates and number of guests above,<br>then click <strong>Check Availability</strong> to see all available properties.</div>
+</div>`;
+</script>
+</body>
+</html>
