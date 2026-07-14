@@ -324,18 +324,19 @@ footer{background:var(--black);padding:72px 5vw 40px;}
   /* PROMISE STRIP */
   .promise{flex-direction:column;padding:24px 5vw;gap:16px;}
   .promise-q{font-size:13px;}
-  .badges{gap:6px;}
-  .badge{font-size:8px;padding:4px 10px;}
+  .badges{gap:8px;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:2px;}
+  .badges::-webkit-scrollbar{display:none;}
+  .badge{font-size:10px;padding:6px 12px;white-space:nowrap;flex-shrink:0;}
 
   /* SECTIONS */
   section{padding:56px 5vw;}
 
   /* WHY */
   .why-wrap{grid-template-columns:1fr;}
-  .why-photo{min-height:240px;order:1;}
+  .why-photo{min-height:380px;order:1;}
   .why-content{padding:40px 5vw;order:2;}
-  .why-quote{left:16px;right:16px;bottom:16px;padding:14px 16px;}
-  .why-quote p{font-size:11px;}
+  .why-quote{left:16px;right:auto;max-width:80%;bottom:16px;padding:14px 16px;}
+  .why-quote p{font-size:12px;line-height:1.55;}
 
   /* RESULTS */
   .results-grid{grid-template-columns:1fr;gap:40px;}
@@ -398,6 +399,53 @@ footer{background:var(--black);padding:72px 5vw 40px;}
   .footer-top{grid-template-columns:1fr;gap:32px;}
   .footer-btm{flex-direction:column;gap:14px;text-align:center;}
   .footer-logo img{height:48px!important;}
+
+  /* ===== READABILITY PASS — MOBILE TYPE SCALE ===== */
+  /* Micro-labels (uppercase, tracked) — floor raised to 10px */
+  .hs-lbl{font-size:9px;}
+  .hero-eyebrow{font-size:10px;}
+  .slbl{font-size:10px;}
+  .ml{font-size:10px;}
+  .rbt{font-size:10px;}
+  .areg{font-size:10px;}
+  .ptag{font-size:10px;}
+  .prop-zone{font-size:10px;}
+  .cmethod-label{font-size:10px;}
+  .fgroup label{font-size:10px;}
+  .ftag{font-size:10px;}
+  .fctitle{font-size:10px;}
+  .sb-item-lbl{font-size:10px;}
+  .why-quote cite{font-size:10px;}
+  .prop-book{font-size:10px;}
+
+  /* Secondary/meta text — floor raised to 12px */
+  .pt{font-size:12px;}
+  .ms{font-size:12px;}
+  .sn{font-size:12px;}
+  .team-role{font-size:12px;}
+  .prop-meta{font-size:12px;}
+  .tprop{font-size:12px;}
+  .sb-rate{font-size:12px;}
+  .stepn{font-size:11px;}
+  .team-badge-creds{font-size:11px;}
+  .fcopy{font-size:11px;}
+
+  /* Body copy people actually read — floor raised to 13-14px */
+  .pd{font-size:14px;}
+  .sd{font-size:13px;}
+  .stepd{font-size:14px;}
+  .tdesc{font-size:13px;}
+  .tech-card-d{font-size:13px;}
+  .pbullets li{font-size:13px;}
+  .cred{font-size:13px;}
+  .fdesc{font-size:13px;}
+  .flinks a{font-size:13px;}
+  .form-sub{font-size:13px;}
+  .fci{font-size:13px;}
+
+  /* Buttons / CTAs — floor raised to 12px */
+  .btn-gold,.btn-outline{font-size:12px;}
+  .nav-cta{font-size:10px;}
 }
 
 @media(max-width:420px){
@@ -406,7 +454,7 @@ footer{background:var(--black);padding:72px 5vw 40px;}
   .stitle{font-size:24px;}
   .mn{font-size:30px;}
   .hs-num{font-size:22px;}
-  .nav-cta{font-size:8px;padding:7px 10px;}
+  .nav-cta{font-size:9px;padding:7px 10px;}
 }
 </style>
 </head>
