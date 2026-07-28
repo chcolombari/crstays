@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /check-In/
+
+Sitemap: https://www.crstays.com/sitemap.xml
