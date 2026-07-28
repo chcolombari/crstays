@@ -13,16 +13,4 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://www.crstays.com/En/"/>
     <priority>1.0</priority>
   </url>
-  <url>
-    <loc>https://www.crstays.com/crstays-booking.html</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.crstays.com/en/crstays-booking.html</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.crstays.com/crstays-checkout.html</loc>
-    <priority>0.3</priority>
-  </url>
 </urlset>
