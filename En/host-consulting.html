@@ -3,38 +3,37 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Property Management in Costa Rica | CR Stays</title>
-<meta name="description" content="Boutique property management company in Costa Rica. We manage short-term rentals with dynamic pricing, transparent reporting and hands-on care for owners.">
-<link rel="canonical" href="https://www.crstays.com/En/">
-<link rel="alternate" hreflang="es" href="https://www.crstays.com/">
-<link rel="alternate" hreflang="en" href="https://www.crstays.com/En/">
-<link rel="alternate" hreflang="x-default" href="https://www.crstays.com/">
+<title>Host Consulting — Private Consulting for Short-Term Rental Owners | CR Stays</title>
+<meta name="description" content="Private consulting by CR Stays for owners who want to launch, improve, or optimize their short-term rental without handing over full management. Based on real experience as an Airbnb Superhost in Costa Rica.">
+<link rel="canonical" href="https://www.crstays.com/En/host-consulting.html">
+<link rel="alternate" hreflang="es" href="https://www.crstays.com/host-consulting.html">
+<link rel="alternate" hreflang="en" href="https://www.crstays.com/En/host-consulting.html">
+<link rel="alternate" hreflang="x-default" href="https://www.crstays.com/host-consulting.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="CR Stays">
-<meta property="og:title" content="Property Management in Costa Rica | CR Stays">
-<meta property="og:description" content="Boutique property management company in Costa Rica. We manage short-term rentals with dynamic pricing, transparent reporting and hands-on care for owners.">
-<meta property="og:url" content="https://www.crstays.com/En/">
+<meta property="og:title" content="Host Consulting — Private Consulting for Short-Term Rental Owners | CR Stays">
+<meta property="og:description" content="Private consulting for owners who want to learn to host better: property prep, pricing, listing setup, communication, and strategy — without handing over full management.">
+<meta property="og:url" content="https://www.crstays.com/En/host-consulting.html">
 <meta property="og:image" content="https://www.crstays.com/assets/og-image.jpg">
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="es_CR">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Property Management in Costa Rica | CR Stays">
-<meta name="twitter:description" content="Boutique property management company in Costa Rica. We manage short-term rentals with dynamic pricing, transparent reporting and hands-on care for owners.">
+<meta name="twitter:title" content="Host Consulting — Private Consulting for Short-Term Rental Owners | CR Stays">
+<meta name="twitter:description" content="Private consulting by CR Stays for owners who want to launch, improve, or optimize their short-term rental with expert guidance.">
 <meta name="twitter:image" content="https://www.crstays.com/assets/og-image.jpg">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "RealEstateAgent",
-  "name": "CR Stays",
-  "alternateName": "CR Stays Property Management",
-  "url": "https://www.crstays.com/En/",
-  "image": "https://www.crstays.com/assets/og-image.jpg",
-  "telephone": "+506-7187-6500",
-  "email": "crstays@gmail.com",
-  "priceRange": "$$",
-  "foundingDate": "2017",
-  "description": "Boutique property management company in Costa Rica, specialized in short-term rental management.",
-  "areaServed": { "@type": "Country", "name": "Costa Rica" }
+  "@type": "Service",
+  "serviceType": "Short-Term Rental Host Consulting",
+  "name": "CR Stays Host Consulting",
+  "provider": {
+    "@type": "Organization",
+    "name": "CR Stays",
+    "url": "https://www.crstays.com/"
+  },
+  "areaServed": { "@type": "Country", "name": "Costa Rica" },
+  "description": "Private consulting for property owners and future hosts who want to launch, improve, or optimize their short-term rental in Costa Rica without handing over full property management."
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -311,26 +310,6 @@ footer{background:var(--black);padding:72px 5vw 40px;}
   .team-badge{width:220px;}
 }
 
-/* Fix: gap zone between mobile and desktop (769–960px) where the
-   floating stats block (30+ / 84% / 10+) collided with the hero
-   buttons, since desktop kept it position:absolute but there wasn't
-   enough width yet for both to sit side by side. */
-@media(min-width:769px) and (max-width:960px){
-  .hero{
-    flex-direction:column;
-    align-items:flex-start;
-    justify-content:flex-end;
-  }
-  .hero-stats{
-    position:static!important;
-    display:flex;
-    flex-direction:row;
-    gap:32px;
-    margin-top:32px;
-    flex-wrap:wrap;
-  }
-}
-
 @media(max-width:768px){
   /* NAV - fixed, compact */
   nav{height:60px;padding:0 4vw;}
@@ -512,395 +491,419 @@ footer{background:var(--black);padding:72px 5vw 40px;}
   .nav-cta{font-size:10px;padding:7px 10px;}
 }
 </style>
+<style>
+/* ── HOST CONSULTING — supplemental styles (reuses design tokens above) ── */
+
+/* Compact page hero (pattern from crstays-booking-styles.css) */
+.page-hero{
+  background: linear-gradient(to bottom, rgba(5,5,5,.60) 0%, rgba(5,5,5,.88) 100%),
+    url('https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1600&q=80') center/cover no-repeat;
+  padding: 160px 5vw 90px;
+  text-align:center;
+  position:relative;
+}
+.page-hero .hero-eyebrow{justify-content:center;}
+.page-hero h1{
+  font-family:'Hammersmith One',sans-serif;
+  font-size:clamp(34px,5.5vw,64px);
+  color:var(--white);
+  line-height:1.08;
+  margin-bottom:18px;
+}
+.page-hero h1 span{color:var(--gold);}
+.page-hero .ph-sub{
+  font-size:15px;font-weight:300;line-height:1.75;
+  color:rgba(250,247,240,.7);
+  max-width:620px;margin:0 auto 40px;
+}
+.page-hero .hero-btns{justify-content:center;}
+.ph-note{font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(250,247,240,.35);margin-top:28px;}
+
+/* Two-column feature/learn list (pairs with .tech-list markup) */
+.hc-learn-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 48px;margin-top:52px;}
+
+/* Pricing packages */
+.pkg-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:52px;align-items:stretch;}
+.pkg-card{background:var(--white);padding:34px 26px;display:flex;flex-direction:column;border-top:3px solid transparent;transition:transform .25s,box-shadow .25s;position:relative;}
+.pkg-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(26,61,43,.1);}
+.pkg-card.featured{border-top-color:var(--gold);background:var(--forest);}
+.pkg-ribbon{position:absolute;top:0;right:0;background:var(--gold);color:var(--black);font-size:8px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:5px 12px;}
+.pkg-tag{font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-d);margin-bottom:12px;}
+.pkg-card.featured .pkg-tag{color:var(--gold);}
+.pkg-name{font-family:'Hammersmith One',sans-serif;font-size:19px;color:var(--charcoal);margin-bottom:10px;line-height:1.25;}
+.pkg-card.featured .pkg-name{color:var(--ivory);}
+.pkg-price{font-family:'Hammersmith One',sans-serif;font-size:32px;color:var(--forest);margin-bottom:4px;}
+.pkg-card.featured .pkg-price{color:var(--gold);}
+.pkg-price sub{font-size:11px;font-weight:400;color:var(--muted);}
+.pkg-card.featured .pkg-price sub{color:rgba(250,247,240,.5);}
+.pkg-desc{font-size:12px;font-weight:300;line-height:1.7;color:var(--muted);margin:10px 0 18px;}
+.pkg-card.featured .pkg-desc{color:rgba(250,247,240,.6);}
+.pkg-features{list-style:none;margin-bottom:20px;flex:1;}
+.pkg-features li{font-size:12px;font-weight:400;color:var(--charcoal);padding:5px 0;display:flex;align-items:flex-start;gap:8px;line-height:1.4;}
+.pkg-features li::before{content:'✦';color:var(--gold-d);font-size:9px;margin-top:4px;flex-shrink:0;}
+.pkg-card.featured .pkg-features li{color:rgba(250,247,240,.8);}
+.pkg-card.featured .pkg-features li::before{color:var(--gold);}
+.pkg-for{font-size:11px;font-weight:500;font-style:italic;color:var(--light);margin-bottom:20px;line-height:1.5;}
+.pkg-card.featured .pkg-for{color:rgba(250,247,240,.45);}
+.pkg-card .btn-gold,.pkg-card .btn-outline{width:100%;text-align:center;box-sizing:border-box;}
+.pkg-card.featured .btn-outline{color:var(--ivory);border-color:rgba(250,247,240,.3);}
+.pkg-card.featured .btn-outline:hover{border-color:rgba(250,247,240,.65);}
+
+/* Kit checklist (reuses .cred marker style) */
+.kit-wrap{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;margin-top:52px;}
+.kit-list{display:flex;flex-direction:column;gap:12px;}
+.kit-list .cred{font-size:13px;}
+.kit-card{background:var(--forest);padding:44px 40px;position:relative;}
+.kit-card-tag{font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
+.kit-card h3{font-family:'Hammersmith One',sans-serif;font-size:24px;color:var(--ivory);line-height:1.2;margin-bottom:14px;}
+.kit-card p{font-size:13px;font-weight:300;line-height:1.75;color:rgba(250,247,240,.6);}
+
+/* Not-included list */
+.hc-excluded-wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;margin-top:44px;}
+.hc-excluded{list-style:none;display:flex;flex-direction:column;gap:12px;}
+.hc-excluded li{font-size:13px;font-weight:400;color:var(--muted);display:flex;align-items:center;gap:12px;}
+.hc-excluded li::before{content:'✕';color:var(--light);font-size:11px;font-weight:700;flex-shrink:0;}
+.hc-bridge{background:var(--white);padding:28px 30px;border-left:3px solid var(--forest);}
+.hc-bridge p{font-size:13px;font-weight:300;font-style:italic;line-height:1.75;color:var(--muted);}
+.hc-bridge a{color:var(--forest);font-weight:600;font-style:normal;text-decoration:underline;}
+
+/* Why CR Stays credentials */
+.why-hc-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:64px;align-items:center;margin-top:44px;}
+.why-hc-text{font-size:14px;font-weight:300;line-height:1.9;color:var(--muted);}
+.why-hc-text p{margin-bottom:16px;}
+.why-hc-creds{display:flex;flex-direction:column;gap:12px;}
+.why-hc-creds .cred{font-size:13px;}
+
+/* FAQ */
+.faq-list{display:flex;flex-direction:column;gap:2px;margin-top:44px;max-width:820px;}
+.faq-item{background:var(--white);border:1px solid var(--border);padding:22px 26px;}
+.faq-item summary{font-size:14px;font-weight:600;color:var(--charcoal);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;}
+.faq-item summary::-webkit-details-marker{display:none;}
+.faq-item summary::after{content:'+';font-family:'Hammersmith One',sans-serif;font-size:20px;color:var(--gold);flex-shrink:0;transition:transform .2s;line-height:1;}
+.faq-item[open] summary::after{transform:rotate(45deg);}
+.faq-item p{font-size:13px;font-weight:300;line-height:1.75;color:var(--muted);margin-top:14px;}
+
+/* Disclaimer box (reuses .team-philosophy pattern) */
+.hc-disclaimer{background:var(--white);padding:24px 28px;border-left:3px solid var(--forest);margin-top:44px;max-width:820px;}
+.hc-disclaimer p{font-size:12px;font-weight:300;font-style:italic;line-height:1.75;color:var(--muted);}
+
+/* Final CTA band */
+.hc-final{background:var(--black);padding:110px 5vw;text-align:center;}
+.hc-final .slbl{justify-content:center;}
+.hc-final .slbl::before{display:none;}
+.hc-final .stitle{color:var(--ivory);}
+.hc-final .stitle .gn{color:var(--gold);}
+.hc-final p{font-size:14px;font-weight:300;color:rgba(250,247,240,.5);max-width:520px;margin:18px auto 40px;}
+.hc-final .hero-btns{justify-content:center;display:flex;gap:14px;flex-wrap:wrap;}
+
+/* Active nav item */
+.nav-links a.active{color:var(--gold);}
+
+/* Responsive */
+@media(max-width:960px){
+  .kit-wrap,.why-hc-grid,.hc-excluded-wrap{grid-template-columns:1fr;gap:32px;}
+  .pkg-grid{grid-template-columns:1fr 1fr;}
+  .hc-learn-grid{grid-template-columns:1fr;}
+}
+@media(max-width:768px){
+  .page-hero{padding:120px 5vw 56px;}
+  .pkg-grid{grid-template-columns:1fr;}
+  .kit-card{padding:32px 24px;}
+  .faq-item{padding:18px 20px;}
+}
+</style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav id="mainNav">
-  <a href="/en/" class="nav-logo" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
-    <img src="/assets/images/logo.png" alt="CR Stays" style="height:56px;width:auto;mix-blend-mode:screen;flex-shrink:0;">
+  <a href="/En/" class="nav-logo" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+    <img src="/assets/images/logo-mark.png" alt="CR Stays" style="height:52px;width:auto;flex-shrink:0;">
     <div style="display:flex;flex-direction:column;justify-content:center;line-height:1;">
       <span style="font-family:'Hammersmith One',sans-serif;font-size:26px;color:#FFFFFF;letter-spacing:0.08em;">STAYS</span>
       <span style="font-family:'Montserrat',sans-serif;font-size:8px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:rgba(250,188,61,0.75);margin-top:3px;">Property Management</span>
     </div>
   </a>
   <ul class="nav-links">
-    <li><a href="#why-us">Why CR Stays</a></li>
-    <li><a href="#services">Services</a></li>
-    <li><a href="/En/host-consulting.html">Host Consulting</a></li>
-    <li><a href="#team">Meet Us</a></li>
-    <li><a href="#locations">Locations</a></li>
-    <li><a href="#properties">Properties</a></li>
+    <li><a href="/En/#why-us">Why CR Stays</a></li>
+    <li><a href="/En/#services">Services</a></li>
+    <li><a href="/En/host-consulting.html" class="active">Host Consulting</a></li>
+    <li><a href="/En/#team">Meet Us</a></li>
+    <li><a href="/En/#locations">Locations</a></li>
   </ul>
   <div class="nav-right">
-    <a href="/" class="lang-switch">🇨🇷 ES</a>
-    <a href="https://wa.me/50671876500" class="lang-switch" target="_blank">Contact Us</a>
-    <a href="https://book.crstays.com" class="nav-cta" target="_blank">Book Direct</a>
+    <a href="/host-consulting.html" class="lang-switch">🇨🇷 ES</a>
+    <a href="https://wa.me/50671876500?text=Hi,%20I%27d%20like%20to%20know%20more%20about%20Host%20Consulting" class="lang-switch" target="_blank">Contact Us</a>
+    <a href="#schedule" class="nav-cta">Schedule a Consultation</a>
   </div>
 </nav>
 
 <!-- HERO -->
-<section class="hero" id="home">
-  <div class="hero-bg"></div>
-  <div class="hero-content">
-    <div class="hero-eyebrow">Boutique Property Management · Costa Rica</div>
-    <h1>Your property,<br><span class="g">managed</span><br>with excellence</h1>
-    <p class="hero-sub">Boutique. Professional. Natural.</p>
-    <p class="hero-desc">We manage short-term rentals with strategy, care and professional standards — for property owners who demand real results, transparent reporting and complete peace of mind.</p>
-    <div class="hero-btns">
-      <a href="#paths" class="btn-gold">I'm a property owner</a>
-      <a href="https://book.crstays.com" class="btn-outline" target="_blank">Check Availability</a>
-    </div>
+<section class="page-hero" id="home">
+  <div class="hero-eyebrow" style="display:flex;">
+    <span>Private Consulting · CR Stays</span>
   </div>
-  <div class="hero-stats">
-    <div><div class="hs-num">30<sup>+</sup></div><div class="hs-lbl">Active properties</div></div>
-    <div><div class="hs-num">84<sup>%</sup></div><div class="hs-lbl">Average occupancy</div></div>
-    <div><div class="hs-num">10<sup>+</sup></div><div class="hs-lbl">Years of experience</div></div>
+  <h1>Learn to Host<br>Like <span>a Professional</span></h1>
+  <p class="ph-sub">Private consulting for property owners who want to launch, improve, or optimize their short-term rental — without handing over full management.</p>
+  <div class="hero-btns">
+    <a href="#schedule" class="btn-gold">Schedule a Consultation</a>
+    <a href="#packages" class="btn-outline">View Packages</a>
   </div>
-  <div class="scroll-cue"><div class="scroll-line"></div></div>
+  <p class="ph-note">Not an official Airbnb program · Based on real hospitality experience in Costa Rica</p>
 </section>
 
-<!-- PROMISE STRIP -->
-<div class="promise">
-  <p class="promise-q"><span>"Professional care for properties. Boutique stays for guests."</span> — We manage every property with intention, structure and a long-term vision.</p>
-  <div class="badges">
-    <span class="badge">Airbnb Superhost</span>
-    <span class="badge">Dynamic Pricing Strategies</span>
-    <span class="badge">Revenue Management</span>
-    <span class="badge">Property Management Systems (PMS)</span>
-    <span class="badge">Market Pulse</span>
-    <span class="badge">AI Insights &amp; Reporting</span>
-  </div>
-  <a href="/En/host-consulting.html" style="display:block;max-width:340px;font-size:12px;font-weight:500;letter-spacing:.02em;line-height:1.6;color:rgba(250,247,240,.55);text-decoration:none;">Prefer to keep running it yourself? <span style="color:var(--gold);text-decoration:underline;font-weight:600;">Discover Host Consulting →</span></a>
-</div>
-
-<!-- WHY CR STAYS -->
-<section id="why-us" style="padding:0;">
-  <div class="why-wrap">
-    <div class="why-photo">
-      <img src="/assets/images/why-photo.jpg" alt="Premium CR Stays property">
-      <div class="why-quote">
-        <p>Managing a short-term rental successfully requires more than listing it online. It demands strategic positioning, constant oversight, and consistent operational control.</p>
-        <cite>— CR Stays, for property owners</cite>
-      </div>
-    </div>
-    <div class="why-content">
-      <p class="slbl">Why CR Stays</p>
-      <h2 class="stitle">Your property deserves<br><span class="gn">structured</span><br>and attentive management</h2>
-      <div class="gold-rule"></div>
-      <p class="why-body">We maintain a small, highly curated portfolio. That means every property receives direct attention, a personalized strategy and constant supervision — we are not a large company where your property is just a number.</p>
-      <div class="pillars">
-        <div class="pillar"><span class="pn">01</span><div><p class="pt">Local expertise with real experience</p><p class="pd">We understand the dynamics of the Costa Rica short-term rental market and make informed decisions for every location.</p></div></div>
-        <div class="pillar"><span class="pn">02</span><div><p class="pt">Direct operational accountability</p><p class="pd">Hands-on oversight of cleaning, maintenance and guest coordination — no outsourced responsibility.</p></div></div>
-        <div class="pillar"><span class="pn">03</span><div><p class="pt">Structured financial transparency</p><p class="pd">Clear reporting, organized communication and real visibility into your property's revenue performance.</p></div></div>
-        <div class="pillar"><span class="pn">04</span><div><p class="pt">Long-term asset perspective</p><p class="pd">We focus on sustainable performance, property condition and reputation management over time.</p></div></div>
-      </div>
-      <div class="section-cta"><a href="#contact" class="btn-gold">Contact Us Now</a></div>
-    </div>
-  </div>
-</section>
-
-<!-- RESULTS -->
-<section class="results" id="results">
-  <div class="results-grid">
-    <div>
-      <p class="slbl">Proven results</p>
-      <h2 class="stitle">Numbers that<br><span class="gn">speak</span> for themselves</h2>
-      <div class="gold-rule"></div>
-      <p style="font-size:14px;font-weight:300;line-height:1.85;color:var(--muted);max-width:400px;">Our property owners see tangible results from the first month. Real data, market context and continuous strategy.</p>
-      <div class="metrics">
-        <div class="mc">
-          <div class="mn" style="font-size:36px;">84–92<sup style="font-size:18px;">%</sup></div>
-          <div class="ml">Average occupancy</div>
-          <div class="ms">Portfolio range 2024–2025</div>
-        </div>
-        <div class="mc"><div class="mn">+38<sup>%</sup></div><div class="ml">Revenue increase</div><div class="ms">Vs. self-management</div></div>
-        <div class="mc"><div class="mn">4.9<sup>★</sup></div><div class="ml">Average rating</div><div class="ms">Across all platforms</div></div>
-        <div class="mc"><div class="mn">48h</div><div class="ml">Guaranteed response</div><div class="ms">To owners, always</div></div>
-      </div>
-      <div class="section-cta"><a href="#contact" class="btn-gold">Schedule a Private Consultation</a></div>
-    </div>
-    <div class="rv">
-      <img class="rmain" src="/assets/images/results-main.jpg" alt="CR Stays property">
-      <img class="raccent" src="/assets/images/results-accent.jpg" alt="Premium interior">
-      <div class="rbadge"><span class="rbn">+1000</span><span class="rbt">Total bookings</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- SERVICES -->
-<section class="services" id="services">
+<!-- WHO IT'S FOR -->
+<section id="who-its-for">
   <div class="svc-hdr">
     <div>
-      <p class="slbl">What we offer</p>
-      <h2 class="stitle">Full-service management,<br><span class="gn">no exceptions</span></h2>
+      <p class="slbl">Is This for You?</p>
+      <h2 class="stitle">Professional guidance,<br><span class="gn">without giving up control</span></h2>
     </div>
-    <p class="svc-intro">At CR Stays we go beyond managing bookings. We design and execute a complete strategy to generate better results, maintain your property in excellent condition and operate correctly in an increasingly competitive market.</p>
+    <p class="svc-intro">Host Consulting is designed for owners who want to make better decisions about their property, without delegating day-to-day operations. This is likely for you if you recognize any of these situations.</p>
   </div>
   <div class="svc-grid">
-    <div class="scard"><div class="stop"><span class="sn">01</span></div><h3 class="st">Revenue Management</h3><p class="sd">Dynamic pricing strategy based on local demand, seasons, events and market behavior. We monitor occupancy, ADR, RevPAR and competitors continuously.</p></div>
-    <div class="scard"><div class="stop"><span class="sn">02</span></div><h3 class="st">Strategic Positioning & Distribution</h3><p class="sd">Listings designed to convert views into bookings. Optimized titles, descriptions, photos and rate structure across Airbnb, Booking.com and Vrbo.</p></div>
-    <div class="scard"><div class="stop"><span class="sn">03</span></div><h3 class="st">Full Guest Care</h3><p class="sd">We accompany guests before, during and after their stay in English and Spanish. Confirmations, check-in, check-out and post-stay follow-up handled professionally.</p></div>
-    <div class="scard"><div class="stop"><span class="sn">04</span></div><h3 class="st">Claims, Complaints & Damages</h3><p class="sd">We manage difficult situations with guests and platforms to minimize operational, financial and reputational impact. Documentation, follow-up and damage recovery.</p></div>
-    <div class="scard"><div class="stop"><span class="sn">05</span></div><h3 class="st">Operations, Cleaning & Inspection</h3><p class="sd">Standardized turnover procedures with digital checklists, inventory controls and operational supervision before every guest arrival.</p></div>
-    <div class="scard"><div class="stop"><span class="sn">06</span></div><h3 class="st">Asset Protection & Maintenance</h3><p class="sd">Periodic inspections, preventive maintenance and coordination of trusted vendors. We report every relevant situation and manage interventions accordingly.</p></div>
-    <div class="scard"><div class="stop"><span class="sn">07</span></div><h3 class="st">Regulations & Tax Compliance</h3><p class="sd">Guidance on short-term rental obligations: registration, invoicing, VAT, platform reports and coordination with accounting or legal professionals when needed.</p></div>
-    <div class="scard"><div class="stop"><span class="sn">08</span></div><h3 class="st">Reporting & Financial Transparency</h3><p class="sd">Monthly report with income, bookings, occupancy, average rates, commissions and performance by channel. No hidden information, no unexpected charges.</p></div>
+    <div class="scard"><div class="stop"><span class="sn">01</span></div><h3 class="st">You're listing your first property</h3><p class="sd">You have a property you want to list on Airbnb or Booking.com for the first time and don't know where to start.</p></div>
+    <div class="scard"><div class="stop"><span class="sn">02</span></div><h3 class="st">You already have a listing, but it's not working</h3><p class="sd">You published a while ago, but bookings aren't coming in, occupancy is low, or your rates don't reflect the property's real potential.</p></div>
+    <div class="scard"><div class="stop"><span class="sn">03</span></div><h3 class="st">You want better reviews and occupancy</h3><p class="sd">You're operating your rental, but something feels off: mixed reviews, difficult guests, or a tough low season.</p></div>
+    <div class="scard"><div class="stop"><span class="sn">04</span></div><h3 class="st">You don't want full management</h3><p class="sd">You'd rather keep operating your property yourself, but need the judgment and experience of someone who's already done it well.</p></div>
+    <div class="scard"><div class="stop"><span class="sn">05</span></div><h3 class="st">You're evaluating an investment</h3><p class="sd">You're considering buying or remodeling a property and want a real, grounded read on whether it works for short-term rental.</p></div>
+    <div class="scard"><div class="stop"><span class="sn">06</span></div><h3 class="st">You want to avoid costly mistakes</h3><p class="sd">You'd rather invest in solid guidance now than fix pricing, setup, or expectation mistakes later.</p></div>
   </div>
-  <div class="section-cta" style="text-align:center;margin-top:52px;"><a href="#process" class="btn-gold">See how we work</a></div>
 </section>
 
-<!-- PROCESS -->
-<section class="process" id="process">
-  <p class="slbl">How we work</p>
-  <h2 class="stitle">From property owner<br>to <span class="gn">strategic partner</span></h2>
-  <div class="steps">
-    <div class="step"><div class="sdot"><div class="sdot-c"></div></div><p class="stepn">Step 01</p><p class="stept">Evaluation & Diagnosis</p><p class="stepd">We analyze your property: location, market potential, current condition and opportunities to define the right strategy.</p></div>
-    <div class="step"><div class="sdot"><div class="sdot-c"></div></div><p class="stepn">Step 02</p><p class="stept">Onboarding & Setup</p><p class="stepd">We integrate your property into our system: distribution channels, dynamic pricing and a customized operational protocol.</p></div>
-    <div class="step"><div class="sdot"><div class="sdot-c"></div></div><p class="stepn">Step 03</p><p class="stept">Launch & First Bookings</p><p class="stepd">We publish with optimized listings and calibrated pricing to generate real occupancy from the very first month.</p></div>
-    <div class="step"><div class="sdot"><div class="sdot-c"></div></div><p class="stepn">Step 04</p><p class="stept">Ongoing Management & Reporting</p><p class="stepd">Continuous operations, monthly strategy adjustments and detailed reports so you always know exactly how your investment is performing.</p></div>
-  </div>
-  <div class="section-cta" style="text-align:center;margin-top:64px;"><a href="#contact" class="btn-gold">Get Started</a></div>
-</section>
-
-<!-- TEAM -->
-<section class="team" id="team">
-  <p class="slbl">Meet Us</p>
-  <h2 class="stitle">The people behind<br><span class="gn">every decision</span></h2>
-  <p style="font-size:14px;font-weight:300;line-height:1.85;color:var(--muted);max-width:600px;margin-top:16px;">Behind every well-managed property are committed people. Meet the team that makes everything work.</p>
-
-  <div class="team-grid" style="margin-top:72px;">
-    <div class="team-photo-wrap">
-      <img class="team-photo" src="/assets/images/team-cristian.jpg" alt="Cristian — Founder CR Stays">
-      <div class="team-badge">
-        <p class="team-badge-title">Cristian</p>
-        <p class="team-badge-creds">Founder &amp; Director · CR Stays<br>Airbnb Ambassador · Costa Rica<br>President ASOHOST CR</p>
-      </div>
-    </div>
+<!-- PROBLEMS -->
+<section id="problems" style="background:var(--white);">
+  <div class="svc-hdr">
     <div>
-      <h3 class="team-name">Cristian</h3>
-      <p class="team-role">Founder &amp; Director · CR Stays</p>
-      <p class="team-bio">In 2015, I purchased an apartment in San José and faced the challenge of finding the best way to generate income from it. After exploring traditional rentals without success, I decided to experiment with the short-term rental model.</p>
-      <p class="team-bio">What started as a solution for one property grew over time into a professional operation. That is how CR Stays was born — since then we have managed more than 35 carefully selected properties, developing strategies to improve their positioning, optimize their income and protect their long-term value.</p>
-      <p class="team-bio">In 2020, I was selected by Airbnb as an Ambassador in Costa Rica. In 2024, I took over the leadership of the San José host community and joined the Board of Directors of ASOHOST Costa Rica, the Association of Non-Traditional Accommodation Providers, later assuming the presidency of the association.</p>
-      <p class="team-bio">This experience — as an owner, manager, mentor and industry representative — shaped the CR Stays model: management based on local knowledge, commercial strategy, technology, human care and a rigorously supervised operation.</p>
-      <div class="team-credentials">
-        <p class="cred">Airbnb Superhost</p>
-        <p class="cred">Airbnb Ambassador — Costa Rica (since 2020)</p>
-        <p class="cred">President of ASOHOST Costa Rica</p>
-        <p class="cred">More than 35 properties managed</p>
-        <p class="cred">International speaker — hospitality and short-term rentals</p>
-      </div>
-      <div class="team-philosophy">
-        <p class="team-phil-title">Management Philosophy</p>
-        <p class="team-phil-text">"Solid performance is built on structure, presence and informed decision-making — not shortcuts. Every property we manage is treated as a valuable asset because that is exactly what it is."</p>
-      </div>
-      <a href="#contact" class="btn-gold">Schedule a Private Conversation</a>
+      <p class="slbl">Common Problems</p>
+      <h2 class="stitle">The mistakes that cost<br><span class="gn">hosts the most</span></h2>
     </div>
+    <p class="svc-intro">After years managing properties in Costa Rica, we've seen the same problems repeat themselves over and over. The good news: almost all of them can be prevented or corrected with the right strategy.</p>
   </div>
-
-  <div style="width:100%;height:1px;background:rgba(26,61,43,.12);margin:80px 0;"></div>
-
-  <div class="team-grid">
-    <div class="team-photo-wrap">
-      <img class="team-photo" src="/assets/images/team-cristina.jpg" alt="Cristina Redondo — Operations Supervisor CR Stays">
-      <div class="team-badge">
-        <p class="team-badge-title">Cristina Redondo</p>
-        <p class="team-badge-creds">Operations Supervisor<br>Quality control &amp; protocols<br>CR Stays</p>
-      </div>
-    </div>
-    <div>
-      <h3 class="team-name">Cristina Redondo</h3>
-      <p class="team-role">Operations Supervisor · CR Stays</p>
-      <p class="team-bio">Cristina is the person who ensures that every property in the CR Stays portfolio is always in top condition. Her work is invisible when everything goes well — and that is exactly the goal.</p>
-      <p class="team-bio">With a sharp eye for detail and exceptional operational capacity, Cristina coordinates cleaning teams, supervises quality standards for every turnover and makes sure each guest finds the property exactly as it should be.</p>
-      <div class="team-credentials">
-        <p class="cred">Direct supervision of cleaning teams</p>
-        <p class="cred">Quality control — Operational Protocol Systems</p>
-        <p class="cred">Preventive maintenance coordination</p>
-        <p class="cred">Boutique hotel operational standards</p>
-        <p class="cred">Inventory and supply management</p>
-        <p class="cred">Guest communication</p>
-      </div>
-      <div class="team-philosophy">
-        <p class="team-phil-title">Operational Standard</p>
-        <p class="team-phil-text">"A well-kept property is not luck — it is process, supervision and committed people. Every detail matters because for the guest, that detail may be the one they remember."</p>
-      </div>
-    </div>
+  <div class="svc-grid">
+    <div class="scard"><div class="stop"><span class="sn">✕</span></div><h3 class="st">A poorly prepared property</h3><p class="sd">Not knowing which adjustments, amenities, or details actually raise a guest's perception of value.</p></div>
+    <div class="scard"><div class="stop"><span class="sn">✕</span></div><h3 class="st">Poorly defined pricing</h3><p class="sd">Charging too much and losing bookings, or charging too little and leaving money on the table every month.</p></div>
+    <div class="scard"><div class="stop"><span class="sn">✕</span></div><h3 class="st">Photos that don't convert</h3><p class="sd">Images that don't show the property's real potential, so guests keep scrolling.</p></div>
+    <div class="scard"><div class="stop"><span class="sn">✕</span></div><h3 class="st">Weak descriptions</h3><p class="sd">Generic listings that don't communicate what makes the property special or answer a guest's real questions.</p></div>
+    <div class="scard"><div class="stop"><span class="sn">✕</span></div><h3 class="st">Unclear rules and expectations</h3><p class="sd">Confusing policies that create friction, misunderstandings, and avoidable negative reviews.</p></div>
+    <div class="scard"><div class="stop"><span class="sn">✕</span></div><h3 class="st">Inconsistent communication</h3><p class="sd">Late or unprofessional responses that directly affect guest satisfaction and ratings.</p></div>
+    <div class="scard"><div class="stop"><span class="sn">✕</span></div><h3 class="st">Confusing cleaning and check-in</h3><p class="sd">Non-standardized processes that create stress for both host and guest.</p></div>
+    <div class="scard"><div class="stop"><span class="sn">✕</span></div><h3 class="st">No low-season strategy</h3><p class="sd">Empty calendars in lower-demand months from not adjusting pricing, minimum stays, or distribution channels.</p></div>
   </div>
 </section>
 
-<!-- TECHNOLOGY -->
-<section class="tech" id="technology">
-  <p class="slbl">Technology</p>
-  <h2 class="stitle">World-class tools<br><span class="gn">working for you</span></h2>
-  <div class="tech-grid">
+<!-- WHAT YOU'LL LEARN -->
+<section id="what-you-learn">
+  <p class="slbl">What the consulting covers</p>
+  <h2 class="stitle">Everything you need<br><span class="gn">to operate with real judgment</span></h2>
+  <div class="hc-learn-grid">
     <div class="tech-list">
-      <div class="titem">
-        <div class="tico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
-        <div><p class="tname">Central PMS — Centralized Property Management System</p><p class="tdesc">Unified booking management across all platforms, automated messaging and calendars synchronized in real time.</p></div>
-      </div>
-      <div class="titem">
-        <div class="tico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
-        <div><p class="tname">Revenue Management — Dynamic Pricing Strategy</p><p class="tdesc">Dynamic pricing based on market demand, local events, seasonality and competitive behavior.</p></div>
-      </div>
-      <div class="titem">
-        <div class="tico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
-        <div><p class="tname">Cleaning Operations System — Protocol & Tracking</p><p class="tdesc">Digital cleaning checklists, photo inspections with protocol templates and real-time task tracking.</p></div>
-      </div>
-      <div class="titem">
-        <div class="tico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div>
-        <div><p class="tname">Market Intelligence — Real-Time Data</p><p class="tdesc">Comparative market analysis, price benchmarking, demand behavior and destination trend tracking.</p></div>
-      </div>
+      <div class="titem"><div class="tico">🏡</div><div><p class="tname">Property preparation</p><p class="tdesc">What to adjust, improve, or add before listing.</p></div></div>
+      <div class="titem"><div class="tico">📋</div><div><p class="tname">Listing setup</p><p class="tdesc">Structure, titles, and content built to convert.</p></div></div>
+      <div class="titem"><div class="tico">📸</div><div><p class="tname">Photos and visual order</p><p class="tdesc">How to present your property in the way that books the most.</p></div></div>
+      <div class="titem"><div class="tico">💰</div><div><p class="tname">Initial pricing</p><p class="tdesc">How to set a competitive, realistic base rate.</p></div></div>
+      <div class="titem"><div class="tico">📅</div><div><p class="tname">Calendar and minimum stays</p><p class="tdesc">Settings that protect occupancy without sacrificing income.</p></div></div>
+      <div class="titem"><div class="tico">📄</div><div><p class="tname">Cancellation policies</p><p class="tdesc">Which policy fits your property type and market.</p></div></div>
     </div>
-    <div class="tech-visual">
-      <img class="tech-img" src="/assets/images/tech-visual.jpg" alt="CR Stays managed property">
-      <div class="tech-card">
-        <p class="tech-card-t">Real-time dashboard</p>
-        <p class="tech-card-d">Direct access to your performance: occupancy, revenue, active bookings and market analysis — available 24/7.</p>
-      </div>
+    <div class="tech-list">
+      <div class="titem"><div class="tico">💬</div><div><p class="tname">Automated messages</p><p class="tdesc">Professional message templates for every stage of the stay.</p></div></div>
+      <div class="titem"><div class="tico">🏠</div><div><p class="tname">House rules</p><p class="tdesc">How to write them so they're actually followed, without sounding excessive.</p></div></div>
+      <div class="titem"><div class="tico">🧹</div><div><p class="tname">Cleaning and restocking</p><p class="tdesc">Simple operating standards that sustain great reviews.</p></div></div>
+      <div class="titem"><div class="tico">⚠️</div><div><p class="tname">Damage handling</p><p class="tdesc">How to document, communicate, and resolve guest incidents.</p></div></div>
+      <div class="titem"><div class="tico">⭐</div><div><p class="tname">Review strategy</p><p class="tdesc">How to generate more positive reviews naturally and consistently.</p></div></div>
+      <div class="titem"><div class="tico">🎯</div><div><p class="tname">Airbnb, Booking.com and tools</p><p class="tdesc">Using each platform correctly, with a professional mindset.</p></div></div>
     </div>
   </div>
-  <div class="section-cta" style="text-align:center;margin-top:64px;"><a href="#contact" class="btn-gold">Discover Your Property's Potential</a></div>
 </section>
 
-<!-- LOCATIONS -->
-<section class="areas" id="locations">
-  <div class="areas-hdr">
-    <div>
-      <p class="slbl">Where we operate</p>
-      <h2 class="stitle">Costa Rica is<br>our <span class="gn">territory</span></h2>
-    </div>
-    <div>
-      <p class="slbl" style="margin-bottom:10px;">Local knowledge</p>
-      <h3 style="font-family:'Hammersmith One',sans-serif;font-size:clamp(16px,2vw,22px);color:var(--charcoal);margin-bottom:14px;">Local knowledge that translates into better decisions</h3>
-      <p class="areas-body">Costa Rica is not a single market. Each area has its own demand patterns, seasons, guest profile and booking behavior. Since 2017 we have managed properties in urban, residential and rural locations — from San José, Escazú and Heredia to mountain destinations and the coast. This local experience allows us to adapt pricing, positioning and operations to the reality of each property. Because to get better results, it is not enough to be in Costa Rica. You have to know the market where each property sits.</p>
-    </div>
-  </div>
-  <div class="areas-map">
-    <div class="acard"><img src="/assets/images/zone-sanjose.jpg" alt="San José"><div class="aoverlay"></div><div class="ainfo"><p class="areg">Urban Area</p><p class="aname">San José</p></div></div>
-    <div class="acard"><img src="/assets/images/zone-atenas.jpg" alt="Atenas"><div class="aoverlay"></div><div class="ainfo"><p class="areg">Central Valley</p><p class="aname">Atenas · Alajuela</p></div></div>
-    <div class="acard"><img src="/assets/images/zone-zarcero.jpg" alt="Zarcero"><div class="aoverlay"></div><div class="ainfo"><p class="areg">Rural Area</p><p class="aname">Mountain Properties</p></div></div>
-    <div class="acard"><img src="/assets/images/zone-playa.jpg" alt="Costa Rica Beach"><div class="aoverlay"></div><div class="ainfo"><p class="areg">Coastal</p><p class="aname">Beach Properties</p></div></div>
-  </div>
-  <div class="section-cta" style="text-align:center;margin-top:52px;"><a href="#contact" class="btn-gold">Is Your Property in Costa Rica? Let's Talk</a></div>
-</section>
-
-<!-- TWO PATHS -->
-<section class="paths" id="paths">
-  <div class="paths-hdr">
-    <p class="slbl">One brand. Two audiences.</p>
-    <h2 class="stitle">How can we<br><span class="gn">help you today?</span></h2>
-    <p>Choose your path — everything is designed for you.</p>
-  </div>
-  <div class="paths-grid">
-    <div class="pcard pc-owners">
-      <p class="ptag">For property owners</p>
-      <h3 class="ptitle">Elevate your<br>property's potential</h3>
-      <p class="pdesc">We care for, position and optimize your property as a high-value asset. You receive income and reports — we handle all the operational work.</p>
-      <ul class="pbullets">
-        <li>Free property diagnosis</li>
-        <li>Personalized pricing strategy</li>
-        <li>360° operational management</li>
-        <li>Detailed monthly report with metrics</li>
-        <li>Direct communication guaranteed within 48h</li>
+<!-- PACKAGES -->
+<section id="packages" style="background:var(--ivory);">
+  <p class="slbl">Consulting Packages</p>
+  <h2 class="stitle">Choose the level of<br><span class="gn">support you need</span></h2>
+  <p class="svc-intro" style="max-width:620px;margin-top:14px;">From a one-time review to ongoing monthly support. Every package is a private, one-on-one session tailored to your property.</p>
+  <div class="pkg-grid">
+    <div class="pkg-card">
+      <p class="pkg-tag">Diagnostic</p>
+      <h3 class="pkg-name">Diagnostic Session</h3>
+      <p class="pkg-price">$175</p>
+      <p class="pkg-desc">A quick review session to evaluate your property, idea, or existing listing and spot immediate opportunities.</p>
+      <ul class="pkg-features">
+        <li>Private 90-minute session</li>
+        <li>Review of listing, photos, and current pricing</li>
+        <li>Prioritized list of immediate improvements</li>
+        <li>Written recommendations</li>
       </ul>
-      <a href="https://wa.me/50671876500?text=Hello,%20I%20have%20a%20property%20and%20would%20like%20to%20know%20more%20about%20CR%20Stays" class="btn-gold" target="_blank">Work With CR Stays</a>
-      <p style="font-size:11px;font-weight:300;color:rgba(250,247,240,.45);margin-top:14px;">Prefer to keep running it yourself? <a href="/En/host-consulting.html" style="color:var(--gold);text-decoration:underline;">Discover Host Consulting →</a></p>
-      <div class="pnum">01</div>
+      <p class="pkg-for">Ideal for: owners who want a professional second opinion before deciding next steps.</p>
+      <a href="https://wa.me/50671876500?text=Hi,%20I%27d%20like%20to%20book%20the%20Diagnostic%20Session" class="btn-outline" target="_blank">Book a Diagnostic</a>
     </div>
-    <div class="pcard pc-guests">
-      <p class="ptag">For guests</p>
-      <h3 class="ptitle">Stay boutique<br>in Costa Rica</h3>
-      <p class="pdesc">We create comfortable, reliable and memorable stays. Book directly with us and get the best rate guaranteed — no platform fees.</p>
-      <ul class="pbullets">
-        <li>Best rate guaranteed — direct booking</li>
-        <li>Curated and supervised properties</li>
-        <li>Flexible check-in and direct local support</li>
-        <li>English and Spanish support 24/7</li>
-        <li>We accompany you throughout your entire experience</li>
+    <div class="pkg-card">
+      <p class="pkg-tag">Getting Started</p>
+      <h3 class="pkg-name">Host Starter Plan</h3>
+      <p class="pkg-price">$450</p>
+      <p class="pkg-desc">The core package for new hosts who want to launch correctly from day one.</p>
+      <ul class="pkg-features">
+        <li>Everything in the Diagnostic Session</li>
+        <li>Complete listing preparation</li>
+        <li>Pricing and calendar strategy</li>
+        <li>Message templates and house rules</li>
+        <li>CR Stays Host Starter Kit included</li>
       </ul>
-      <a href="https://book.crstays.com" class="btn-gold" target="_blank">Check Availability</a>
-      <div class="pnum">02</div>
+      <p class="pkg-for">Ideal for: owners launching their first property on Airbnb or Booking.com.</p>
+      <a href="https://wa.me/50671876500?text=Hi,%20I%27d%20like%20info%20on%20the%20Host%20Starter%20Plan" class="btn-gold" target="_blank">Start With This Plan</a>
+    </div>
+    <div class="pkg-card featured">
+      <span class="pkg-ribbon">Most Complete</span>
+      <p class="pkg-tag">Full Strategy</p>
+      <h3 class="pkg-name">Launch Pro</h3>
+      <p class="pkg-price">$950</p>
+      <p class="pkg-desc">For owners who want a complete strategy and deeper hands-on guidance during launch.</p>
+      <ul class="pkg-features">
+        <li>Everything in the Host Starter Plan</li>
+        <li>Multiple follow-up sessions</li>
+        <li>Results review in the first weeks</li>
+        <li>Strategy adjustments based on real performance</li>
+        <li>Direct WhatsApp support</li>
+      </ul>
+      <p class="pkg-for">Ideal for: owners who want to minimize margin of error at launch.</p>
+      <a href="https://wa.me/50671876500?text=Hi,%20I%27d%20like%20info%20on%20Launch%20Pro" class="btn-gold" target="_blank">Request Launch Pro</a>
+    </div>
+    <div class="pkg-card">
+      <p class="pkg-tag">Ongoing Support</p>
+      <h3 class="pkg-name">Growth Advisory</h3>
+      <p class="pkg-price">$350<sub>&nbsp;/ month</sub></p>
+      <p class="pkg-desc">Monthly support for hosts who are already operating and want to steadily improve results.</p>
+      <ul class="pkg-features">
+        <li>Monthly performance review session</li>
+        <li>Seasonal pricing adjustments</li>
+        <li>Ongoing review of reviews and occupancy</li>
+        <li>Priority WhatsApp consultations</li>
+      </ul>
+      <p class="pkg-for">Ideal for: active hosts who want expert judgment on an ongoing basis.</p>
+      <a href="https://wa.me/50671876500?text=Hi,%20I%27d%20like%20info%20on%20Growth%20Advisory" class="btn-outline" target="_blank">Check Availability</a>
     </div>
   </div>
 </section>
 
-<!-- PROPERTIES -->
-<section class="props" id="properties">
-  <p class="slbl">Our properties</p>
-  <h2 class="stitle">Boutique stays<br><span class="gn">in Costa Rica</span></h2>
-  <p class="props-intro">A selection of our featured properties. To check availability, pricing and book directly, visit our booking engine.</p>
-  <div class="props-grid">
-    <div class="propcard">
-      <img class="prop-img" src="https://a0.muscache.com/im/pictures/hosting/Hosting-19848732/original/1a833edd-7205-48c8-a56c-e7afc34ed28b.png?im_w=720" alt="Apartment 270° La Sabana">
-      <div class="prop-info">
-        <p class="prop-zone">San José · La Sabana</p>
-        <p class="prop-name">Apartment 270° · La Sabana</p>
-        <div class="prop-meta"><span>🛏 3 bed.</span><span>👥 7 guests</span><span>★ 4.86</span></div>
-        <div class="prop-rate"><p class="prop-price">$145 <small>/ night</small></p><a href="https://book.crstays.com" class="prop-book" target="_blank">Availability</a></div>
-      </div>
-    </div>
-    <div class="propcard">
-      <img class="prop-img" src="https://a0.muscache.com/im/pictures/miso/Hosting-851614544630746338/original/9293c552-d393-49fc-afe8-29a63d26c095.jpeg?im_w=720" alt="The Red Door Zarcero">
-      <div class="prop-info">
-        <p class="prop-zone">Zarcero · Mountain</p>
-        <p class="prop-name">The Red Door · BBQ · Views</p>
-        <div class="prop-meta"><span>🛏 2 bed.</span><span>👥 6 guests</span><span>★ 4.92</span></div>
-        <div class="prop-rate"><p class="prop-price">$115 <small>/ night</small></p><a href="https://book.crstays.com" class="prop-book" target="_blank">Availability</a></div>
-      </div>
-    </div>
-    <div class="propcard">
-      <img class="prop-img" src="https://a0.muscache.com/im/pictures/miso/Hosting-558513492490011144/original/0e790f5e-45ab-4d21-8807-82343ba5376b.jpeg?im_w=720" alt="Penthouse Escazu">
-      <div class="prop-info">
-        <p class="prop-zone">San José · Escazú</p>
-        <p class="prop-name">Magic Penthouse · Cima Hospital</p>
-        <div class="prop-meta"><span>🛏 2 bed.</span><span>👥 5 guests</span><span>★ 4.89</span></div>
-        <div class="prop-rate"><p class="prop-price">$105 <small>/ night</small></p><a href="https://book.crstays.com" class="prop-book" target="_blank">Availability</a></div>
-      </div>
-    </div>
-  </div>
-  <div class="props-all"><a href="https://book.crstays.com" class="btn-gold" target="_blank">View All Properties</a></div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section class="testi">
-  <p class="slbl">What our owners say</p>
-  <h2 class="stitle">Trust is built<br><span class="gn">with results</span></h2>
-  <div class="tgrid">
-    <div class="tcard"><p class="ttext">Since CR Stays has been managing my apartment in Escazú, my monthly income has increased by over 40%. The best part is that I do nothing — they handle everything with complete professionalism.</p><div class="tauthor"><div class="tavatar">MC</div><div><p class="tname">Marcela C.</p><p class="tprop">Owner · Escazú</p><p class="tstars">★★★★★</p></div></div></div>
-    <div class="tcard"><p class="ttext">The monthly reports are incredibly detailed. For the first time I truly understand how my investment is performing. Total professionalism and transparency.</p><div class="tauthor"><div class="tavatar">RA</div><div><p class="tname">Roberto A.</p><p class="tprop">Owner · Atenas</p><p class="tstars">★★★★★</p></div></div></div>
-    <div class="tcard"><p class="ttext">I was afraid to leave my cabin in someone else's hands. CR Stays gave me the peace of mind I needed — they respond quickly and care for the property as if it were their own.</p><div class="tauthor"><div class="tavatar">LF</div><div><p class="tname">Lucía F.</p><p class="tprop">Owner · Zarcero</p><p class="tstars">★★★★★</p></div></div></div>
-  </div>
-  <div class="section-cta" style="text-align:center;margin-top:52px;"><a href="#contact" class="btn-gold">Join Our Owners</a></div>
-</section>
-
-<!-- CONTACT -->
-<section class="contact" id="contact">
-  <div class="contact-grid">
+<!-- KIT -->
+<section id="kit" style="background:var(--white);">
+  <div class="kit-wrap">
     <div>
-      <p class="slbl">Contact</p>
-      <h2 class="stitle">Let's talk<br><span class="gn">no commitment</span></h2>
-      <p class="contact-sub">If you are looking for clarity, stability and a professional approach to managing your property in Costa Rica, we invite you to start a private conversation. Every inquiry is handled directly and confidentially.</p>
-      <div class="contact-methods">
-        <a href="https://wa.me/50671876500" class="cmethod" target="_blank"><span class="cmethod-icon">💬</span><div><p class="cmethod-label">WhatsApp</p><p class="cmethod-val">+506 7187-6500</p></div></a>
-        <a href="mailto:crstays@gmail.com" class="cmethod"><span class="cmethod-icon">✉️</span><div><p class="cmethod-label">Email</p><p class="cmethod-val">crstays@gmail.com</p></div></a>
-        <div class="cmethod"><span class="cmethod-icon">📍</span><div><p class="cmethod-label">Location</p><p class="cmethod-val">Costa Rica — We operate nationwide</p></div></div>
+      <p class="slbl">Included Materials</p>
+      <h2 class="stitle">CR Stays Host<br><span class="gn">Starter Kit</span></h2>
+      <p class="svc-intro" style="margin-top:18px;">Some packages include professional materials you can use as a permanent reference, even after your consulting ends.</p>
+      <div class="kit-list" style="margin-top:32px;">
+        <div class="cred">Roadmap: from zero to professional host</div>
+        <div class="cred">Property preparation checklist</div>
+        <div class="cred">Recommended amenities list</div>
+        <div class="cred">Photo guide for Airbnb and Booking.com</div>
+        <div class="cred">Guest message templates</div>
+        <div class="cred">Basic pricing and calendar guide</div>
+        <div class="cred">Mini operational SOP</div>
+        <div class="cred">Risk and common-mistakes checklist</div>
+        <div class="cred">Platforms and tools guide</div>
+        <div class="cred">30-day launch plan</div>
       </div>
     </div>
-    <div class="contact-form">
-      <p class="form-title">Request a Private Consultation</p>
-      <p class="form-sub">Share some details about your property and we will reach out personally.</p>
-      <div class="frow">
-        <div class="fgroup"><label>Name</label><input class="finput" type="text" placeholder="Your name"></div>
-        <div class="fgroup"><label>Phone / WhatsApp</label><input class="finput" type="tel" placeholder="+1 ..."></div>
-      </div>
-      <div class="fgroup"><label>Email</label><input class="finput" type="email" placeholder="you@email.com"></div>
-      <div class="fgroup"><label>Property location</label><input class="finput" type="text" placeholder="e.g. Escazú, Zarcero, Jacó..."></div>
-      <div class="fgroup"><label>Tell us about your property</label><textarea class="finput" placeholder="Property type, bedrooms, previous rental experience..."></textarea></div>
-      <button class="btn-gold" style="width:100%;padding:18px;border:none;cursor:pointer;" onclick="handleForm()">Send Request</button>
-      <p style="font-size:10px;font-weight:300;color:rgba(250,247,240,.25);margin-top:14px;text-align:center;">Every inquiry is handled directly and confidentially.</p>
+    <div class="kit-card">
+      <p class="kit-card-tag">Included in Host Starter Plan and Launch Pro</p>
+      <h3>Materials that stay with you</h3>
+      <p>The kit is built so you keep making good decisions long after your last session — you don't depend on us to run your property correctly.</p>
     </div>
+  </div>
+</section>
+
+<!-- WHAT'S NOT INCLUDED -->
+<section id="not-included" style="background:var(--ivory);">
+  <p class="slbl">To Be Clear</p>
+  <h2 class="stitle">What this service does<br><span class="gn">not</span> include</h2>
+  <div class="hc-excluded-wrap">
+    <ul class="hc-excluded">
+      <li>Daily property management</li>
+      <li>Daily guest communication</li>
+      <li>Cleaning coordination</li>
+      <li>Maintenance coordination</li>
+      <li>Emergency handling</li>
+      <li>Platform claims and disputes</li>
+      <li>Payment management</li>
+      <li>Income or occupancy guarantees</li>
+    </ul>
+    <div class="hc-bridge">
+      <p>If you prefer a hands-off solution, CR Stays also offers full property management for selected properties. <a href="/En/#services">See our Property Management service →</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CR STAYS -->
+<section id="why-consulting" style="background:var(--white);">
+  <p class="slbl">Why CR Stays</p>
+  <h2 class="stitle">Operational judgment,<br><span class="gn">not just theory</span></h2>
+  <div class="why-hc-grid">
+    <div class="why-hc-text">
+      <p>This consulting service doesn't come from a generic course or certification. It comes from years managing real properties in Costa Rica: setting prices, answering guests at 1 a.m., coordinating last-minute cleanings, and learning — sometimes the hard way — what actually works.</p>
+      <p>That same operational judgment is what we bring to every session. We don't hand you generic internet theory; we give you what actually moves the needle in the Costa Rican market.</p>
+    </div>
+    <div class="why-hc-creds">
+      <div class="cred">Hosting since 2017</div>
+      <div class="cred">Airbnb Superhost</div>
+      <div class="cred">Airbnb Community Leader / Ambassador in Costa Rica</div>
+      <div class="cred">President of ASOHOST CR</div>
+      <div class="cred">Managing multiple short-term rental properties in Costa Rica</div>
+      <div class="cred">Experience with Airbnb, Booking.com, pricing, and revenue management</div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" style="background:var(--ivory);">
+  <p class="slbl">Frequently Asked Questions</p>
+  <h2 class="stitle">Everything you should<br><span class="gn">know before booking</span></h2>
+  <div class="faq-list">
+    <details class="faq-item">
+      <summary>Is this the same as full property management?</summary>
+      <p>No. Host Consulting is guidance and strategy — you keep operating your property. Property Management is full operational management handled by CR Stays.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Can you help me launch my first Airbnb?</summary>
+      <p>Yes. The Host Starter Plan is built exactly for that: preparing your property, your listing, and your strategy from scratch.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Can you review my existing listing?</summary>
+      <p>Yes. The Diagnostic Session is ideal if you already have a live listing and want an honest, practical evaluation.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Do you guarantee income or occupancy?</summary>
+      <p>No. No serious consultant can guarantee market results. What we do offer is professional judgment, grounded in real experience, to maximize your chances of success.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Is this an official Airbnb program?</summary>
+      <p>No. This is a private CR Stays service, independent of Airbnb, Booking.com, or any other platform.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Can this consulting later turn into full property management?</summary>
+      <p>Yes. Many owners start with Host Consulting and, when it makes sense, move into our full Property Management service.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Do you offer in-person property visits?</summary>
+      <p>Depending on the package and location, an in-person visit can be arranged. Ask us when you schedule your session.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Is this available in English and Spanish?</summary>
+      <p>Yes, every session can be held in whichever language you prefer.</p>
+    </details>
+  </div>
+  <div class="hc-disclaimer">
+    <p>This is a private consulting service by CR Stays. It is not an official Airbnb training program. Recommendations are based on real hosting, property management, hospitality, and short-term rental experience in Costa Rica.</p>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="hc-final" id="schedule">
+  <p class="slbl">Let's Get Started</p>
+  <h2 class="stitle">Ready to host<br><span class="gn">with more clarity?</span></h2>
+  <p>Tell us about your property and book a private session. No commitment, no sales pressure — just an honest conversation about your next steps.</p>
+  <div class="hero-btns">
+    <a href="https://wa.me/50671876500?text=Hi,%20I%27d%20like%20to%20schedule%20a%20Host%20Consulting%20session" class="btn-gold" target="_blank">Schedule a Consultation</a>
+    <a href="mailto:crstays@gmail.com" class="btn-outline">Email Us</a>
   </div>
 </section>
 
@@ -909,34 +912,31 @@ footer{background:var(--black);padding:72px 5vw 40px;}
   <div class="footer-top">
     <div>
       <div class="footer-logo" style="margin-bottom:16px;display:flex;align-items:center;gap:12px;">
-        <img src="/assets/images/logo.png" alt="CR Stays" style="height:64px;width:auto;mix-blend-mode:screen;flex-shrink:0;">
-        <div style="display:flex;flex-direction:column;justify-content:center;line-height:1;">
-          <span style="font-family:'Hammersmith One',sans-serif;font-size:28px;color:#FFFFFF;letter-spacing:0.08em;">STAYS</span>
-          <span style="font-family:'Montserrat',sans-serif;font-size:8px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:rgba(250,188,61,0.65);margin-top:4px;">Property Management</span>
-        </div>
-      </div>
+    <img src="/assets/images/logo-mark.png" alt="CR Stays" style="height:60px;width:auto;flex-shrink:0;">
+    <div style="display:flex;flex-direction:column;justify-content:center;line-height:1;">
+      <span style="font-family:'Hammersmith One',sans-serif;font-size:28px;color:#FFFFFF;letter-spacing:0.08em;">STAYS</span>
+      <span style="font-family:'Montserrat',sans-serif;font-size:8px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:rgba(250,188,61,0.65);margin-top:4px;">Property Management</span>
+    </div>
+  </div>
       <p class="ftag">Boutique Property Management · Costa Rica</p>
-      <p class="fdesc">Boutique short-term rental management in Costa Rica. We work with property owners who demand results, transparency and professional care for their assets.</p>
+      <p class="fdesc">Boutique vacation rental management in Costa Rica. We work with owners who demand results, transparency, and professional care.</p>
     </div>
     <div>
-      <p class="fctitle">Property Owners</p>
+      <p class="fctitle">Owners</p>
       <ul class="flinks">
-        <li><a href="#why-us">Why CR Stays</a></li>
-        <li><a href="#services">Services</a></li>
+        <li><a href="/En/#why-us">Why CR Stays</a></li>
+        <li><a href="/En/#services">Property Management</a></li>
         <li><a href="/En/host-consulting.html">Host Consulting</a></li>
-        <li><a href="#process">How to Start</a></li>
-        <li><a href="#team">Meet Us</a></li>
-        <li><a href="#contact">Private Consultation</a></li>
+        <li><a href="/En/#team">Meet Us</a></li>
+        <li><a href="#schedule">Private Consultation</a></li>
       </ul>
     </div>
     <div>
       <p class="fctitle">Guests</p>
       <ul class="flinks">
         <li><a href="https://book.crstays.com" target="_blank">Book Direct</a></li>
-        <li><a href="#properties">View Properties</a></li>
-        <li><a href="#">San José</a></li>
-        <li><a href="#">Zarcero</a></li>
-        <li><a href="#">Atenas</a></li>
+        <li><a href="/En/#properties">View Properties</a></li>
+        <li><a href="/En/#locations">Locations</a></li>
       </ul>
     </div>
     <div>
@@ -946,28 +946,27 @@ footer{background:var(--black);padding:72px 5vw 40px;}
       <div style="margin-top:18px;">
         <div class="fci"><strong style="color:var(--gold);min-width:auto;">✦ Airbnb Superhost</strong></div>
         <div class="fci"><strong style="color:var(--gold);min-width:auto;">✦ Airbnb Ambassador</strong></div>
-        <div class="fci"><strong style="color:var(--gold);min-width:auto;">✦ President ASOHOST CR</strong></div>
+        <div class="fci"><strong style="color:var(--gold);min-width:auto;">✦ President, ASOHOST CR</strong></div>
       </div>
     </div>
   </div>
   <div class="footer-btm">
     <p class="fcopy">© 2025 CR Stays Property Management · Costa Rica · All rights reserved.</p>
     <div class="fsocs">
-      <a href="#" class="fsoc"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+      <a href="#" class="fsoc" aria-label="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
       <a href="https://wa.me/50671876500" class="fsoc" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
     </div>
   </div>
 </footer>
 
 <!-- FLOATING WA -->
-<a href="https://wa.me/50671876500?text=Hello,%20I%20would%20like%20to%20know%20more%20about%20CR%20Stays" class="float-wa" target="_blank">
+<a href="https://wa.me/50671876500?text=Hi,%20I%27d%20like%20to%20know%20more%20about%20Host%20Consulting" class="float-wa" target="_blank">
   <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
 <script>
 const nav = document.getElementById('mainNav');
 window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 60); });
-function handleForm() { alert('Thank you for reaching out. We will contact you shortly.'); }
 </script>
 </body>
 </html>
