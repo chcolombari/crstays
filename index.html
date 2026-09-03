@@ -63,10 +63,12 @@ nav.scrolled{background:rgba(5,5,5,0.94);backdrop-filter:blur(14px);border-botto
 .nav-links a:hover{color:var(--gold);}
 .nav-cta{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;background:var(--gold);color:var(--black);padding:11px 26px;text-decoration:none;transition:background .2s;display:inline-block;}
 .nav-cta:hover{background:var(--gold-d);}
+.nav-actions{display:flex;align-items:center;gap:12px;}
+.mobile-menu-toggle,.mobile-wa,.mobile-menu{display:none;}
 
 /* HERO */
 .hero{position:relative;height:100svh;min-height:600px;display:flex;align-items:flex-end;padding:0 5vw 10vh;overflow:hidden;}
-.hero-bg{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(5,5,5,.22) 0%,rgba(5,5,5,.12) 30%,rgba(5,5,5,.65) 65%,rgba(5,5,5,.94) 100%),url('/assets/images/hero-bg.jpg') center/cover no-repeat;transform:scale(1.03);animation:hzoom 20s ease-out forwards;}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(5,5,5,.22) 0%,rgba(5,5,5,.12) 30%,rgba(5,5,5,.65) 65%,rgba(5,5,5,.94) 100%),url('/assets/images/hero-bg.jpg') center/cover no-repeat;transform:scale(1.01);}
 @keyframes hzoom{from{transform:scale(1.03);}to{transform:scale(1.0);}}
 .hero-content{position:relative;z-index:2;max-width:860px;}
 .hero-eyebrow{display:flex;align-items:center;gap:14px;font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:24px;opacity:0;animation:fup .8s .3s ease forwards;}
@@ -85,7 +87,7 @@ nav.scrolled{background:rgba(5,5,5,0.94);backdrop-filter:blur(14px);border-botto
 .hs-num sup{font-size:20px;color:var(--gold);vertical-align:super;}
 .hs-lbl{font-size:9px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(250,247,240,.4);margin-top:4px;}
 .scroll-cue{position:absolute;bottom:6vh;left:50%;transform:translateX(-50%);z-index:2;opacity:0;animation:fin 1s 2s ease forwards;}
-.scroll-line{width:1px;height:52px;background:linear-gradient(to bottom,rgba(250,188,61,.6),transparent);animation:sb 2.2s 2.5s infinite;}
+.scroll-line{width:1px;height:52px;background:linear-gradient(to bottom,rgba(250,188,61,.6),transparent);}
 @keyframes sb{0%,100%{transform:scaleY(1);opacity:.6}50%{transform:scaleY(.4);opacity:1}}
 @keyframes fup{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fin{from{opacity:0}to{opacity:1}}
@@ -158,6 +160,9 @@ section{padding:120px 5vw;}
 .scard:hover .sd{color:rgba(250,247,240,.65);}
 .scard:hover .sn{color:var(--gold);}
 .stop{display:flex;justify-content:flex-start;align-items:center;gap:10px;margin-bottom:14px;}
+.service-icon{width:22px;height:22px;color:var(--gold-d);flex:none;transition:color .3s;}
+.service-icon svg{display:block;width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;}
+.scard:hover .service-icon{color:var(--gold);}
 .sn{font-family:'Hammersmith One',sans-serif;font-size:11px;color:var(--gold-d);letter-spacing:.1em;transition:color .3s;}
 .st{font-family:'Hammersmith One',sans-serif;font-size:15px;color:var(--charcoal);margin-bottom:10px;transition:color .3s;line-height:1.25;}
 .sd{font-size:11px;font-weight:300;line-height:1.85;color:var(--muted);transition:color .3s;}
@@ -257,6 +262,8 @@ section{padding:120px 5vw;}
 .prop-zone{font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-d);margin-bottom:4px;}
 .prop-name{font-family:'Hammersmith One',sans-serif;font-size:16px;color:var(--charcoal);margin-bottom:8px;}
 .prop-meta{display:flex;gap:12px;font-size:11px;font-weight:400;color:var(--light);}
+.prop-meta span{display:inline-flex;align-items:center;gap:5px;}
+.prop-meta svg{width:15px;height:15px;fill:none;stroke:var(--gold-d);stroke-width:1;stroke-linecap:round;stroke-linejoin:round;}
 .prop-rate{display:flex;justify-content:space-between;align-items:center;margin-top:12px;padding-top:12px;border-top:1px solid rgba(26,61,43,.08);}
 .prop-price{font-size:15px;font-weight:600;color:var(--forest);}
 .prop-price small{font-size:11px;font-weight:300;color:var(--light);}
@@ -285,7 +292,8 @@ section{padding:120px 5vw;}
 .contact-methods{display:flex;flex-direction:column;gap:14px;}
 .cmethod{display:flex;align-items:center;gap:16px;padding:18px 22px;background:rgba(250,247,240,.04);border:1px solid rgba(250,247,240,.08);transition:border-color .2s;text-decoration:none;}
 .cmethod:hover{border-color:rgba(250,188,61,.3);}
-.cmethod-icon{font-size:20px;flex-shrink:0;}
+.cmethod-icon{width:24px;height:24px;flex-shrink:0;color:var(--gold);}
+.cmethod-icon svg{display:block;width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;}
 .cmethod-label{font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:2px;}
 .cmethod-val{font-size:13px;font-weight:400;color:rgba(250,247,240,.7);}
 .contact-form{background:rgba(250,247,240,.04);padding:40px;border:1px solid rgba(250,247,240,.08);}
@@ -317,7 +325,7 @@ footer{background:var(--black);padding:72px 5vw 40px;}
 .fsoc:hover{border-color:var(--gold);color:var(--gold);}
 
 /* FLOAT WA */
-.float-wa{position:fixed;bottom:32px;right:32px;z-index:300;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,.35);transition:transform .2s;opacity:0;animation:fin 1s 3s ease forwards;}
+.float-wa{position:fixed;bottom:32px;right:32px;z-index:300;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,.35);transition:transform .2s;opacity:1;}
 .float-wa:hover{transform:scale(1.1);}
 .float-wa svg{width:26px;height:26px;fill:white;}
 
@@ -364,6 +372,13 @@ footer{background:var(--black);padding:72px 5vw 40px;}
   .nav-logo img{height:48px!important;}
   .nav-cta{font-size:10px;padding:8px 14px;letter-spacing:.07em;white-space:nowrap;}
   .lang-switch{font-size:11px!important;}
+  .nav-actions{gap:8px;}
+  .nav-actions .lang-switch{display:none;}
+  .mobile-menu-toggle,.mobile-wa{display:grid;place-items:center;width:38px;height:38px;border:1px solid rgba(250,247,240,.25);background:transparent;color:var(--ivory);padding:0;}
+  .mobile-menu-toggle svg,.mobile-wa svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
+  .mobile-menu{position:fixed;top:60px;left:0;right:0;z-index:190;background:var(--forest-d);border-top:1px solid rgba(250,188,61,.2);padding:18px 5vw 24px;}
+  .mobile-menu.open{display:grid;}
+  .mobile-menu a{padding:12px 0;border-bottom:1px solid rgba(250,247,240,.1);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ivory);text-decoration:none;}
 
   /* HERO - full screen, stacked layout */
   .hero{
@@ -534,6 +549,8 @@ footer{background:var(--black);padding:72px 5vw 40px;}
   .hs-num{font-size:22px;}
   .nav-cta{font-size:10px;padding:7px 10px;}
 }
+
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.hero-bg,.hero-eyebrow,.hero h1,.hero-sub,.hero-desc,.hero-btns,.hero-stats,.scroll-cue,.scroll-line,.float-wa{animation:none!important;opacity:1!important}*,*::before,*::after{transition-duration:.01ms!important}}
 </style>
 </head>
 <body>
@@ -546,17 +563,21 @@ footer{background:var(--black);padding:72px 5vw 40px;}
   <ul class="nav-links">
     <li><a href="#por-que">Por qué CR Stays</a></li>
     <li><a href="#servicios">Servicios</a></li>
+    <li><a href="/analyzer/">Analyzer</a></li>
     <li><a href="/host-consulting.html">Host Consulting</a></li>
     <li><a href="#equipo">Conócenos</a></li>
     <li><a href="#zonas">Zonas</a></li>
     <li><a href="#propiedades">Propiedades</a></li>
   </ul>
-  <div style="display:flex;align-items:center;gap:12px;">
-    <a href="/En/" class="lang-switch" style="font-size:11px;font-weight:600;letter-spacing:.1em;color:rgba(250,247,240,.5);text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#FABC3D'" onmouseout="this.style.color='rgba(250,247,240,.5)'">🇺🇸 EN</a>
+  <div class="nav-actions">
+    <button class="mobile-menu-toggle" type="button" aria-label="Abrir navegación" aria-controls="mobileMenu" aria-expanded="false"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    <a href="https://wa.me/50671876500" class="mobile-wa" aria-label="WhatsApp" target="_blank"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.5 9.3 9.3 0 0 1-4-.9L3 21l1.7-4.8a8.5 8.5 0 1 1 16.3-4.7Z"/><path d="M8.7 8.4c.5 2.7 2.2 4.4 4.9 5"/></svg></a>
+    <a href="/En/" class="lang-switch" style="font-size:11px;font-weight:600;letter-spacing:.1em;color:rgba(250,247,240,.5);text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#FABC3D'" onmouseout="this.style.color='rgba(250,247,240,.5)'">EN</a>
     <a href="https://wa.me/50671876500" class="lang-switch" style="font-size:11px;font-weight:600;letter-spacing:.1em;color:rgba(250,247,240,.5);text-decoration:none;transition:color .2s;" target="_blank" onmouseover="this.style.color='#FABC3D'" onmouseout="this.style.color='rgba(250,247,240,.5)'">Habla con nosotros</a>
     <a href="https://book.crstays.com" class="nav-cta" target="_blank">Book Direct</a>
   </div>
 </nav>
+<div class="mobile-menu" id="mobileMenu"><a href="/analyzer/">Analizar mi propiedad</a><a href="#por-que">Por qué CR Stays</a><a href="#servicios">Servicios</a><a href="/host-consulting.html">Host Consulting</a><a href="#equipo">Conócenos</a><a href="#contacto">Contacto</a></div>
 
 <!-- HERO -->
 <section class="hero" id="inicio">
@@ -634,7 +655,7 @@ footer{background:var(--black);padding:72px 5vw 40px;}
           <div class="ms">vs. 46.6% del mercado comparable · Fuente: PriceLabs, ago 2025–jul 2026</div>
         </div>
         <div class="mc"><div class="mn">+37<sup>%</sup></div><div class="ml">RevPAR vs. mercado</div><div class="ms">RevPAR CR Stays: $48 · Mercado comparable: $35 · Fuente: PriceLabs, ago 2025–jul 2026</div></div>
-        <div class="mc"><div class="mn">4.9<sup>★</sup></div><div class="ml">Rating promedio</div><div class="ms">Todas las plataformas</div></div>
+        <div class="mc"><div class="mn">4.9<sup aria-label="estrellas"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9L12 3Z"/></svg></sup></div><div class="ml">Rating promedio</div><div class="ms">Todas las plataformas</div></div>
         <div class="mc"><div class="mn">48h</div><div class="ml">Respuesta garantizada</div><div class="ms">A propietarios, siempre</div></div>
       </div>
       <p style="font-size:11px;font-weight:300;color:var(--light);margin-top:14px;">Fuente: PriceLabs Portfolio Analytics · Período: ago 2025–jul 2026 · unidades con datos comparables interanuales</p>
@@ -857,7 +878,7 @@ footer{background:var(--black);padding:72px 5vw 40px;}
       <div class="prop-info">
         <p class="prop-zone">San José · La Sabana</p>
         <p class="prop-name">Apartamento 270° · La Sabana</p>
-        <div class="prop-meta"><span>🛏 3 hab.</span><span>👥 7 huésp.</span><span>★ 4.86</span></div>
+        <div class="prop-meta"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18V8m18 10v-6a2 2 0 0 0-2-2H9v8M3 14h18M6 10h3"/></svg>3 hab.</span><span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="10" r="2"/><path d="M3 19c.5-4 2.5-6 6-6s5.5 2 6 6m0-5c3 0 5 1.7 5 5"/></svg>7 huésp.</span><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9L12 3Z"/></svg>4.86</span></div>
         <div class="prop-rate"><p class="prop-price">$145 <small>/ noche</small></p><a href="https://book.crstays.com" class="prop-book" target="_blank">Disponibilidad</a></div>
       </div>
     </div>
@@ -866,7 +887,7 @@ footer{background:var(--black);padding:72px 5vw 40px;}
       <div class="prop-info">
         <p class="prop-zone">Zarcero · Montaña</p>
         <p class="prop-name">The Red Door · Barbacoa · Vistas</p>
-        <div class="prop-meta"><span>🛏 2 hab.</span><span>👥 6 huésp.</span><span>★ 4.92</span></div>
+        <div class="prop-meta"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18V8m18 10v-6a2 2 0 0 0-2-2H9v8M3 14h18M6 10h3"/></svg>2 hab.</span><span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="10" r="2"/><path d="M3 19c.5-4 2.5-6 6-6s5.5 2 6 6m0-5c3 0 5 1.7 5 5"/></svg>6 huésp.</span><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9L12 3Z"/></svg>4.92</span></div>
         <div class="prop-rate"><p class="prop-price">$115 <small>/ noche</small></p><a href="https://book.crstays.com" class="prop-book" target="_blank">Disponibilidad</a></div>
       </div>
     </div>
@@ -875,7 +896,7 @@ footer{background:var(--black);padding:72px 5vw 40px;}
       <div class="prop-info">
         <p class="prop-zone">San José · Escazú</p>
         <p class="prop-name">Penthouse mágico · Hospital Cima</p>
-        <div class="prop-meta"><span>🛏 2 hab.</span><span>👥 5 huésp.</span><span>★ 4.89</span></div>
+        <div class="prop-meta"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18V8m18 10v-6a2 2 0 0 0-2-2H9v8M3 14h18M6 10h3"/></svg>2 hab.</span><span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="10" r="2"/><path d="M3 19c.5-4 2.5-6 6-6s5.5 2 6 6m0-5c3 0 5 1.7 5 5"/></svg>5 huésp.</span><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9L12 3Z"/></svg>4.89</span></div>
         <div class="prop-rate"><p class="prop-price">$105 <small>/ noche</small></p><a href="https://book.crstays.com" class="prop-book" target="_blank">Disponibilidad</a></div>
       </div>
     </div>
@@ -903,9 +924,9 @@ footer{background:var(--black);padding:72px 5vw 40px;}
       <h2 class="stitle">Conversemos<br><span class="gn">sin compromiso</span></h2>
       <p class="contact-sub">Si buscas claridad, estabilidad y un enfoque profesional para la gestión de tu propiedad en Costa Rica, te invitamos a iniciar una conversación privada. Toda consulta es manejada directa y confidencialmente.</p>
       <div class="contact-methods">
-        <a href="https://wa.me/50671876500" class="cmethod" target="_blank"><span class="cmethod-icon">💬</span><div><p class="cmethod-label">WhatsApp</p><p class="cmethod-val">+506 7187-6500</p></div></a>
-        <a href="mailto:crstays@gmail.com" class="cmethod"><span class="cmethod-icon">✉️</span><div><p class="cmethod-label">Email</p><p class="cmethod-val">crstays@gmail.com</p></div></a>
-        <div class="cmethod"><span class="cmethod-icon">📍</span><div><p class="cmethod-label">Ubicación</p><p class="cmethod-val">Costa Rica — Operamos a nivel nacional</p></div></div>
+        <a href="https://wa.me/50671876500" class="cmethod" target="_blank"><span class="cmethod-icon"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.5 9.3 9.3 0 0 1-4-.9L3 21l1.7-4.8a8.5 8.5 0 1 1 16.3-4.7Z"/></svg></span><div><p class="cmethod-label">WhatsApp</p><p class="cmethod-val">+506 7187-6500</p></div></a>
+        <a href="mailto:crstays@gmail.com" class="cmethod"><span class="cmethod-icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14"/><path d="m3 7 9 6 9-6"/></svg></span><div><p class="cmethod-label">Email</p><p class="cmethod-val">crstays@gmail.com</p></div></a>
+        <div class="cmethod"><span class="cmethod-icon"><svg viewBox="0 0 24 24"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2"/></svg></span><div><p class="cmethod-label">Ubicación</p><p class="cmethod-val">Costa Rica — Operamos a nivel nacional</p></div></div>
       </div>
     </div>
     <div class="contact-form">
@@ -939,6 +960,7 @@ footer{background:var(--black);padding:72px 5vw 40px;}
       <ul class="flinks">
         <li><a href="#por-que">Por qué CR Stays</a></li>
         <li><a href="#servicios">Servicios</a></li>
+        <li><a href="/analyzer/">Analizar mi propiedad</a></li>
         <li><a href="/host-consulting.html">Host Consulting</a></li>
         <li><a href="#proceso">Cómo empezar</a></li>
         <li><a href="#equipo">Conócenos</a></li>
@@ -982,7 +1004,16 @@ footer{background:var(--black);padding:72px 5vw 40px;}
 
 <script>
 const nav = document.getElementById('mainNav');
-window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 60); });
+let navFrame = 0;
+window.addEventListener('scroll', () => {
+  if (navFrame) return;
+  navFrame = requestAnimationFrame(() => { nav.classList.toggle('scrolled', window.scrollY > 60); navFrame = 0; });
+}, { passive: true });
+const menuToggle = document.querySelector('.mobile-menu-toggle');
+const mobileMenu = document.getElementById('mobileMenu');
+menuToggle.addEventListener('click', () => { const open = mobileMenu.classList.toggle('open'); menuToggle.setAttribute('aria-expanded', String(open)); });
+mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => { mobileMenu.classList.remove('open'); menuToggle.setAttribute('aria-expanded', 'false'); }));
+document.querySelectorAll('.scard .stop').forEach(item => item.insertAdjacentHTML('afterbegin', '<span class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 4v16M4 12h16M7 7l10 10M17 7 7 17"/></svg></span>'));
 function handleForm() { alert('Gracias por contactarnos. Nos pondremos en contacto contigo muy pronto.'); }
 </script>
 </body>
