@@ -54,4 +54,5 @@ Vercel preview trigger validation — Sept 2026.
 
 - The site is static and keeps duplicated Spanish/English page markup; shared components remain deferred.
 - Real public acquisition depends on Airbnb response availability and the Render service.
+- Future backlog: review the Analyzer's dependency on Airbnb CDN-hosted listing images; no change is included in Phase 5D.1.
 - GA4 remains disabled until a valid public measurement ID is deliberately set in `analyzer/config.js`.

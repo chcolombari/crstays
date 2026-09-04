@@ -67,6 +67,7 @@ h2, h3 { color: var(--forest); letter-spacing: 0; }
 .field label { color: var(--forest-dark); text-transform: uppercase; font-size: 10px; }
 input { background: var(--ivory); color: var(--charcoal); border: 1px solid rgba(26, 61, 43, .35); }
 input:focus { border-color: var(--gold-dark); outline: 3px solid rgba(250, 188, 61, .28); }
+input.url-invalid, input.url-invalid:focus { border: 2px solid var(--warning); }
 .consent { border-color: rgba(26, 61, 43, .18); }
 .error { color: var(--warning); }
 .failure { background: var(--warning-soft); border: 1px solid rgba(156, 74, 58, .35); color: var(--warning); }

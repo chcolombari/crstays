@@ -117,6 +117,27 @@ class Phase5DIntegrationTests(unittest.TestCase):
             self.assertNotIn("animation:hzoom 20s", text)
             self.assertNotIn("animation:sb 2.2s", text)
 
+    def test_phase5d1_contact_background_only_uses_black(self):
+        homepage = (ROOT / "index.html").read_text()
+        self.assertIn(".contact{background:#050505;padding:100px 5vw;}", homepage)
+
+    def test_phase5d1_mobile_menu_adds_properties_without_zones(self):
+        homepage = (ROOT / "index.html").read_text()
+        menu = re.search(r'<div class="mobile-menu" id="mobileMenu">(.*?)</div>', homepage).group(1)
+        self.assertIn('href="#propiedades">Propiedades</a>', menu)
+        self.assertNotIn('href="#zonas"', menu)
+
+    def test_phase5d1_invalid_url_outline_and_auto_clear(self):
+        self.assertIn("input.url-invalid, input.url-invalid:focus { border: 2px solid var(--warning); }", self.css)
+        self.assertIn('if(id==="#url-error")$("#airbnb-url").classList.add("url-invalid")', self.html)
+        self.assertIn('e.currentTarget.validity.valid', self.html)
+        self.assertIn('e.currentTarget.classList.remove("url-invalid")', self.html)
+
+    def test_phase5d1_1280_nav_adjustment_prevents_wrapping(self):
+        homepage = (ROOT / "index.html").read_text()
+        self.assertIn("@media(min-width:769px) and (max-width:1320px)", homepage)
+        self.assertIn(".nav-links a,.nav-actions a{white-space:nowrap;}", homepage)
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

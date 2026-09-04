@@ -66,6 +66,14 @@ nav.scrolled{background:rgba(5,5,5,0.94);backdrop-filter:blur(14px);border-botto
 .nav-actions{display:flex;align-items:center;gap:12px;}
 .mobile-menu-toggle,.mobile-wa,.mobile-menu{display:none;}
 
+@media(min-width:769px) and (max-width:1320px){
+  nav{padding:0 3vw;}
+  .nav-links{gap:20px;}
+  .nav-links a,.nav-actions a{white-space:nowrap;}
+  .nav-actions{gap:8px;}
+  .nav-cta{padding:11px 18px;}
+}
+
 /* HERO */
 .hero{position:relative;height:100svh;min-height:600px;display:flex;align-items:flex-end;padding:0 5vw 10vh;overflow:hidden;}
 .hero-bg{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(5,5,5,.22) 0%,rgba(5,5,5,.12) 30%,rgba(5,5,5,.65) 65%,rgba(5,5,5,.94) 100%),url('/assets/images/hero-bg.jpg') center/cover no-repeat;transform:scale(1.01);}
@@ -284,7 +292,7 @@ section{padding:120px 5vw;}
 .tstars{font-size:10px;color:var(--gold);margin-top:3px;letter-spacing:2px;}
 
 /* CONTACT */
-.contact{background:var(--charcoal);padding:100px 5vw;}
+.contact{background:#050505;padding:100px 5vw;}
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
 .contact .stitle{color:var(--ivory);}
 .contact .stitle .gn{color:var(--gold);}
@@ -577,7 +585,7 @@ footer{background:var(--black);padding:72px 5vw 40px;}
     <a href="https://book.crstays.com" class="nav-cta" target="_blank">Book Direct</a>
   </div>
 </nav>
-<div class="mobile-menu" id="mobileMenu"><a href="/analyzer/">Analizar mi propiedad</a><a href="#por-que">Por qué CR Stays</a><a href="#servicios">Servicios</a><a href="/host-consulting.html">Host Consulting</a><a href="#equipo">Conócenos</a><a href="#contacto">Contacto</a></div>
+<div class="mobile-menu" id="mobileMenu"><a href="/analyzer/">Analizar mi propiedad</a><a href="#por-que">Por qué CR Stays</a><a href="#servicios">Servicios</a><a href="/host-consulting.html">Host Consulting</a><a href="#equipo">Conócenos</a><a href="#propiedades">Propiedades</a><a href="#contacto">Contacto</a></div>
 
 <!-- HERO -->
 <section class="hero" id="inicio">
