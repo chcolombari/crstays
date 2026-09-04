@@ -201,6 +201,7 @@ section{padding:120px 5vw;}
 .team-name{font-family:'Hammersmith One',sans-serif;font-size:clamp(26px,3vw,40px);color:var(--charcoal);margin-bottom:6px;}
 .team-role{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:22px;}
 .team-bio{font-size:14px;font-weight:300;line-height:1.9;color:var(--muted);margin-bottom:20px;}
+.team-bio-details>summary{display:none;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--forest);cursor:pointer;margin-bottom:18px;}
 .team-credentials{display:flex;flex-direction:column;gap:10px;margin-bottom:36px;}
 .cred{display:flex;align-items:center;gap:12px;font-size:12px;font-weight:400;color:var(--charcoal);}
 .cred::before{content:'✦';color:var(--gold);font-size:10px;}
@@ -387,6 +388,7 @@ footer{background:var(--black);padding:72px 5vw 40px;}
   .mobile-menu{position:fixed;top:60px;left:0;right:0;z-index:190;background:var(--forest-d);border-top:1px solid rgba(250,188,61,.2);padding:18px 5vw 24px;}
   .mobile-menu.open{display:grid;}
   .mobile-menu a{padding:12px 0;border-bottom:1px solid rgba(250,247,240,.1);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ivory);text-decoration:none;}
+  .team-bio-details>summary{display:list-item;}
 
   /* HERO - full screen, stacked layout */
   .hero{
@@ -730,9 +732,9 @@ footer{background:var(--black);padding:72px 5vw 40px;}
       <h3 class="team-name">Cristian</h3>
       <p class="team-role">Fundador &amp; Director · CR Stays</p>
       <p class="team-bio">En 2017, cuando compré un apartamento en San José y me enfrenté al reto de encontrar la mejor manera de generar ingresos con él. Inicialmente exploré el alquiler tradicional, pero al no lograr concretar un contrato que respondiera a mis expectativas, decidí experimentar con el modelo de rentas de corta estancia.</p>
-      <p class="team-bio">Lo que comenzó como una solución para una propiedad se convirtió, con el tiempo, en una operación profesional. Acá nace CR Stays, el cual desde entonces ha gestionado más de 35 propiedades cuidadosamente seleccionadas, desarrollando estrategias para mejorar su posicionamiento, optimizar sus ingresos y proteger su valor a largo plazo.</p>
+      <details class="team-bio-details" open><summary>Conoce mi historia</summary><p class="team-bio">Lo que comenzó como una solución para una propiedad se convirtió, con el tiempo, en una operación profesional. Acá nace CR Stays, el cual desde entonces ha gestionado más de 35 propiedades cuidadosamente seleccionadas, desarrollando estrategias para mejorar su posicionamiento, optimizar sus ingresos y proteger su valor a largo plazo.</p>
       <p class="team-bio">En 2022 fui seleccionado por Airbnb como Embajador en Costa Rica. Desde enero de 2025 soy líder comunitario de Airbnb para San José y Cartago, y me incorporé a la Junta Directiva de ASOHOST Costa Rica, asumiendo posteriormente la presidencia de la asociación.</p>
-      <p class="team-bio">Esta experiencia como propietario, administrador, mentor y representante del sector dio forma al modelo de CR Stays: una gestión basada en conocimiento local, estrategia comercial, tecnología, atención humana y una operación rigurosamente supervisada.</p>
+      <p class="team-bio">Esta experiencia como propietario, administrador, mentor y representante del sector dio forma al modelo de CR Stays: una gestión basada en conocimiento local, estrategia comercial, tecnología, atención humana y una operación rigurosamente supervisada.</p></details>
       <div class="team-credentials">
         <p class="cred">Airbnb Superhost</p>
         <p class="cred">Airbnb Ambassador — Costa Rica (desde 2022)</p>
@@ -1022,6 +1024,10 @@ const mobileMenu = document.getElementById('mobileMenu');
 menuToggle.addEventListener('click', () => { const open = mobileMenu.classList.toggle('open'); menuToggle.setAttribute('aria-expanded', String(open)); });
 mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => { mobileMenu.classList.remove('open'); menuToggle.setAttribute('aria-expanded', 'false'); }));
 document.querySelectorAll('.scard .stop').forEach(item => item.insertAdjacentHTML('afterbegin', '<span class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 4v16M4 12h16M7 7l10 10M17 7 7 17"/></svg></span>'));
+const bioDetails = document.querySelector('.team-bio-details');
+const bioBreakpoint = window.matchMedia('(max-width: 768px)');
+const syncBioDetails = () => { bioDetails.open = !bioBreakpoint.matches; };
+syncBioDetails(); bioBreakpoint.addEventListener('change', syncBioDetails);
 function handleForm() { alert('Gracias por contactarnos. Nos pondremos en contacto contigo muy pronto.'); }
 </script>
 </body>

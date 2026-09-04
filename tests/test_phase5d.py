@@ -14,13 +14,14 @@ class Phase5DIntegrationTests(unittest.TestCase):
         cls.css = (ANALYZER / "brand.css").read_text()
         cls.config = (ANALYZER / "config.js").read_text()
         cls.analytics = (ANALYZER / "analytics.js").read_text()
+        cls.snapshot = (ANALYZER / "snapshot.js").read_text()
 
     def test_analyzer_static_files_exist(self):
-        for name in ("index.html", "config.js", "analytics.js", "brand.css", "assets/logo-full.png"):
+        for name in ("index.html", "config.js", "analytics.js", "snapshot.js", "brand.css", "assets/logo-full.png"):
             self.assertTrue((ANALYZER / name).is_file(), name)
 
     def test_nested_route_assets_are_relative(self):
-        for ref in ("brand.css", "config.js", "analytics.js", "assets/logo-full.png"):
+        for ref in ("brand.css", "config.js", "analytics.js", "snapshot.js", "assets/logo-full.png"):
             self.assertIn(ref, self.html)
         self.assertNotIn('src="/analyzer/', self.html)
 
@@ -28,9 +29,9 @@ class Phase5DIntegrationTests(unittest.TestCase):
         self.assertIn('apiBaseUrl: "https://crstays-ppa.onrender.com"', self.config)
 
     def test_only_public_ppa_endpoints_are_called(self):
-        calls = set(re.findall(r'apiUrl\("([^\"]+)"\)', self.html))
-        self.assertEqual(calls, {"/api/analyze", "/api/leads"})
-        self.assertNotIn("/internal/", self.html + self.config + self.analytics)
+        calls = set(re.findall(r'apiUrl\("([^\"]+)"\)', self.snapshot))
+        self.assertEqual(calls, {"/api/analyze", "/api/leads", "/api/public-result/"})
+        self.assertNotIn("/internal/", self.html + self.config + self.analytics + self.snapshot)
 
     def test_frontend_contains_no_secret_material(self):
         text = "\n".join(p.read_text(errors="ignore") for p in ANALYZER.rglob("*") if p.is_file())
@@ -49,7 +50,7 @@ class Phase5DIntegrationTests(unittest.TestCase):
         self.assertIn('font-family: "Montserrat"', self.css)
 
     def test_brand_shape_rule_is_global(self):
-        self.assertIn("* { border-radius: 0 !important; }", self.css)
+        self.assertIn("*, *::before, *::after { box-sizing: border-box; border-radius: 0 !important; }", self.css)
 
     def test_gold_is_primary_action_fill(self):
         self.assertRegex(self.css, r"\.nav-cta, \.primary, \.secondary \{[^}]*background: var\(--gold\)")
@@ -61,14 +62,14 @@ class Phase5DIntegrationTests(unittest.TestCase):
         self.assertIn(".failure", self.css)
 
     def test_score_has_gold_progress_treatment_without_score_math_change(self):
-        self.assertIn('class="score-ring"', self.html)
+        self.assertIn('class="score-ring"', self.snapshot)
         self.assertIn("border: 10px solid var(--gold)", self.css)
         self.assertIn("width: calc(var(--score) * 1%)", self.css)
-        self.assertIn("${esc(a.score)}", self.html)
+        self.assertIn("${esc(analysis.score)}", self.snapshot)
 
     def test_four_pillar_statuses_are_preserved_and_styled(self):
         for label in ("Analizada", "Analizada parcialmente", "Necesitamos más información"):
-            self.assertIn(label, self.html)
+            self.assertIn(label, self.snapshot)
         for state in ("analyzed", "partial", "insufficient"):
             self.assertIn(f".status-pill.{state}", self.css)
 
@@ -85,7 +86,7 @@ class Phase5DIntegrationTests(unittest.TestCase):
 
     def test_homepages_link_to_analyzer(self):
         for path in (ROOT / "index.html", ROOT / "En/index.html"):
-            self.assertIn('href="/analyzer/"', path.read_text())
+            self.assertRegex(path.read_text(), r'href="/analyzer/(?:\?lang=en)?"')
 
     def test_mobile_high_intent_actions_exist(self):
         for path in (ROOT / "index.html", ROOT / "En/index.html"):
@@ -129,9 +130,9 @@ class Phase5DIntegrationTests(unittest.TestCase):
 
     def test_phase5d1_invalid_url_outline_and_auto_clear(self):
         self.assertIn("input.url-invalid, input.url-invalid:focus { border: 2px solid var(--warning); }", self.css)
-        self.assertIn('if(id==="#url-error")$("#airbnb-url").classList.add("url-invalid")', self.html)
-        self.assertIn('e.currentTarget.validity.valid', self.html)
-        self.assertIn('e.currentTarget.classList.remove("url-invalid")', self.html)
+        self.assertIn('if (id === "#url-error") $("#airbnb-url").classList.add("url-invalid")', self.snapshot)
+        self.assertIn('event.currentTarget.validity.valid', self.snapshot)
+        self.assertIn('event.currentTarget.classList.remove("url-invalid")', self.snapshot)
 
     def test_phase5d1_1280_nav_adjustment_prevents_wrapping(self):
         homepage = (ROOT / "index.html").read_text()

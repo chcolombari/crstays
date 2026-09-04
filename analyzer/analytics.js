@@ -19,7 +19,8 @@
 
   const events = new Set([
     "analysis_started", "analysis_completed", "analysis_failed",
-    "snapshot_viewed", "consulting_cta_clicked"
+    "snapshot_viewed", "consulting_cta_clicked", "ppa_result_viewed",
+    "ppa_host_consulting_clicked", "ppa_management_clicked", "ppa_detail_expanded"
   ]);
   const fields = new Set([
     "analysis_id", "listing_id", "score_band", "score_released", "report_version"

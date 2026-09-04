@@ -181,6 +181,7 @@ section{padding:120px 5vw;}
 .team-name{font-family:'Hammersmith One',sans-serif;font-size:clamp(26px,3vw,40px);color:var(--charcoal);margin-bottom:6px;}
 .team-role{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:22px;}
 .team-bio{font-size:14px;font-weight:300;line-height:1.9;color:var(--muted);margin-bottom:20px;}
+.team-bio-details>summary{display:none;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--forest);cursor:pointer;margin-bottom:18px;}
 .team-credentials{display:flex;flex-direction:column;gap:10px;margin-bottom:36px;}
 .cred{display:flex;align-items:center;gap:12px;font-size:12px;font-weight:400;color:var(--charcoal);}
 .cred::before{content:'✦';color:var(--gold);font-size:10px;}
@@ -353,6 +354,7 @@ footer{background:var(--black);padding:72px 5vw 40px;}
   .mobile-menu{position:fixed;top:60px;left:0;right:0;z-index:190;background:var(--forest-d);border-top:1px solid rgba(250,188,61,.2);padding:18px 5vw 24px;}
   .mobile-menu.open{display:grid;}
   .mobile-menu a{padding:12px 0;border-bottom:1px solid rgba(250,247,240,.1);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ivory);text-decoration:none;}
+  .team-bio-details>summary{display:list-item;}
 
   /* HERO - full screen, stacked layout */
   .hero{
@@ -537,7 +539,7 @@ footer{background:var(--black);padding:72px 5vw 40px;}
   <ul class="nav-links">
     <li><a href="#why-us">Why CR Stays</a></li>
     <li><a href="#services">Services</a></li>
-    <li><a href="/analyzer/">Analyzer</a></li>
+    <li><a href="/analyzer/?lang=en">Analyzer</a></li>
     <li><a href="/En/host-consulting.html">Host Consulting</a></li>
     <li><a href="#team">Meet Us</a></li>
     <li><a href="#locations">Locations</a></li>
@@ -551,7 +553,7 @@ footer{background:var(--black);padding:72px 5vw 40px;}
     <a href="https://book.crstays.com" class="nav-cta" target="_blank">Book Direct</a>
   </div>
 </nav>
-<div class="mobile-menu" id="mobileMenu"><a href="/analyzer/">Analyze my property</a><a href="#why-us">Why CR Stays</a><a href="#services">Services</a><a href="/En/host-consulting.html">Host Consulting</a><a href="#team">Meet Us</a><a href="#contact">Contact</a></div>
+<div class="mobile-menu" id="mobileMenu"><a href="/analyzer/?lang=en">Analyze my property</a><a href="#why-us">Why CR Stays</a><a href="#services">Services</a><a href="/En/host-consulting.html">Host Consulting</a><a href="#team">Meet Us</a><a href="#contact">Contact</a></div>
 
 <!-- HERO -->
 <section class="hero" id="home">
@@ -696,9 +698,9 @@ footer{background:var(--black);padding:72px 5vw 40px;}
       <h3 class="team-name">Cristian</h3>
       <p class="team-role">Founder &amp; Director · CR Stays</p>
       <p class="team-bio">In 2017, I purchased an apartment in San José and faced the challenge of finding the best way to generate income from it. After exploring traditional rentals without success, I decided to experiment with the short-term rental model.</p>
-      <p class="team-bio">What started as a solution for one property grew over time into a professional operation. That is how CR Stays was born — since then we have managed more than 35 carefully selected properties, developing strategies to improve their positioning, optimize their income and protect their long-term value.</p>
+      <details class="team-bio-details" open><summary>Read my story</summary><p class="team-bio">What started as a solution for one property grew over time into a professional operation. That is how CR Stays was born — since then we have managed more than 35 carefully selected properties, developing strategies to improve their positioning, optimize their income and protect their long-term value.</p>
       <p class="team-bio">In 2022, I was selected by Airbnb as an Ambassador in Costa Rica. Since January 2025, I have served as Airbnb community leader for San José and Cartago, and I joined the Board of Directors of ASOHOST Costa Rica, the Association of Non-Traditional Accommodation Providers, later assuming the presidency of the association.</p>
-      <p class="team-bio">This experience — as an owner, manager, mentor and industry representative — shaped the CR Stays model: management based on local knowledge, commercial strategy, technology, human care and a rigorously supervised operation.</p>
+      <p class="team-bio">This experience — as an owner, manager, mentor and industry representative — shaped the CR Stays model: management based on local knowledge, commercial strategy, technology, human care and a rigorously supervised operation.</p></details>
       <div class="team-credentials">
         <p class="cred">Airbnb Superhost</p>
         <p class="cred">Airbnb Ambassador — Costa Rica (since 2022)</p>
@@ -934,7 +936,7 @@ footer{background:var(--black);padding:72px 5vw 40px;}
       <ul class="flinks">
         <li><a href="#why-us">Why CR Stays</a></li>
         <li><a href="#services">Services</a></li>
-        <li><a href="/analyzer/">Analyze my property</a></li>
+        <li><a href="/analyzer/?lang=en">Analyze my property</a></li>
         <li><a href="/En/host-consulting.html">Host Consulting</a></li>
         <li><a href="#process">How to Start</a></li>
         <li><a href="#team">Meet Us</a></li>
@@ -988,6 +990,10 @@ const mobileMenu = document.getElementById('mobileMenu');
 menuToggle.addEventListener('click', () => { const open = mobileMenu.classList.toggle('open'); menuToggle.setAttribute('aria-expanded', String(open)); });
 mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => { mobileMenu.classList.remove('open'); menuToggle.setAttribute('aria-expanded', 'false'); }));
 document.querySelectorAll('.scard .stop').forEach(item => item.insertAdjacentHTML('afterbegin', '<span class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 4v16M4 12h16M7 7l10 10M17 7 7 17"/></svg></span>'));
+const bioDetails = document.querySelector('.team-bio-details');
+const bioBreakpoint = window.matchMedia('(max-width: 768px)');
+const syncBioDetails = () => { bioDetails.open = !bioBreakpoint.matches; };
+syncBioDetails(); bioBreakpoint.addEventListener('change', syncBioDetails);
 function handleForm() { alert('Thank you for reaching out. We will contact you shortly.'); }
 </script>
 </body>
