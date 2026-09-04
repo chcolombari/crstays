@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Snapshot preliminar de una propiedad anunciada en Airbnb, explicado en lenguaje claro.">
+  <title>CR Stays · Property Performance Analyzer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hammersmith+One&family=Montserrat:wght@300;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="brand.css">
+</head>
+<body data-page="analyzer">
+  <header class="site-nav">
+    <a class="site-logo" href="/" aria-label="CR Stays"><img src="assets/logo-full.png" alt="CR Stays Property Management"></a>
+    <nav aria-label="Analyzer navigation">
+      <a class="back-link" href="/" data-copy="back">Volver a CR Stays</a>
+      <div class="language-switch" role="group" aria-label="Language"><button type="button" data-language="es">ES</button><button type="button" data-language="en">EN</button></div>
+      <a class="nav-cta" href="https://book.crstays.com" target="_blank" rel="noopener noreferrer">Book Direct</a>
+    </nav>
+  </header>
+
+  <main class="shell">
+    <section id="entry">
+      <p class="section-kicker" data-copy="eyebrow">ANÁLISIS PÚBLICO</p>
+      <h1 data-copy="entryTitle">Descubre qué está contando tu propiedad hoy.</h1>
+      <p class="intro" data-copy="entryIntro">Analizamos la información pública de tu anuncio para mostrarte señales concretas de la propiedad, su presentación y la experiencia del huésped.</p>
+      <form id="analysis-form" class="panel" novalidate>
+        <div class="gate">
+          <div class="field"><label for="airbnb-url" data-copy="urlLabel">Enlace público de Airbnb</label><input id="airbnb-url" type="url" inputmode="url" autocomplete="url" placeholder="https://www.airbnb.com/rooms/…"><p id="url-error" class="error hidden" role="alert"></p></div>
+          <div class="field"><label for="analysis-email" data-copy="emailLabel">¿Dónde enviamos tu Snapshot?</label><input id="analysis-email" type="email" inputmode="email" autocomplete="email" placeholder="tu@correo.com"><p id="email-error" class="error hidden" role="alert"></p></div>
+          <button id="analyze" class="primary" type="submit" data-copy="analyze">Analizar mi propiedad gratis</button>
+        </div>
+        <p class="fine" data-copy="free">Gratis. Sin tarjeta. Usamos únicamente información pública de tu anuncio.</p>
+        <label class="marketing-consent"><input id="marketing-consent" type="checkbox"><span data-copy="consent">Quiero recibir recomendaciones prácticas de CR Stays para mejorar mi propiedad y mi estrategia de alquiler.</span></label>
+        <p class="fine consent" data-copy="transactional">El correo con tu Snapshot es transaccional. Las recomendaciones son opcionales y esta casilla está desmarcada por defecto.</p>
+        <p id="entry-error" class="error hidden" role="alert"></p>
+      </form>
+    </section>
+
+    <section id="running" class="progress hidden" aria-live="polite"><h2 data-copy="runningTitle">Estamos revisando tu propiedad</h2><p class="progress-intro" data-copy="runningIntro">Organizamos únicamente la evidencia pública disponible.</p><div class="panel"><ol id="stages" class="stages"></ol><div id="review-categories" class="review-grid"></div></div></section>
+    <section id="result" class="hidden" aria-live="polite"></section>
+    <footer class="site-footer"><a href="/">CR Stays</a><span>Property Performance Analyzer</span><a href="https://wa.me/50671876500" target="_blank" rel="noopener noreferrer" data-copy="contact">Contacto</a></footer>
+  </main>
+  <script src="config.js"></script>
+  <script src="analytics.js"></script>
+  <script src="snapshot.js"></script>
+</body>
+</html>

@@ -530,7 +530,7 @@ body{font-family:'Montserrat',sans-serif;background:#F2EFE8;color:var(--charcoal
             <label class="flabel">Número de tarjeta<span>*</span></label>
             <div class="card-number-wrap">
               <input class="finput" type="text" placeholder="0000 0000 0000 0000" id="cardNum" maxlength="19" oninput="formatCard(this)">
-              <span class="card-lock">🔒</span>
+              <span class="card-lock"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5" y="10" width="14" height="10"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span>
             </div>
           </div>
         </div>
@@ -579,7 +579,7 @@ body{font-family:'Montserrat',sans-serif;background:#F2EFE8;color:var(--charcoal
         </div>
 
         <button class="book-now-btn" id="bookNowBtn" onclick="doBooking()">
-          <span class="book-lock-icon">🔒</span>
+          <span class="book-lock-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5" y="10" width="14" height="10"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span>
           Confirmar reserva
         </button>
         <p style="font-size:10px;font-weight:300;color:var(--light);text-align:center;margin-top:12px;">Tu información está protegida con encriptación SSL de 256 bits</p>
@@ -601,8 +601,8 @@ body{font-family:'Montserrat',sans-serif;background:#F2EFE8;color:var(--charcoal
             <span style="font-size:14px;color:var(--muted);">∨</span>
           </span>
           <div class="res-prop-actions">
-            <button class="res-action-btn" title="Editar">✏️</button>
-            <button class="res-action-btn" title="Eliminar">🗑️</button>
+            <button class="res-action-btn" title="Editar" aria-label="Editar">Editar</button>
+            <button class="res-action-btn" title="Eliminar" aria-label="Eliminar">Eliminar</button>
           </div>
         </div>
         <div class="res-detail">
@@ -631,7 +631,7 @@ body{font-family:'Montserrat',sans-serif;background:#F2EFE8;color:var(--charcoal
             ↩ Volver
           </button>
           <button class="res-small-btn" onclick="window.location='crstays-booking.html'">
-            🔄 Reiniciar
+            Reiniciar
           </button>
         </div>
       </div>
@@ -680,7 +680,7 @@ body{font-family:'Montserrat',sans-serif;background:#F2EFE8;color:var(--charcoal
 <!-- SUCCESS MODAL -->
 <div class="modal-overlay" id="successModal">
   <div class="modal-box">
-    <div class="modal-icon">✅</div>
+    <div class="modal-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12.5l4.2 4.2L19 7"/></svg></div>
     <h2 class="modal-title">¡Reserva confirmada!</h2>
     <p class="modal-sub">Tu reserva ha sido recibida y confirmada. En los próximos minutos recibirás un correo de confirmación con todos los detalles de tu estadía.</p>
     <div class="modal-ref" id="modalRef">Referencia: CRS-2025-0001</div>

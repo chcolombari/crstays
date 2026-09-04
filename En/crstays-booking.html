@@ -211,7 +211,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--ivory);color:var(--cha
 <div class="page-header">
   <a href="../en/index.html" class="ph-back">← CR <span>Stays</span></a>
   <span class="ph-label">Direct Booking</span>
-  <a href="../crstays-booking.html" class="ph-lang">🇨🇷 ES</a>
+      <a href="../crstays-booking.html" class="ph-lang">ES</a>
 </div>
 
 <!-- HERO -->
@@ -255,8 +255,8 @@ body{font-family:'Montserrat',sans-serif;background:var(--ivory);color:var(--cha
         </optgroup>
         <optgroup label="Atenas · Central Valley">
           <option>Serene Studio · Pool · Gardens · Atenas</option>
-          <option>Tranquil Retreat · Pool · Atenas ★5.0</option>
-          <option>Terrace · Pool View · Atenas ★5.0</option>
+          <option>Tranquil Retreat · Pool · Atenas · Rating 5.0</option>
+          <option>Terrace · Pool View · Atenas · Rating 5.0</option>
         </optgroup>
         <optgroup label="Zarcero · Mountain">
           <option>Mountain Cabin · Spacious Terrace · Zarcero</option>
@@ -343,10 +343,10 @@ body{font-family:'Montserrat',sans-serif;background:var(--ivory);color:var(--cha
       </div>
       <div class="info-card">
         <p class="info-card-title">Good to know</p>
-        <div class="info-item"><span class="info-icon">✅</span><p class="info-text"><strong>Best price guarantee</strong> — direct bookings are always cheaper than OTA platforms.</p></div>
-        <div class="info-item"><span class="info-icon">🔑</span><p class="info-text"><strong>Flexible check-in</strong> — we coordinate arrival directly with your team.</p></div>
-        <div class="info-item"><span class="info-icon">🧹</span><p class="info-text"><strong>Hotel standards</strong> — every property cleaned and inspected before your arrival.</p></div>
-        <div class="info-item"><span class="info-icon">💬</span><p class="info-text"><strong>Local support 24/7</strong> — real people, in English and Spanish.</p></div>
+        <div class="info-item"><span class="info-icon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 7v10M7 12h10"/></svg></span><p class="info-text"><strong>Best price guarantee</strong> — direct bookings are always cheaper than OTA platforms.</p></div>
+        <div class="info-item"><span class="info-icon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 7v10M7 12h10"/></svg></span><p class="info-text"><strong>Flexible check-in</strong> — we coordinate arrival directly with your team.</p></div>
+        <div class="info-item"><span class="info-icon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 7v10M7 12h10"/></svg></span><p class="info-text"><strong>Hotel standards</strong> — every property cleaned and inspected before your arrival.</p></div>
+        <div class="info-item"><span class="info-icon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 7v10M7 12h10"/></svg></span><p class="info-text"><strong>Local support 24/7</strong> — real people, in English and Spanish.</p></div>
       </div>
     </div>
   </div>
@@ -416,8 +416,8 @@ const BASE_PRICES = {
   'Charming · Airport · Pool · AC': { base:78, ota_mult:1.22, beds:'1 bed · 1.5 baths', max:2, rating:4.82, amenities:['Wifi','Pool','AC','TV','Aeropuerto'], zone:'Heredia · Cariari', img:'https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTI5OTUzMTA2OTAxMDcxOTEyNw==/original/41ddf289-976a-4b73-ba01-bd460aa75d01.jpeg?im_w=720', airbnb:'https://es-l.airbnb.com/rooms/1409454866998261606', internal:'Cariari 305', short:'Charming · Airport · Pool' },
   'Escazú Prime · Pool · Views · AC': { base:85, ota_mult:1.23, beds:'1 bed · 1 bath', max:3, rating:4.83, amenities:['Wifi','Pool','AC','Kitchen','Vista'], zone:'San Rafael de Escazú', img:'https://a0.muscache.com/im/pictures/26d43252-4590-45ec-9105-bdb36cdb1b28.jpg?im_w=720', airbnb:'https://es-l.airbnb.com/rooms/50719884', internal:'Terrazas 404', short:'Escazú Prime · Pool · Views' },
   'Serene Studio · Pool · Gardens · Atenas': { base:72, ota_mult:1.24, beds:'1 bed · 1 bath', max:2, rating:4.92, amenities:['Wifi','AC','Pool','Jardines','Nature'], zone:'Atenas · Central Valley', img:'https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTI5NDQwMTUxNDc2MzYxMzM1NQ==/original/6571dd7e-4103-4170-a2bf-f590da66cd6b.jpeg?im_w=720', airbnb:'https://es-l.airbnb.com/rooms/1305783989454712990', internal:'Espaveles #3', short:'Serene Studio · Pool · Atenas' },
-  'Tranquil Retreat · Pool · Atenas ★5.0': { base:72, ota_mult:1.24, beds:'1 bed · 1 bath', max:2, rating:5.0, amenities:['Wifi','AC','Pool','Nature'], zone:'Atenas · Central Valley', img:'https://a0.muscache.com/im/pictures/miso/Hosting-1299624401592604290/original/5aad7c5b-860e-4420-8c6c-5e45a61b5639.jpeg?im_w=720', airbnb:'https://es-l.airbnb.com/rooms/1299624401592604290', internal:'Espaveles #4', short:'Tranquil Retreat · Pool · Atenas' },
-  'Terrace · Pool View · Atenas ★5.0': { base:75, ota_mult:1.24, beds:'1 bed · 1 bath', max:2, rating:5.0, amenities:['Wifi','AC','Pool','Terrace','Nature'], zone:'Atenas · Central Valley', img:'https://a0.muscache.com/im/pictures/hosting/Hosting-1604477146849923614/original/601aff4a-b569-4a06-b165-ae7344d84def.png?im_w=720', airbnb:'https://es-l.airbnb.com/rooms/1604477146849923614', internal:'Espaveles #8', short:'Terrace · Pool View · Atenas' },
+  'Tranquil Retreat · Pool · Atenas · Rating 5.0': { base:72, ota_mult:1.24, beds:'1 bed · 1 bath', max:2, rating:5.0, amenities:['Wifi','AC','Pool','Nature'], zone:'Atenas · Central Valley', img:'https://a0.muscache.com/im/pictures/miso/Hosting-1299624401592604290/original/5aad7c5b-860e-4420-8c6c-5e45a61b5639.jpeg?im_w=720', airbnb:'https://es-l.airbnb.com/rooms/1299624401592604290', internal:'Espaveles #4', short:'Tranquil Retreat · Pool · Atenas' },
+  'Terrace · Pool View · Atenas · Rating 5.0': { base:75, ota_mult:1.24, beds:'1 bed · 1 bath', max:2, rating:5.0, amenities:['Wifi','AC','Pool','Terrace','Nature'], zone:'Atenas · Central Valley', img:'https://a0.muscache.com/im/pictures/hosting/Hosting-1604477146849923614/original/601aff4a-b569-4a06-b165-ae7344d84def.png?im_w=720', airbnb:'https://es-l.airbnb.com/rooms/1604477146849923614', internal:'Espaveles #8', short:'Terrace · Pool View · Atenas' },
   'Mountain Cabin · Spacious Terrace · Zarcero': { base:90, ota_mult:1.25, beds:'2 beds · 1 bath', max:5, rating:4.94, amenities:['Wifi','Kitchen','Terrace','Mountain','Parking'], zone:'Zarcero · Mountain', img:'https://a0.muscache.com/im/pictures/hosting/Hosting-49706437/original/deb77b4b-3d91-4a91-bc5a-46adb99d0272.png?im_w=720', airbnb:'https://es-l.airbnb.com/rooms/49706437', internal:'Cabaña R1', short:'Mountain Cabin · Terrace · Zarcero' },
   'Modern Cabin · Views · Zarcero': { base:90, ota_mult:1.25, beds:'2 beds · 1 bath', max:6, rating:4.95, amenities:['Wifi','Kitchen','Terrace','Views','Mountain'], zone:'Zarcero · Mountain', img:'https://a0.muscache.com/im/pictures/hosting/Hosting-51877989/original/753fa51d-186c-4141-ace0-29a46e68cec0.png?im_w=720', airbnb:'https://es-l.airbnb.com/rooms/51877989', internal:'Cabaña R2', short:'Modern Cabin · Views · Zarcero' },
   'Above the Clouds · Quiet Cabin · Zarcero': { base:88, ota_mult:1.25, beds:'2 beds · 1 bath', max:5, rating:4.9, amenities:['Wifi','Kitchen','Fresh air','Views','Mountain'], zone:'Zarcero · Mountain', img:'https://a0.muscache.com/im/pictures/miso/Hosting-51693498/original/572e9ad7-2509-40c7-a2d8-dd14c1b43c7e.png?im_w=720', airbnb:'https://es-l.airbnb.com/rooms/51693498', internal:'Cabaña R3', short:'Above the Clouds · Tranquility · Zarcero' },
@@ -531,7 +531,7 @@ function showResults(){
     if(selectedFilter && selectedFilter!=='' && name!==selectedFilter) return false;
     return true;
   });
-  if(!available.length){ list.innerHTML='<div class="empty-state"><div class="empty-icon">🏡</div><div class="empty-title">No properties available</div><div class="empty-desc">Try adjusting your dates or number of guests.</div></div>'; return; }
+  if(!available.length){ list.innerHTML='<div class="empty-state"><div class="empty-icon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 7v10M7 12h10"/></svg></div><div class="empty-title">No properties available</div><div class="empty-desc">Try adjusting your dates or number of guests.</div></div>'; return; }
   list.innerHTML = available.map(([name,prop])=>{
     const nightly = Math.round(prop.base * avg);
     const otaNightly = Math.round(nightly * prop.ota_mult);
@@ -544,7 +544,7 @@ function showResults(){
         <div>
           <p class="prop-card-zone">${prop.zone}</p>
           <p class="prop-card-name">${name}</p>
-          <p class="prop-card-rating">★ ${prop.rating} <span>· ${prop.internal}</span></p>
+          <p class="prop-card-rating"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9L12 3Z"/></svg> ${prop.rating} <span>· ${prop.internal}</span></p>
           <p class="prop-card-beds">${prop.beds} · Max ${prop.max} guests</p>
           <div class="prop-card-amenities">${amenHTML}</div>
         </div>
@@ -653,7 +653,7 @@ function goCheckout(){
 
 // Initial empty state
 document.getElementById('propsList').innerHTML = `<div class="empty-state">
-  <div class="empty-icon">🔍</div>
+  <div class="empty-icon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 7v10M7 12h10"/></svg></div>
   <div class="empty-title">Find your ideal stay</div>
   <div class="empty-desc">Select your destination, dates and number of guests above,<br>then click <strong>Check Availability</strong> to see all available properties.</div>
 </div>`;
