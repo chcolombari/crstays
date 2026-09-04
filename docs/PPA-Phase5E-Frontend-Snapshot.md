@@ -48,3 +48,12 @@ backend migration may remain. No DNS, production deployment or merge is part of 
 
 Known limitation: saved-result URLs are bearer links and should be handled as private links even
 though their response contains only the allowlisted public Snapshot DTO.
+
+## Phase 5E.1 UX polish
+
+The loading screen cycles through the same three truthful, orientation-only stages and shows
+active/completed states without percentages or backend checkpoint claims. Normal completion still
+lands at the Snapshot top. A stored-result URL with `#detailed-analysis` opens the existing outer
+detail disclosure after retrieval and scrolls to it; the fragment is never sent to the server and
+does not rerun analysis. The primary submit label is shorter and more prominent in ES/EN while
+preserving square corners, brand colors and responsive behavior.

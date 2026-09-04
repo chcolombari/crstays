@@ -30,9 +30,26 @@ class Phase5EFrontendTests(unittest.TestCase):
         self.assertIn("unknown-brief", self.snapshot)
 
     def test_complete_detail_remains_accessible_without_duplication(self):
-        self.assertIn('<details class="panel editorial full-analysis">', self.snapshot)
+        self.assertIn('<details id="detailed-analysis" class="panel editorial full-analysis">', self.snapshot)
         for key in ("evidence", "reviewDetail", "pillars", "methodology", "unknownDetail", "recommendations"):
             self.assertIn(f't("{key}")', self.snapshot)
+
+    def test_truthful_loading_stages_progress_without_percentages(self):
+        for label in (
+            "Reading your listing", "Organizing public evidence", "Preparing your Snapshot",
+            "Leyendo tu anuncio", "Organizando la evidencia pública", "Preparando tu Snapshot",
+        ):
+            self.assertIn(label, self.snapshot)
+        self.assertIn('index < activeIndex ? "done"', self.snapshot)
+        self.assertIn('index === activeIndex ? "active"', self.snapshot)
+        self.assertIn('const mark = index < activeIndex ? "✓"', self.snapshot)
+        self.assertNotRegex(self.snapshot, r"\b(?:[1-9][0-9]?|100)%")
+
+    def test_submit_cta_copy_and_responsive_emphasis(self):
+        for text in ("ANALIZAR MI PROPIEDAD", "ANALYZE MY PROPERTY", "Gratis. Sin tarjeta.", "Free. No card required."):
+            self.assertIn(text, self.snapshot + self.index)
+        self.assertRegex(self.css, r"#analyze\s*\{[^}]*min-width:\s*238px;[^}]*min-height:\s*56px;")
+        self.assertRegex(self.css, r"@media \(max-width: 780px\)[\s\S]*?#analyze\s*\{\s*width:\s*100%;")
 
     def test_review_visualization_uses_only_returned_values(self):
         self.assertIn("analysis.experience_ratings", self.snapshot)
@@ -54,7 +71,17 @@ class Phase5EFrontendTests(unittest.TestCase):
         self.assertIn('apiUrl("/api/public-result/") + encodeURIComponent(token)', self.snapshot)
         result_loader = self.snapshot.split("async function loadPersistentResult()", 1)[1]
         self.assertNotIn('apiUrl("/api/analyze")', result_loader)
+        self.assertIn("openDetailedAnalysisFromUrl();", result_loader)
+        self.assertIn('location.hash !== "#detailed-analysis"', self.snapshot)
+        self.assertIn("detail.open = true", self.snapshot)
+        self.assertIn('detail.scrollIntoView({behavior: "auto", block: "start"})', self.snapshot)
         self.assertIn('name="robots" content="noindex,nofollow"', self.result)
+
+    def test_normal_completion_keeps_snapshot_landing_at_top(self):
+        run_analysis = self.snapshot.split("async function runAnalysis", 1)[1].split("async function loadPersistentResult", 1)[0]
+        self.assertIn("renderSnapshot(data, {fresh: true})", run_analysis)
+        self.assertNotIn("openDetailedAnalysisFromUrl", run_analysis)
+        self.assertIn('window.scrollTo({top: 0, behavior: "smooth"})', self.snapshot)
 
     def test_unsubscribe_uses_public_api_and_opaque_token(self):
         self.assertIn('apiBaseUrl + "/api/unsubscribe"', self.unsubscribe_js)

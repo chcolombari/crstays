@@ -19,7 +19,7 @@
       entryTitle: "Descubre qué está contando tu propiedad hoy.",
       entryIntro: "Analizamos la información pública de tu anuncio para mostrarte señales concretas de la propiedad, su presentación y la experiencia del huésped.",
       urlLabel: "Enlace público de Airbnb", emailLabel: "¿Dónde enviamos tu Snapshot?",
-      analyze: "Analizar mi propiedad gratis", free: "Gratis. Sin tarjeta. Usamos únicamente información pública de tu anuncio.",
+      analyze: "ANALIZAR MI PROPIEDAD", free: "Gratis. Sin tarjeta.",
       consent: "Quiero recibir recomendaciones prácticas de CR Stays para mejorar mi propiedad y mi estrategia de alquiler.",
       transactional: "El correo con tu Snapshot es transaccional. Las recomendaciones son opcionales y esta casilla está desmarcada por defecto.",
       runningTitle: "Estamos revisando tu propiedad", runningIntro: "Organizamos únicamente la evidencia pública disponible.",
@@ -47,7 +47,7 @@
       entryTitle: "Discover what your property is communicating today.",
       entryIntro: "We analyze the public information in your listing to show concrete signals about the property, its presentation and the guest experience.",
       urlLabel: "Public Airbnb link", emailLabel: "Where should we send your Snapshot?",
-      analyze: "Analyze my property free", free: "Free. No card. We use only public information from your listing.",
+      analyze: "ANALYZE MY PROPERTY", free: "Free. No card required.",
       consent: "I'd like to receive practical CR Stays recommendations to improve my property and rental strategy.",
       transactional: "Your Snapshot email is transactional. Recommendations are optional and this box is unchecked by default.",
       runningTitle: "We are reviewing your property", runningIntro: "We organize only the public evidence available.",
@@ -86,8 +86,12 @@
     document.querySelectorAll("[data-language]").forEach((button) => button.setAttribute("aria-pressed", String(button.dataset.language === language)));
   }
 
-  function drawProgress() {
-    $("#stages").innerHTML = STAGES[language].map((label, index) => `<li${index === 0 ? ' class="active"' : ""}>${esc(label)}</li>`).join("");
+  function drawProgress(activeIndex) {
+    $("#stages").innerHTML = STAGES[language].map((label, index) => {
+      const state = index < activeIndex ? "done" : index === activeIndex ? "active" : "";
+      const mark = index < activeIndex ? "✓" : "";
+      return `<li${state ? ` class="${state}"` : ""}><span class="dot" aria-hidden="true">${mark}</span><span>${esc(label)}</span></li>`;
+    }).join("");
     $("#review-categories").innerHTML = "";
   }
 
@@ -132,7 +136,7 @@
     const ratings = (analysis.experience_ratings || []).map((item) => `<li>${esc(item.label)}: <strong>${esc(item.value)} / ${esc(item.scale || 5)}</strong></li>`).join("");
     const pillars = (analysis.pillars || []).map((pillar) => { const state = pillarState(pillar); return `<div class="pillar-row"><div class="pillar-name">${esc(pillar.label)}</div><div class="state"><strong class="status-pill ${state[1]}">${state[0]}</strong>${analysis.score_released && pillar.result != null ? `<small>${esc(pillar.result)} / 100</small>` : ""}</div></div>`; }).join("");
     const callouts = (analysis.personalized_insights || []).flatMap((item) => item.callouts || []).map((item) => `<aside class="callout"><strong>${esc(item.label)}</strong><p>${esc(item.text)}</p>${item.source_url ? `<a href="${esc(item.source_url)}" target="_blank" rel="noopener noreferrer">${esc(item.source_label || "Airbnb")}</a>` : ""}</aside>`).join("");
-    return `<details class="panel editorial full-analysis"><summary>${t("details")}</summary><p>${t("detailIntro")}</p><details><summary>${t("evidence")}</summary><ul>${observed}</ul><div class="insights">${allInsights}</div></details><details><summary>${t("reviewDetail")}</summary><ul>${ratings}</ul></details><details><summary>${t("pillars")}</summary><div class="pillar-list">${pillars}<div class="pillar-row"><div class="pillar-name">${t("strategy")}</div><p>${t("strategyCopy")}</p><div class="state"><strong class="status-pill insufficient">${t("insufficient")}</strong></div></div></div></details><details><summary>${t("methodology")}</summary><p>${t("detailIntro")}</p></details><details><summary>${t("unknownDetail")}</summary><p>${t("unknown")}</p></details><details><summary>${t("recommendations")}</summary>${callouts || `<p>${t("detailIntro")}</p>`}</details></details>`;
+    return `<details id="detailed-analysis" class="panel editorial full-analysis"><summary>${t("details")}</summary><p>${t("detailIntro")}</p><details><summary>${t("evidence")}</summary><ul>${observed}</ul><div class="insights">${allInsights}</div></details><details><summary>${t("reviewDetail")}</summary><ul>${ratings}</ul></details><details><summary>${t("pillars")}</summary><div class="pillar-list">${pillars}<div class="pillar-row"><div class="pillar-name">${t("strategy")}</div><p>${t("strategyCopy")}</p><div class="state"><strong class="status-pill insufficient">${t("insufficient")}</strong></div></div></div></details><details><summary>${t("methodology")}</summary><p>${t("detailIntro")}</p></details><details><summary>${t("unknownDetail")}</summary><p>${t("unknown")}</p></details><details><summary>${t("recommendations")}</summary>${callouts || `<p>${t("detailIntro")}</p>`}</details></details>`;
   }
 
   function conversionSection(canCaptureLead) {
@@ -161,6 +165,14 @@
     $("#another") && $("#another").addEventListener("click", () => location.reload());
     target.querySelectorAll("details").forEach((detail, index) => detail.addEventListener("toggle", () => { if (detail.open) track("ppa_detail_expanded", key + ":" + index, {listing_id: listingId(currentUrl)}); }));
     window.scrollTo({top: 0, behavior: "smooth"});
+  }
+
+  function openDetailedAnalysisFromUrl() {
+    if (location.hash !== "#detailed-analysis") return;
+    const detail = $("#detailed-analysis");
+    if (!detail) return;
+    detail.open = true;
+    detail.scrollIntoView({behavior: "auto", block: "start"});
   }
 
   async function submitLead(event) {
@@ -196,7 +208,14 @@
     if (!url || !email || !$("#analysis-email").validity.valid) return;
     busy = true; currentEmail = email; currentUrl = url;
     $("#analyze").disabled = true; $("#entry").classList.add("hidden"); $("#running").classList.remove("hidden");
-    drawProgress();
+    let stage = 0;
+    drawProgress(stage);
+    const progressTimer = window.setInterval(() => {
+      if (stage < STAGES[language].length - 1) {
+        stage += 1;
+        drawProgress(stage);
+      }
+    }, 850);
     const key = listingId(url) || "submission";
     track("analysis_started", key, {listing_id: listingId(url)});
     try {
@@ -206,6 +225,10 @@
         $("#entry").classList.remove("hidden");
         Object.entries(data.field_errors).forEach(([field, message]) => fieldError(field === "email" ? "#email-error" : field === "airbnb_url" ? "#url-error" : "#entry-error", message));
       } else {
+        if (data.analysis) {
+          drawProgress(STAGES[language].length);
+          await new Promise((resolve) => window.setTimeout(resolve, 250));
+        }
         renderSnapshot(data, {fresh: true});
         track(data.analysis ? "analysis_completed" : "analysis_failed", key, {listing_id: listingId(url), score_released: Boolean(data.analysis && data.analysis.score_released)});
       }
@@ -213,6 +236,7 @@
       renderSnapshot({message: {title: t("loadError"), body: t("loadError")}}, {fresh: true});
       track("analysis_failed", key, {listing_id: listingId(url)});
     } finally {
+      window.clearInterval(progressTimer);
       $("#running").classList.add("hidden"); busy = false; $("#analyze").disabled = false;
     }
   }
@@ -226,6 +250,7 @@
       if (!response.ok) throw new Error();
       applyLanguage(data.language);
       renderSnapshot(data, {fresh: false});
+      openDetailedAnalysisFromUrl();
     } catch (_) {
       renderSnapshot({message: {title: t("loadError"), body: t("loadError")}});
     }

@@ -77,6 +77,7 @@ h2, h3 { color: var(--forest); letter-spacing: 0; }
 .panel { background: var(--ivory); border: 1px solid rgba(26, 61, 43, .22); }
 .panel, .editorial, .conversion, .result-head, .unknown-brief { padding: 28px; }
 .gate { display: grid; grid-template-columns: 1.3fr 1fr auto; gap: 12px; align-items: end; }
+#analyze { min-width: 238px; min-height: 56px; padding: 16px 26px; font-size: 12px; }
 .field label { color: var(--forest-dark); text-transform: uppercase; font-size: 10px; }
 input { width: 100%; padding: 13px 14px; background: var(--ivory); color: var(--charcoal); border: 1px solid rgba(26, 61, 43, .35); }
 input:focus { border-color: var(--gold-dark); outline: 3px solid rgba(250, 188, 61, .28); }
@@ -94,14 +95,16 @@ input.url-invalid, input.url-invalid:focus { border: 2px solid var(--warning); }
 
 .progress { max-width: 720px; margin: 52px auto; }
 .stages { list-style: none; padding: 0; margin: 20px 0; }
-.stages li { padding: 8px 0; border-bottom: 1px solid rgba(26,61,43,.12); }
+.stages li { display: flex; align-items: center; gap: 12px; padding: 8px 0; border-bottom: 1px solid rgba(26,61,43,.12); }
+.dot { width: 20px; height: 20px; display: inline-grid; place-items: center; flex: none; border: 2px solid rgba(26,61,43,.25); color: var(--ivory); font-size: 12px; font-weight: 700; }
 .review-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
 
 .dot, .review-icon { border-color: rgba(26, 61, 43, .25); }
 .stages li, .review-item { color: rgba(62, 62, 62, .76); }
 .stages .active { color: var(--charcoal); }
-.stages .active .dot { border-color: var(--gold); border-right-color: transparent; }
+.stages .active .dot { border-color: var(--gold); border-right-color: transparent; animation: progress-spin .8s linear infinite; }
 .stages .done .dot, .review-item.observed .review-icon { background: var(--forest); border-color: var(--forest); }
+@keyframes progress-spin { to { transform: rotate(360deg); } }
 .review-item { border-color: rgba(26, 61, 43, .18); }
 .review-item.observed { color: var(--forest); background: rgba(26, 61, 43, .06); border-color: rgba(26, 61, 43, .3); }
 .review-item.unavailable { background: rgba(250, 188, 61, .08); }
@@ -226,6 +229,7 @@ input.url-invalid, input.url-invalid:focus { border: 2px solid var(--warning); }
   .score-number { font-size: 54px; }
   .state { text-align: left; }
   .gate, .score-layout, .conversion-actions, .lead-grid { grid-template-columns: 1fr; }
+  #analyze { width: 100%; min-width: 0; }
   .review-bar { grid-template-columns: 105px 1fr 62px; gap: 8px; }
 }
 
