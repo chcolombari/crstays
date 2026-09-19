@@ -80,8 +80,15 @@ const server=http.createServer((req,res)=>{
       await page.locator('.hc-hero .btn-gold').click();assert.ok(/#(packages|paquetes)$/.test(page.url()));checks++;
       for(let i=0;i<slugs.length;i++){assert.ok((await page.locator('.plan-card .btn-gold').nth(i).getAttribute('href')).endsWith('/'+slugs[i]+'.html'));checks++;}
     }else{
-      await page.locator('.hc-hero .btn-gold').click();assert.ok(page.url().endsWith('#next-steps'));checks++;
-      assert.ok(await page.locator('#next-steps a[href^="mailto:"]').isVisible());checks++;
+      if(route.endsWith('/diagnostic-session.html')){
+        await page.locator('.hc-hero .btn-gold').click();assert.ok(page.url().endsWith('#next-steps'));checks++;
+        assert.ok(await page.locator('#next-steps a[href^="mailto:"]').isVisible());checks++;
+      }else{
+        const slug=path.basename(route,'.html');
+        const intake=(route.startsWith('/En/')?'/En':'')+'/host-consulting/intake.html?plan='+slug;
+        assert.equal(await page.locator('.hc-hero .btn-gold').getAttribute('href'),intake);checks++;
+        assert.equal(await page.locator('#next-steps .btn-gold').getAttribute('href'),intake);checks++;
+      }
     }
     const opposite=route.startsWith('/En/')?route.slice(3):'/En'+route;
     assert.equal(await page.locator('.lang-switch').getAttribute('href'),opposite);checks++;

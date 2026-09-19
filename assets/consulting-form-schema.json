@@ -1,0 +1,1509 @@
+{
+  "version": 1,
+  "common": [
+    "listing_status",
+    "full_name",
+    "email",
+    "phone",
+    "property_location",
+    "property_type",
+    "has_airbnb_listing",
+    "airbnb_url",
+    "secondary_listing_url"
+  ],
+  "fields": {
+    "listing_status": {
+      "label": {
+        "es": "¿Cuál es el estado actual de la propiedad?",
+        "en": "What is the current status of your property?"
+      },
+      "type": "select",
+      "required": true,
+      "group": "stage",
+      "options": [
+        {
+          "value": "not_published",
+          "label": {
+            "es": "Aún no está publicada",
+            "en": "Not published"
+          }
+        },
+        {
+          "value": "preparing",
+          "label": {
+            "es": "Próxima a publicar",
+            "en": "Preparing to publish"
+          }
+        },
+        {
+          "value": "active",
+          "label": {
+            "es": "Publicada y operando",
+            "en": "Active"
+          }
+        },
+        {
+          "value": "relaunch",
+          "label": {
+            "es": "Relanzamiento / reposicionamiento",
+            "en": "Relaunch / reposition"
+          }
+        }
+      ]
+    },
+    "full_name": {
+      "label": {
+        "es": "Nombre completo",
+        "en": "Full name"
+      },
+      "type": "text",
+      "required": true,
+      "group": "contact",
+      "max_length": 120,
+      "autocomplete": "name"
+    },
+    "email": {
+      "label": {
+        "es": "Correo electrónico",
+        "en": "Email"
+      },
+      "type": "email",
+      "required": true,
+      "group": "contact",
+      "max_length": 254,
+      "autocomplete": "email"
+    },
+    "phone": {
+      "label": {
+        "es": "WhatsApp / teléfono",
+        "en": "WhatsApp / phone"
+      },
+      "type": "tel",
+      "required": true,
+      "group": "contact",
+      "max_length": 40,
+      "autocomplete": "tel",
+      "help": {
+        "es": "Incluí el código de país. Ejemplo: +506 8888 1234.",
+        "en": "Include your country code. Example: +506 8888 1234."
+      }
+    },
+    "property_location": {
+      "label": {
+        "es": "Ubicación de la propiedad",
+        "en": "Property location"
+      },
+      "type": "text",
+      "required": true,
+      "group": "project",
+      "max_length": 200,
+      "help": {
+        "es": "Ciudad, zona y país.",
+        "en": "City, area and country."
+      }
+    },
+    "property_type": {
+      "label": {
+        "es": "Tipo de propiedad",
+        "en": "Property type"
+      },
+      "type": "select",
+      "required": true,
+      "group": "project",
+      "options": [
+        {
+          "value": "house",
+          "label": {
+            "es": "Casa",
+            "en": "House"
+          }
+        },
+        {
+          "value": "apartment",
+          "label": {
+            "es": "Apartamento",
+            "en": "Apartment"
+          }
+        },
+        {
+          "value": "villa",
+          "label": {
+            "es": "Villa",
+            "en": "Villa"
+          }
+        },
+        {
+          "value": "cabin",
+          "label": {
+            "es": "Cabaña",
+            "en": "Cabin"
+          }
+        },
+        {
+          "value": "other",
+          "label": {
+            "es": "Otra",
+            "en": "Other"
+          }
+        }
+      ]
+    },
+    "has_airbnb_listing": {
+      "label": {
+        "es": "¿La propiedad está publicada en Airbnb?",
+        "en": "Is the property listed on Airbnb?"
+      },
+      "type": "select",
+      "required": true,
+      "group": "project",
+      "when": {
+        "listing_status": [
+          "active",
+          "relaunch"
+        ]
+      },
+      "options": [
+        {
+          "value": "yes",
+          "label": {
+            "es": "Sí",
+            "en": "Yes"
+          }
+        },
+        {
+          "value": "no",
+          "label": {
+            "es": "No",
+            "en": "No"
+          }
+        }
+      ]
+    },
+    "airbnb_url": {
+      "label": {
+        "es": "Enlace del anuncio de Airbnb",
+        "en": "Airbnb listing URL"
+      },
+      "type": "url",
+      "required": false,
+      "group": "project",
+      "when": {
+        "listing_status": [
+          "active",
+          "relaunch"
+        ],
+        "has_airbnb_listing": [
+          "yes"
+        ]
+      },
+      "required_when": {
+        "listing_status": [
+          "active",
+          "relaunch"
+        ],
+        "has_airbnb_listing": [
+          "yes"
+        ]
+      },
+      "max_length": 2048,
+      "help": {
+        "es": "Enlace público de Airbnb, sin contraseñas ni datos de acceso.",
+        "en": "Public Airbnb link, without passwords or access details."
+      }
+    },
+    "secondary_listing_url": {
+      "label": {
+        "es": "Otro enlace del anuncio (opcional)",
+        "en": "Other listing URL (optional)"
+      },
+      "type": "url",
+      "required": false,
+      "group": "project",
+      "max_length": 2048
+    },
+    "project_start_date": {
+      "label": {
+        "es": "Fecha real o estimada de inicio del proyecto",
+        "en": "Actual or estimated project start date"
+      },
+      "type": "date",
+      "required": true,
+      "group": "project"
+    },
+    "property_stage": {
+      "label": {
+        "es": "Etapa de tu propiedad",
+        "en": "Property stage"
+      },
+      "type": "select",
+      "required": true,
+      "group": "project",
+      "options": [
+        {
+          "value": "not_published",
+          "label": {
+            "es": "Aún no está publicada",
+            "en": "Not published"
+          }
+        },
+        {
+          "value": "preparing",
+          "label": {
+            "es": "Próxima a publicar",
+            "en": "Preparing to publish"
+          }
+        },
+        {
+          "value": "active",
+          "label": {
+            "es": "Publicada y operando",
+            "en": "Active"
+          }
+        },
+        {
+          "value": "relaunch",
+          "label": {
+            "es": "Relanzamiento / reposicionamiento",
+            "en": "Relaunch / reposition"
+          }
+        }
+      ]
+    },
+    "project_stage": {
+      "label": {
+        "es": "Etapa de tu proyecto",
+        "en": "Project stage"
+      },
+      "type": "select",
+      "required": true,
+      "group": "project",
+      "options": [
+        {
+          "value": "not_published",
+          "label": {
+            "es": "Aún no está publicada",
+            "en": "Not published"
+          }
+        },
+        {
+          "value": "preparing",
+          "label": {
+            "es": "Próxima a publicar",
+            "en": "Preparing to publish"
+          }
+        },
+        {
+          "value": "active",
+          "label": {
+            "es": "Publicada y operando",
+            "en": "Active"
+          }
+        },
+        {
+          "value": "relaunch",
+          "label": {
+            "es": "Relanzamiento / reposicionamiento",
+            "en": "Relaunch / reposition"
+          }
+        }
+      ]
+    },
+    "primary_objective": {
+      "label": {
+        "es": "Objetivo principal de la sesión",
+        "en": "Main goal for the session"
+      },
+      "type": "select",
+      "required": true,
+      "group": "goals",
+      "options": [
+        {
+          "value": "listing",
+          "label": {
+            "es": "Anuncio y posicionamiento",
+            "en": "Listing and positioning"
+          }
+        },
+        {
+          "value": "pricing",
+          "label": {
+            "es": "Pricing y calendario",
+            "en": "Pricing and calendar"
+          }
+        },
+        {
+          "value": "bookings",
+          "label": {
+            "es": "Ocupación y reservas",
+            "en": "Occupancy and bookings"
+          }
+        },
+        {
+          "value": "photos",
+          "label": {
+            "es": "Fotos y contenido",
+            "en": "Photos and content"
+          }
+        },
+        {
+          "value": "reviews",
+          "label": {
+            "es": "Reseñas y experiencia del huésped",
+            "en": "Reviews and guest experience"
+          }
+        },
+        {
+          "value": "operations",
+          "label": {
+            "es": "Operación",
+            "en": "Operations"
+          }
+        },
+        {
+          "value": "launch",
+          "label": {
+            "es": "Preparación del lanzamiento",
+            "en": "Launch preparation"
+          }
+        },
+        {
+          "value": "tools",
+          "label": {
+            "es": "Herramientas y automatización",
+            "en": "Tools and automation"
+          }
+        },
+        {
+          "value": "other",
+          "label": {
+            "es": "Otro",
+            "en": "Other"
+          }
+        }
+      ]
+    },
+    "expectations": {
+      "label": {
+        "es": "¿Qué esperás del acompañamiento de CR Stays?",
+        "en": "What do you expect from CR Stays’ support?"
+      },
+      "type": "textarea",
+      "required": true,
+      "group": "goals",
+      "max_length": 1000
+    },
+    "priority_issue": {
+      "label": {
+        "es": "¿Hay algún tema que debamos priorizar? (opcional)",
+        "en": "Is there a specific issue we should prioritize? (optional)"
+      },
+      "type": "textarea",
+      "required": false,
+      "group": "goals",
+      "max_length": 1000
+    },
+    "missing_items": {
+      "label": {
+        "es": "¿Qué falta por definir o preparar?",
+        "en": "What still needs to be defined or prepared?"
+      },
+      "type": "textarea",
+      "required": true,
+      "group": "goals",
+      "max_length": 1000
+    },
+    "primary_challenge": {
+      "label": {
+        "es": "¿Cuál es tu principal reto?",
+        "en": "What is your main challenge?"
+      },
+      "type": "textarea",
+      "required": true,
+      "group": "goals",
+      "max_length": 1000
+    },
+    "goal_30_days": {
+      "label": {
+        "es": "¿Qué querés haber logrado al finalizar los 30 días?",
+        "en": "What would you like to achieve by the end of 30 days?"
+      },
+      "type": "textarea",
+      "required": true,
+      "group": "goals",
+      "max_length": 1000
+    },
+    "goal_60_days": {
+      "label": {
+        "es": "¿Qué querés haber logrado al finalizar los 60 días?",
+        "en": "What would you like to achieve by the end of 60 days?"
+      },
+      "type": "textarea",
+      "required": true,
+      "group": "goals",
+      "max_length": 1000
+    },
+    "why_now": {
+      "label": {
+        "es": "¿Por qué buscás acompañamiento ahora?",
+        "en": "Why are you seeking support now?"
+      },
+      "type": "textarea",
+      "required": true,
+      "group": "goals",
+      "max_length": 1000
+    },
+    "what_is_ready": {
+      "label": {
+        "es": "¿Qué ya está listo?",
+        "en": "What is already ready?"
+      },
+      "type": "textarea",
+      "required": true,
+      "group": "goals",
+      "max_length": 1000,
+      "when": {
+        "listing_status": [
+          "not_published",
+          "preparing"
+        ]
+      }
+    },
+    "what_is_missing": {
+      "label": {
+        "es": "¿Qué falta por preparar?",
+        "en": "What still needs preparation?"
+      },
+      "type": "textarea",
+      "required": true,
+      "group": "goals",
+      "max_length": 1000,
+      "when": {
+        "listing_status": [
+          "not_published",
+          "preparing"
+        ]
+      }
+    },
+    "pricing_approach": {
+      "label": {
+        "es": "¿Cómo pensás definir los precios iniciales?",
+        "en": "How do you plan to set your initial prices?"
+      },
+      "type": "textarea",
+      "required": true,
+      "group": "goals",
+      "max_length": 1000,
+      "when": {
+        "listing_status": [
+          "not_published",
+          "preparing"
+        ]
+      }
+    },
+    "goal_3_months": {
+      "label": {
+        "es": "¿Qué te gustaría lograr en los próximos tres meses?",
+        "en": "What would you like to achieve over the next three months?"
+      },
+      "type": "textarea",
+      "required": true,
+      "group": "goals",
+      "max_length": 1000
+    },
+    "performance_challenge": {
+      "label": {
+        "es": "¿Qué está limitando el rendimiento?",
+        "en": "What is limiting performance?"
+      },
+      "type": "textarea",
+      "required": true,
+      "group": "goals",
+      "max_length": 1000,
+      "when": {
+        "listing_status": [
+          "active",
+          "relaunch"
+        ]
+      }
+    },
+    "reviews_issue_optional": {
+      "label": {
+        "es": "Patrones en reseñas que te preocupan (opcional)",
+        "en": "Review patterns that concern you (optional)"
+      },
+      "type": "textarea",
+      "required": false,
+      "group": "goals",
+      "max_length": 1000,
+      "when": {
+        "listing_status": [
+          "active",
+          "relaunch"
+        ]
+      }
+    },
+    "desired_changes": {
+      "label": {
+        "es": "¿Qué querés cambiar en el relanzamiento?",
+        "en": "What would you like to change for the relaunch?"
+      },
+      "type": "textarea",
+      "required": true,
+      "group": "goals",
+      "max_length": 1000,
+      "when": {
+        "listing_status": [
+          "relaunch"
+        ]
+      }
+    },
+    "relaunch_objective": {
+      "label": {
+        "es": "¿Cuál es el objetivo del relanzamiento?",
+        "en": "What is the relaunch objective?"
+      },
+      "type": "textarea",
+      "required": true,
+      "group": "goals",
+      "max_length": 1000,
+      "when": {
+        "listing_status": [
+          "relaunch"
+        ]
+      }
+    },
+    "launch_date": {
+      "label": {
+        "es": "Fecha real o estimada de lanzamiento",
+        "en": "Actual or estimated launch date"
+      },
+      "type": "date",
+      "required": true,
+      "group": "project"
+    },
+    "readiness_items": {
+      "label": {
+        "es": "¿Qué ya está listo? (opcional)",
+        "en": "What is ready? (optional)"
+      },
+      "type": "checkboxes",
+      "required": false,
+      "group": "project",
+      "options": [
+        {
+          "value": "furnished",
+          "label": {
+            "es": "Propiedad equipada",
+            "en": "Furnished property"
+          }
+        },
+        {
+          "value": "photos",
+          "label": {
+            "es": "Fotos",
+            "en": "Photos"
+          }
+        },
+        {
+          "value": "airbnb",
+          "label": {
+            "es": "Anuncio Airbnb",
+            "en": "Airbnb listing"
+          }
+        },
+        {
+          "value": "booking",
+          "label": {
+            "es": "Anuncio Booking.com",
+            "en": "Booking.com listing"
+          }
+        },
+        {
+          "value": "pricing",
+          "label": {
+            "es": "Pricing inicial",
+            "en": "Initial pricing"
+          }
+        },
+        {
+          "value": "rules",
+          "label": {
+            "es": "Reglas",
+            "en": "House rules"
+          }
+        },
+        {
+          "value": "messaging",
+          "label": {
+            "es": "Mensajería",
+            "en": "Messaging"
+          }
+        },
+        {
+          "value": "cleaning",
+          "label": {
+            "es": "Limpieza",
+            "en": "Cleaning"
+          }
+        },
+        {
+          "value": "checkin",
+          "label": {
+            "es": "Check-in",
+            "en": "Check-in"
+          }
+        },
+        {
+          "value": "tools",
+          "label": {
+            "es": "Herramientas",
+            "en": "Tools"
+          }
+        }
+      ]
+    },
+    "operator_type": {
+      "label": {
+        "es": "¿Quién operará la propiedad durante el programa?",
+        "en": "Who will operate the property during the program?"
+      },
+      "type": "select",
+      "required": true,
+      "group": "project",
+      "options": [
+        {
+          "value": "owner",
+          "label": {
+            "es": "Yo personalmente",
+            "en": "Myself"
+          }
+        },
+        {
+          "value": "team",
+          "label": {
+            "es": "Mi equipo",
+            "en": "My team"
+          }
+        },
+        {
+          "value": "cohost",
+          "label": {
+            "es": "Un coanfitrión",
+            "en": "A co-host"
+          }
+        },
+        {
+          "value": "undecided",
+          "label": {
+            "es": "Aún no está definido",
+            "en": "Not decided yet"
+          }
+        }
+      ]
+    },
+    "implementation_availability": {
+      "label": {
+        "es": "Disponibilidad para implementar recomendaciones",
+        "en": "Availability to implement recommendations"
+      },
+      "type": "select",
+      "required": true,
+      "group": "project",
+      "options": [
+        {
+          "value": "yes",
+          "label": {
+            "es": "Sí, tengo disponibilidad",
+            "en": "Yes, I am available"
+          }
+        },
+        {
+          "value": "partial",
+          "label": {
+            "es": "Parcialmente",
+            "en": "Partially"
+          }
+        },
+        {
+          "value": "unsure",
+          "label": {
+            "es": "No estoy seguro",
+            "en": "Not sure"
+          }
+        }
+      ]
+    },
+    "prelaunch_challenges": {
+      "label": {
+        "es": "¿Qué te falta definir antes de lanzar?",
+        "en": "What do you need to resolve before launching?"
+      },
+      "type": "checkboxes",
+      "required": true,
+      "group": "goals",
+      "when": {
+        "listing_status": [
+          "not_published",
+          "preparing"
+        ]
+      },
+      "options": [
+        {
+          "value": "preparation",
+          "label": {
+            "es": "Preparación de la propiedad",
+            "en": "Property preparation"
+          }
+        },
+        {
+          "value": "photos_content",
+          "label": {
+            "es": "Fotos y contenido",
+            "en": "Photos and content"
+          }
+        },
+        {
+          "value": "listing_creation",
+          "label": {
+            "es": "Creación del anuncio",
+            "en": "Listing creation"
+          }
+        },
+        {
+          "value": "initial_pricing",
+          "label": {
+            "es": "Pricing inicial",
+            "en": "Initial pricing"
+          }
+        },
+        {
+          "value": "operations",
+          "label": {
+            "es": "Operación",
+            "en": "Operations"
+          }
+        },
+        {
+          "value": "tools_automation",
+          "label": {
+            "es": "Herramientas y automatización",
+            "en": "Tools and automation"
+          }
+        },
+        {
+          "value": "launch_strategy",
+          "label": {
+            "es": "Estrategia de lanzamiento",
+            "en": "Launch strategy"
+          }
+        }
+      ]
+    },
+    "active_challenges": {
+      "label": {
+        "es": "¿Qué está frenando tu propiedad?",
+        "en": "What is holding your property back?"
+      },
+      "type": "checkboxes",
+      "required": true,
+      "group": "goals",
+      "when": {
+        "listing_status": [
+          "active",
+          "relaunch"
+        ]
+      },
+      "options": [
+        {
+          "value": "listing_positioning",
+          "label": {
+            "es": "Anuncio y posicionamiento",
+            "en": "Listing and positioning"
+          }
+        },
+        {
+          "value": "pricing",
+          "label": {
+            "es": "Pricing",
+            "en": "Pricing"
+          }
+        },
+        {
+          "value": "reservations",
+          "label": {
+            "es": "Reservas",
+            "en": "Reservations"
+          }
+        },
+        {
+          "value": "operations",
+          "label": {
+            "es": "Operación",
+            "en": "Operations"
+          }
+        },
+        {
+          "value": "reviews",
+          "label": {
+            "es": "Reseñas",
+            "en": "Reviews"
+          }
+        },
+        {
+          "value": "structure",
+          "label": {
+            "es": "Falta de estructura",
+            "en": "Lack of structure"
+          }
+        },
+        {
+          "value": "tools",
+          "label": {
+            "es": "Herramientas",
+            "en": "Tools"
+          }
+        }
+      ]
+    },
+    "estimated_launch_date": {
+      "label": {
+        "es": "Fecha estimada de lanzamiento",
+        "en": "Estimated launch date"
+      },
+      "type": "date",
+      "required": true,
+      "group": "project",
+      "when": {
+        "listing_status": [
+          "not_published",
+          "preparing"
+        ]
+      }
+    },
+    "platforms_planned": {
+      "label": {
+        "es": "Plataformas previstas",
+        "en": "Planned platforms"
+      },
+      "type": "checkboxes",
+      "required": true,
+      "group": "project",
+      "when": {
+        "listing_status": [
+          "not_published",
+          "preparing"
+        ]
+      },
+      "options": [
+        {
+          "value": "airbnb",
+          "label": {
+            "es": "Airbnb",
+            "en": "Airbnb"
+          }
+        },
+        {
+          "value": "booking",
+          "label": {
+            "es": "Booking.com",
+            "en": "Booking.com"
+          }
+        },
+        {
+          "value": "vrbo",
+          "label": {
+            "es": "Vrbo",
+            "en": "Vrbo"
+          }
+        },
+        {
+          "value": "direct",
+          "label": {
+            "es": "Web / reservas directas",
+            "en": "Website / direct bookings"
+          }
+        },
+        {
+          "value": "other",
+          "label": {
+            "es": "Otra plataforma",
+            "en": "Other platform"
+          }
+        }
+      ]
+    },
+    "platforms": {
+      "label": {
+        "es": "Plataformas donde está publicada",
+        "en": "Current listing platforms"
+      },
+      "type": "checkboxes",
+      "required": true,
+      "group": "project",
+      "when": {
+        "listing_status": [
+          "active",
+          "relaunch"
+        ]
+      },
+      "options": [
+        {
+          "value": "airbnb",
+          "label": {
+            "es": "Airbnb",
+            "en": "Airbnb"
+          }
+        },
+        {
+          "value": "booking",
+          "label": {
+            "es": "Booking.com",
+            "en": "Booking.com"
+          }
+        },
+        {
+          "value": "vrbo",
+          "label": {
+            "es": "Vrbo",
+            "en": "Vrbo"
+          }
+        },
+        {
+          "value": "direct",
+          "label": {
+            "es": "Web / reservas directas",
+            "en": "Website / direct bookings"
+          }
+        },
+        {
+          "value": "other",
+          "label": {
+            "es": "Otra plataforma",
+            "en": "Other platform"
+          }
+        }
+      ]
+    },
+    "operating_since": {
+      "label": {
+        "es": "Fecha aproximada de inicio de operación",
+        "en": "Approximate operating start date"
+      },
+      "type": "date",
+      "required": true,
+      "group": "project",
+      "when": {
+        "listing_status": [
+          "active",
+          "relaunch"
+        ]
+      }
+    },
+    "current_manager": {
+      "label": {
+        "es": "¿Quién gestiona actualmente la propiedad?",
+        "en": "Who currently manages the property?"
+      },
+      "type": "select",
+      "required": true,
+      "group": "project",
+      "when": {
+        "listing_status": [
+          "active",
+          "relaunch"
+        ]
+      },
+      "options": [
+        {
+          "value": "owner",
+          "label": {
+            "es": "Yo personalmente",
+            "en": "Myself"
+          }
+        },
+        {
+          "value": "team",
+          "label": {
+            "es": "Mi equipo",
+            "en": "My team"
+          }
+        },
+        {
+          "value": "cohost",
+          "label": {
+            "es": "Un coanfitrión",
+            "en": "A co-host"
+          }
+        },
+        {
+          "value": "undecided",
+          "label": {
+            "es": "Aún no está definido",
+            "en": "Not decided yet"
+          }
+        }
+      ]
+    },
+    "current_tools": {
+      "label": {
+        "es": "Herramientas actuales",
+        "en": "Current tools"
+      },
+      "type": "checkboxes",
+      "required": true,
+      "group": "project",
+      "when": {
+        "listing_status": [
+          "active",
+          "relaunch"
+        ]
+      },
+      "options": [
+        {
+          "value": "pricelabs",
+          "label": {
+            "es": "PriceLabs",
+            "en": "PriceLabs"
+          }
+        },
+        {
+          "value": "pms",
+          "label": {
+            "es": "PMS / channel manager",
+            "en": "PMS / channel manager"
+          }
+        },
+        {
+          "value": "dynamic_pricing",
+          "label": {
+            "es": "Otro pricing dinámico",
+            "en": "Other dynamic pricing"
+          }
+        },
+        {
+          "value": "messaging",
+          "label": {
+            "es": "Mensajería automática",
+            "en": "Automated messaging"
+          }
+        },
+        {
+          "value": "none",
+          "label": {
+            "es": "Ninguna",
+            "en": "None"
+          }
+        },
+        {
+          "value": "other",
+          "label": {
+            "es": "Otras",
+            "en": "Other"
+          }
+        }
+      ]
+    },
+    "pms": {
+      "label": {
+        "es": "¿Cuál PMS o channel manager utilizás? (opcional)",
+        "en": "Which PMS or channel manager do you use? (optional)"
+      },
+      "type": "text",
+      "required": false,
+      "group": "project",
+      "when": {
+        "listing_status": [
+          "active",
+          "relaunch"
+        ]
+      },
+      "max_length": 120
+    },
+    "pricelabs_usage": {
+      "label": {
+        "es": "¿Utilizás PriceLabs?",
+        "en": "Do you use PriceLabs?"
+      },
+      "type": "select",
+      "required": true,
+      "group": "project",
+      "when": {
+        "listing_status": [
+          "active",
+          "relaunch"
+        ]
+      },
+      "options": [
+        {
+          "value": "yes",
+          "label": {
+            "es": "Sí",
+            "en": "Yes"
+          }
+        },
+        {
+          "value": "no",
+          "label": {
+            "es": "No",
+            "en": "No"
+          }
+        },
+        {
+          "value": "considering",
+          "label": {
+            "es": "Lo estoy considerando",
+            "en": "Considering it"
+          }
+        }
+      ]
+    },
+    "occupancy_optional": {
+      "label": {
+        "es": "Ocupación aproximada, % (opcional)",
+        "en": "Approximate occupancy, % (optional)"
+      },
+      "type": "number",
+      "required": false,
+      "group": "project",
+      "when": {
+        "listing_status": [
+          "active",
+          "relaunch"
+        ]
+      },
+      "min": 0,
+      "max": 100,
+      "help": {
+        "es": "Dato aproximado del período reciente que tengas disponible. Podés dejarlo vacío.",
+        "en": "An approximate figure from your available recent data. You may leave it blank."
+      }
+    },
+    "adr_optional": {
+      "label": {
+        "es": "Tarifa diaria promedio, USD (opcional)",
+        "en": "Average daily rate, USD (optional)"
+      },
+      "type": "number",
+      "required": false,
+      "group": "project",
+      "when": {
+        "listing_status": [
+          "active",
+          "relaunch"
+        ]
+      },
+      "min": 0,
+      "max": 1000000,
+      "help": {
+        "es": "Dato aproximado del período reciente que tengas disponible. Podés dejarlo vacío.",
+        "en": "An approximate figure from your available recent data. You may leave it blank."
+      }
+    },
+    "monthly_revenue_optional": {
+      "label": {
+        "es": "Ingresos mensuales, USD (opcional)",
+        "en": "Monthly revenue, USD (optional)"
+      },
+      "type": "number",
+      "required": false,
+      "group": "project",
+      "when": {
+        "listing_status": [
+          "active",
+          "relaunch"
+        ]
+      },
+      "min": 0,
+      "max": 100000000,
+      "help": {
+        "es": "Dato aproximado del período reciente que tengas disponible. Podés dejarlo vacío.",
+        "en": "An approximate figure from your available recent data. You may leave it blank."
+      }
+    },
+    "pricing_method": {
+      "label": {
+        "es": "¿Cómo definís actualmente los precios?",
+        "en": "How do you currently set prices?"
+      },
+      "type": "select",
+      "required": true,
+      "group": "project",
+      "when": {
+        "listing_status": [
+          "active",
+          "relaunch"
+        ]
+      },
+      "options": [
+        {
+          "value": "manual",
+          "label": {
+            "es": "Manualmente",
+            "en": "Manually"
+          }
+        },
+        {
+          "value": "competition",
+          "label": {
+            "es": "Según competencia",
+            "en": "Based on competitors"
+          }
+        },
+        {
+          "value": "airbnb_smart",
+          "label": {
+            "es": "Airbnb Smart Pricing",
+            "en": "Airbnb Smart Pricing"
+          }
+        },
+        {
+          "value": "pricelabs",
+          "label": {
+            "es": "PriceLabs",
+            "en": "PriceLabs"
+          }
+        },
+        {
+          "value": "other",
+          "label": {
+            "es": "Otra herramienta",
+            "en": "Other tool"
+          }
+        },
+        {
+          "value": "undefined",
+          "label": {
+            "es": "Sin estrategia definida",
+            "en": "No defined strategy"
+          }
+        }
+      ]
+    },
+    "primary_goal": {
+      "label": {
+        "es": "¿Qué querés mejorar principalmente?",
+        "en": "What would you most like to improve?"
+      },
+      "type": "select",
+      "required": true,
+      "group": "goals",
+      "when": {
+        "listing_status": [
+          "active",
+          "relaunch"
+        ]
+      },
+      "options": [
+        {
+          "value": "occupancy",
+          "label": {
+            "es": "Ocupación",
+            "en": "Occupancy"
+          }
+        },
+        {
+          "value": "adr",
+          "label": {
+            "es": "Tarifa promedio",
+            "en": "Average daily rate"
+          }
+        },
+        {
+          "value": "revenue",
+          "label": {
+            "es": "Ingresos",
+            "en": "Revenue"
+          }
+        },
+        {
+          "value": "pricing",
+          "label": {
+            "es": "Pricing y calendario",
+            "en": "Pricing and calendar"
+          }
+        },
+        {
+          "value": "positioning",
+          "label": {
+            "es": "Posicionamiento",
+            "en": "Positioning"
+          }
+        },
+        {
+          "value": "reviews",
+          "label": {
+            "es": "Reseñas",
+            "en": "Reviews"
+          }
+        },
+        {
+          "value": "operations",
+          "label": {
+            "es": "Operación",
+            "en": "Operations"
+          }
+        },
+        {
+          "value": "understanding",
+          "label": {
+            "es": "Entender mis números",
+            "en": "Understand my metrics"
+          }
+        },
+        {
+          "value": "other",
+          "label": {
+            "es": "Otro",
+            "en": "Other"
+          }
+        }
+      ]
+    },
+    "access_preference": {
+      "label": {
+        "es": "Preferencia para accesos e implementación",
+        "en": "Access and implementation preference"
+      },
+      "type": "select",
+      "required": true,
+      "group": "project",
+      "when": {
+        "listing_status": [
+          "active",
+          "relaunch"
+        ]
+      },
+      "options": [
+        {
+          "value": "permissions",
+          "label": {
+            "es": "Compartir permisos necesarios durante onboarding",
+            "en": "Share necessary permissions during onboarding"
+          }
+        },
+        {
+          "value": "self",
+          "label": {
+            "es": "Prefiero implementar yo",
+            "en": "I prefer to implement changes myself"
+          }
+        },
+        {
+          "value": "discuss",
+          "label": {
+            "es": "Definirlo durante onboarding",
+            "en": "Discuss during onboarding"
+          }
+        }
+      ],
+      "help": {
+        "es": "No incluyás contraseñas ni credenciales en este formulario.",
+        "en": "Do not include passwords or credentials in this form."
+      }
+    }
+  },
+  "plans": {
+    "diagnostic_session": {
+      "slug": "diagnostic-session",
+      "name": "Diagnostic Session",
+      "initial_status": "intake_completed",
+      "fields": [
+        "project_start_date",
+        "property_stage",
+        "primary_objective",
+        "expectations",
+        "priority_issue"
+      ]
+    },
+    "host_starter": {
+      "slug": "host-starter",
+      "name": "Host Starter",
+      "initial_status": "intake_completed",
+      "fields": [
+        "launch_date",
+        "project_stage",
+        "readiness_items",
+        "missing_items",
+        "primary_challenge",
+        "goal_30_days",
+        "expectations"
+      ]
+    },
+    "launch_pro": {
+      "slug": "launch-pro",
+      "name": "Launch Pro",
+      "initial_status": "application_submitted",
+      "fields": [
+        "launch_date",
+        "goal_60_days",
+        "operator_type",
+        "implementation_availability",
+        "prelaunch_challenges",
+        "active_challenges",
+        "expectations",
+        "why_now"
+      ]
+    },
+    "growth_advisory": {
+      "slug": "growth-advisory",
+      "name": "Growth Advisory",
+      "initial_status": "application_submitted",
+      "fields": [
+        "estimated_launch_date",
+        "platforms_planned",
+        "what_is_ready",
+        "what_is_missing",
+        "pricing_approach",
+        "platforms",
+        "operating_since",
+        "current_manager",
+        "current_tools",
+        "pms",
+        "pricelabs_usage",
+        "occupancy_optional",
+        "adr_optional",
+        "monthly_revenue_optional",
+        "pricing_method",
+        "primary_goal",
+        "performance_challenge",
+        "reviews_issue_optional",
+        "goal_3_months",
+        "access_preference",
+        "desired_changes",
+        "relaunch_objective"
+      ]
+    }
+  },
+  "groups": {
+    "stage": {
+      "es": "1. Tu etapa actual",
+      "en": "1. Your current stage"
+    },
+    "contact": {
+      "es": "2. Datos de contacto",
+      "en": "2. Contact details"
+    },
+    "project": {
+      "es": "3. Tu propiedad y operación",
+      "en": "3. Your property and operations"
+    },
+    "goals": {
+      "es": "4. Objetivos y expectativas",
+      "en": "4. Goals and expectations"
+    }
+  },
+  "statuses": [
+    "intake_completed",
+    "application_submitted",
+    "intro_call_scheduled",
+    "fit_confirmed",
+    "payment_pending",
+    "paid",
+    "session_scheduled",
+    "onboarding",
+    "active",
+    "completed",
+    "not_a_fit",
+    "lost"
+  ]
+}
