@@ -1,0 +1,11 @@
+#contacto { scroll-margin-top: 90px; }
+#consultation-form .finput { border-radius: 0; }
+#consultation-form select option { color: #3E3E3E; background: #FAF7F0; }
+#consultation-form :focus-visible, .consultation-secondary a:focus-visible { outline: 2px solid #FABC3D; outline-offset: 3px; }
+#consultation-error, #consultation-progress, #consultation-success, .consultation-secondary { color: #FAF7F0; font-size: 14px; line-height: 1.7; margin: 16px 0; }
+#consultation-success h3 { font-family: 'Hammersmith One', sans-serif; color: #FABC3D; }
+.consultation-secondary a { color: #FABC3D; text-decoration: underline; }
+#consultation-form button:disabled { opacity: .65; cursor: wait; }
+[hidden] { display: none !important; }
+
+@media (max-width: 600px) { #consultation-form .finput { font-size: 16px; } }
