@@ -23,18 +23,18 @@ Los CTAs de pago de Diagnostic y de llamada conservan una alternativa por correo
 
 ## Formularios y contrato compartido
 
-`assets/consulting-form-schema.json` (sitio) y `consulting-form.schema.json` (backend) deben mantenerse idénticos. El contrato contiene las etiquetas ES/EN, opciones legibles, condiciones, límites y obligatoriedad de los 48 campos; es la referencia completa de campos requeridos y opcionales.
+`assets/consulting-form-schema.json` (sitio) y `consulting-form.schema.json` (backend) deben mantenerse idénticos. El contrato contiene las etiquetas ES/EN, opciones legibles, condiciones, límites y obligatoriedad de los 47 campos; es la referencia completa de campos requeridos y opcionales.
 
 La primera pregunta determina la etapa de la propiedad: no publicada, preparando publicación, activa o relanzamiento. Nombre, correo, teléfono, ubicación y tipo de propiedad son comunes. En propiedades activas/relaunch se pregunta primero si existe anuncio Airbnb: se exige URL Airbnb solamente si la respuesta es sí. El enlace secundario siempre es opcional. También se aceptan propiedades activas en otras plataformas sin Airbnb.
 
 - Diagnostic: fecha de inicio, etapa, objetivo, expectativas y problema prioritario opcional.
-- Host Starter: fecha de lanzamiento, etapa, preparación, pendientes, reto principal, objetivo de 30 días y expectativas.
+- Host Starter: fecha de lanzamiento, etapa, preparación, pendientes, reto principal, objetivo de 30 días y expectativas. Desde HC-2.1, el reto principal es una selección de ocho opciones, con texto obligatorio sólo para Otro.
 - Launch Pro: fecha, objetivo de 60 días, operador, disponibilidad, expectativas, motivo y retos específicos de pre-lanzamiento o de operación/relaunch.
-- Growth pre-lanzamiento: fecha estimada, plataformas previstas, preparación, pendientes, enfoque de precios y objetivo de tres meses.
+- Growth pre-lanzamiento: fecha estimada, plataformas previstas, preparación mediante checkboxes desde HC-2.1, pendientes abiertos, enfoque de precios y objetivo de tres meses.
 - Growth activo: plataformas/anuncio aplicable, inicio de operación, gestor, herramientas, PMS, uso de PriceLabs, método de precios, objetivo, reto, acceso y objetivo de tres meses. Ocupación, ADR, ingreso mensual y problemas de reseñas son opcionales; el valor cero es válido.
 - Growth relanzamiento: información operativa anterior más cambios deseados y objetivo del relanzamiento.
 
-La etapa específica de Diagnostic/Starter se deriva de la pregunta inicial para evitar respuestas contradictorias. Cambiar de rama elimina y deshabilita los campos que dejan de aplicar. Las selecciones Airbnb/plataformas y herramientas/PriceLabs deben ser coherentes. El servidor vuelve a validar todo; no confía en la validación del navegador.
+Desde HC-2.1, `listing_status` es la única clave de etapa. Diagnostic y Host Starter no envían ni aceptan claves duplicadas. Cambiar de rama elimina y deshabilita los campos que dejan de aplicar. Las selecciones Airbnb/plataformas y herramientas/PriceLabs deben ser coherentes. El servidor vuelve a validar todo; no confía en la validación del navegador.
 
 ## API, seguridad y persistencia
 

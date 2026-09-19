@@ -10,7 +10,7 @@ const python=process.env.HC2_PYTHON||'python3';
 const out=process.env.HC2_QA_OUTPUT||'/private/tmp/hc2-browser-evidence';fs.mkdirSync(out,{recursive:true});
 const plans=['diagnostic_session','host_starter','launch_pro','growth_advisory'];
 const stages=['not_published','preparing','active','relaunch'];
-let checks=0;const cases=[];
+let checks=0;const cases=[];const structuredCases=[];
 const child=spawn(python,[path.join(backend,'qa_hc2_server.py'),'--qa-only'],{cwd:backend,stdio:['ignore','pipe','pipe']});
 let diagnostics='';child.stderr.on('data',data=>{diagnostics+=data;});
 const ready=new Promise((resolve,reject)=>{
@@ -56,7 +56,7 @@ const json=async(url,data)=>{const r=await fetch(url,data?{method:'POST',headers
    // has_airbnb_listing controls the URL field, so set it before remaining values.
    if(flat.has_airbnb_listing)await page.locator('[name=has_airbnb_listing]').selectOption(flat.has_airbnb_listing);
    for(const [key,value] of Object.entries(flat)){
-    if(['listing_status','has_airbnb_listing','property_stage','project_stage'].includes(key))continue;
+    if(['listing_status','has_airbnb_listing'].includes(key))continue;
     const control=page.locator(`[name="${key}"]`);if(!await control.count())continue;
     if(!await control.first().isVisible())continue;
     if(Array.isArray(value)){for(const item of value)await page.locator(`[name="${key}"][value="${item}"]`).check();}
@@ -67,6 +67,8 @@ const json=async(url,data)=>{const r=await fetch(url,data?{method:'POST',headers
   for(const lang of ['es','en'])for(const width of [390,1280])for(const plan of plans)for(const stage of stages){
    const {page,payload,errors,requests,responses}=await open(lang,plan,stage,width);
    await fill(page,payload);
+   assert.equal(await page.locator('[name=property_stage], [name=project_stage]').count(),0);checks++;
+   if(plan==='diagnostic_session'){assert.equal(await page.locator('label[for=hc-expectations]').innerText(),(lang==='es'?'¿Qué te gustaría tener más claro al terminar esta sesión?':'What would you like to have clearer by the end of this session?')+' *');checks++;}
    const pre=['not_published','preparing'].includes(stage);
    if(plan==='growth_advisory'){
     assert.equal(await page.locator('[name=estimated_launch_date]').isVisible(),pre);checks++;
@@ -89,6 +91,8 @@ const json=async(url,data)=>{const r=await fetch(url,data?{method:'POST',headers
    assert.equal(requests.length,1);checks++;
    assert.equal(requests[0].url(),api+'/api/consulting-leads');checks++;
    const sent=requests[0].postDataJSON();assert.equal(sent.plan,plan);assert.equal(sent.language,lang);checks+=2;
+   assert.ok(!('property_stage' in sent.form_data)&&!('project_stage' in sent.form_data));checks++;
+   if(plan==='growth_advisory'&&pre){assert.ok(Array.isArray(sent.form_data.what_is_ready));assert.equal(await page.locator('[name=what_is_ready]').count(),10);checks+=2;}
    if(pre){assert.ok(!('occupancy_optional' in sent.form_data));assert.ok(!sent.airbnb_url);checks+=2;}
    const state=await json(api+'/__qa/state');const row=state.rows.at(-1);
    assert.equal(row.plan,plan);assert.equal(row.language,lang);assert.equal(row.listing_status,stage);assert.equal(row.notification_status,'sent');checks+=4;
@@ -129,8 +133,36 @@ const json=async(url,data)=>{const r=await fetch(url,data?{method:'POST',headers
    await page.locator('button[type=submit]').click();await page.locator('#intake-success').waitFor();state=await json(api+'/__qa/state');
    assert.equal(state.rows.length,before.rows.length+1);assert.equal(state.notifications.length,before.notifications.length+1);checks+=2;await page.close();
   }
+  // HC-2.1: all structured Starter options, conditional Other, and actual persisted arrays.
+  for(const lang of ['es','en'])for(const width of [390,1280]){
+   for(const option of ['property_preparation','listing','pricing','operations','first_bookings','reviews','tools_automation','other']){
+    const {page,payload,requests}=await open(lang,'host_starter','not_published',width);await fill(page,payload);
+    const select=page.locator('[name=primary_challenge]');assert.equal(await select.evaluate(el=>el.tagName),'SELECT');checks++;
+    await select.selectOption('other');const other=page.locator('[name=primary_challenge_other]');assert.equal(await other.isVisible(),true);checks++;
+    await page.locator('button[type=submit]').click();assert.equal(requests.length,0);checks++;
+    await other.fill('Synthetic other challenge');await select.selectOption('pricing');assert.equal(await other.inputValue(),'');assert.equal(await other.isVisible(),false);checks+=2;
+    await select.selectOption(option);if(option==='other')await other.fill('Synthetic other challenge');
+    await page.evaluate(()=>{document.activeElement?.blur();scrollTo(0,0);});
+    if(option==='other')await page.screenshot({path:path.join(out,`${lang}-host_starter-other-${width}.png`),fullPage:true});
+    await page.locator('button[type=submit]').click();await page.locator('#intake-success').waitFor();
+    const data=requests[0].postDataJSON().form_data;assert.equal(data.primary_challenge,option);checks++;
+    const row=(await json(api+'/__qa/state')).rows.at(-1);assert.equal(row.form_data.primary_challenge,option);checks++;
+    if(option==='other'){assert.equal(row.form_data.primary_challenge_other,'Synthetic other challenge');checks++;}else{assert.ok(!('primary_challenge_other' in data));checks++;}
+    structuredCases.push({lang,width,plan:'host_starter',option,persisted:true});await page.close();
+   }
+   const {page,payload,requests}=await open(lang,'growth_advisory','preparing',width);await fill(page,payload);
+   const boxes=page.locator('[name=what_is_ready]');assert.equal(await boxes.count(),10);checks++;
+   for(const box of await boxes.all())await box.uncheck();
+   await page.locator('button[type=submit]').click();assert.equal(requests.length,0);checks++;
+   for(const box of await boxes.all())await box.check();
+   await page.evaluate(()=>{document.activeElement?.blur();scrollTo(0,0);});
+   await page.screenshot({path:path.join(out,`${lang}-growth_advisory-readiness-${width}.png`),fullPage:true});
+   await page.locator('button[type=submit]').click();await page.locator('#intake-success').waitFor();
+   const row=(await json(api+'/__qa/state')).rows.at(-1);assert.equal(row.form_data.what_is_ready.length,10);assert.ok(Array.isArray(row.form_data.what_is_ready));checks+=2;
+   structuredCases.push({lang,width,plan:'growth_advisory',readinessSelections:10,persisted:true});await page.close();
+  }
   const final=await json(api+'/__qa/state');
-  fs.writeFileSync(path.join(out,'browser-results.json'),JSON.stringify({checks,cases,storedSyntheticLeads:final.rows.length,provider:'fake Brevo',database:'local PostgreSQL 16.2',productionRequests:0},null,2));
+  fs.writeFileSync(path.join(out,'browser-results.json'),JSON.stringify({checks,cases,structuredCases,storedSyntheticLeads:final.rows.length,provider:'fake Brevo',database:'local PostgreSQL 16.2',productionRequests:0},null,2));
   console.log(`PASS ${checks} assertions; validation, branches, persistence, duplicate prevention, API errors and Brevo failure retention.`);
  }finally{
   if(browser)await browser.close();await new Promise(resolve=>web.close(resolve));

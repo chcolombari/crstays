@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "common": [
     "listing_status",
     "full_name",
@@ -230,84 +230,6 @@
       "required": true,
       "group": "project"
     },
-    "property_stage": {
-      "label": {
-        "es": "Etapa de tu propiedad",
-        "en": "Property stage"
-      },
-      "type": "select",
-      "required": true,
-      "group": "project",
-      "options": [
-        {
-          "value": "not_published",
-          "label": {
-            "es": "Aún no está publicada",
-            "en": "Not published"
-          }
-        },
-        {
-          "value": "preparing",
-          "label": {
-            "es": "Próxima a publicar",
-            "en": "Preparing to publish"
-          }
-        },
-        {
-          "value": "active",
-          "label": {
-            "es": "Publicada y operando",
-            "en": "Active"
-          }
-        },
-        {
-          "value": "relaunch",
-          "label": {
-            "es": "Relanzamiento / reposicionamiento",
-            "en": "Relaunch / reposition"
-          }
-        }
-      ]
-    },
-    "project_stage": {
-      "label": {
-        "es": "Etapa de tu proyecto",
-        "en": "Project stage"
-      },
-      "type": "select",
-      "required": true,
-      "group": "project",
-      "options": [
-        {
-          "value": "not_published",
-          "label": {
-            "es": "Aún no está publicada",
-            "en": "Not published"
-          }
-        },
-        {
-          "value": "preparing",
-          "label": {
-            "es": "Próxima a publicar",
-            "en": "Preparing to publish"
-          }
-        },
-        {
-          "value": "active",
-          "label": {
-            "es": "Publicada y operando",
-            "en": "Active"
-          }
-        },
-        {
-          "value": "relaunch",
-          "label": {
-            "es": "Relanzamiento / reposicionamiento",
-            "en": "Relaunch / reposition"
-          }
-        }
-      ]
-    },
     "primary_objective": {
       "label": {
         "es": "Objetivo principal de la sesión",
@@ -390,7 +312,13 @@
       "type": "textarea",
       "required": true,
       "group": "goals",
-      "max_length": 1000
+      "max_length": 1000,
+      "label_by_plan": {
+        "diagnostic_session": {
+          "es": "¿Qué te gustaría tener más claro al terminar esta sesión?",
+          "en": "What would you like to have clearer by the end of this session?"
+        }
+      }
     },
     "priority_issue": {
       "label": {
@@ -417,10 +345,67 @@
         "es": "¿Cuál es tu principal reto?",
         "en": "What is your main challenge?"
       },
-      "type": "textarea",
+      "type": "select",
       "required": true,
       "group": "goals",
-      "max_length": 1000
+      "options": [
+        {
+          "value": "property_preparation",
+          "label": {
+            "es": "Preparación de la propiedad",
+            "en": "Property preparation"
+          }
+        },
+        {
+          "value": "listing",
+          "label": {
+            "es": "Crear o mejorar el anuncio",
+            "en": "Create or improve the listing"
+          }
+        },
+        {
+          "value": "pricing",
+          "label": {
+            "es": "Pricing",
+            "en": "Pricing"
+          }
+        },
+        {
+          "value": "operations",
+          "label": {
+            "es": "Operación",
+            "en": "Operations"
+          }
+        },
+        {
+          "value": "first_bookings",
+          "label": {
+            "es": "Conseguir primeras reservas",
+            "en": "Get first bookings"
+          }
+        },
+        {
+          "value": "reviews",
+          "label": {
+            "es": "Reviews",
+            "en": "Reviews"
+          }
+        },
+        {
+          "value": "tools_automation",
+          "label": {
+            "es": "Herramientas / automatización",
+            "en": "Tools / automation"
+          }
+        },
+        {
+          "value": "other",
+          "label": {
+            "es": "Otro",
+            "en": "Other"
+          }
+        }
+      ]
     },
     "goal_30_days": {
       "label": {
@@ -457,16 +442,87 @@
         "es": "¿Qué ya está listo?",
         "en": "What is already ready?"
       },
-      "type": "textarea",
+      "type": "checkboxes",
       "required": true,
       "group": "goals",
-      "max_length": 1000,
       "when": {
         "listing_status": [
           "not_published",
           "preparing"
         ]
-      }
+      },
+      "options": [
+        {
+          "value": "furnished_equipped",
+          "label": {
+            "es": "Propiedad amueblada/equipada",
+            "en": "Property furnished/equipped"
+          }
+        },
+        {
+          "value": "photos",
+          "label": {
+            "es": "Fotos",
+            "en": "Photos"
+          }
+        },
+        {
+          "value": "airbnb",
+          "label": {
+            "es": "Airbnb",
+            "en": "Airbnb"
+          }
+        },
+        {
+          "value": "booking",
+          "label": {
+            "es": "Booking.com",
+            "en": "Booking.com"
+          }
+        },
+        {
+          "value": "initial_pricing",
+          "label": {
+            "es": "Pricing inicial",
+            "en": "Initial pricing"
+          }
+        },
+        {
+          "value": "rules",
+          "label": {
+            "es": "Reglas",
+            "en": "House rules"
+          }
+        },
+        {
+          "value": "messaging",
+          "label": {
+            "es": "Mensajería",
+            "en": "Messaging"
+          }
+        },
+        {
+          "value": "cleaning",
+          "label": {
+            "es": "Limpieza",
+            "en": "Cleaning"
+          }
+        },
+        {
+          "value": "check_in",
+          "label": {
+            "es": "Check-in",
+            "en": "Check-in"
+          }
+        },
+        {
+          "value": "tools_software",
+          "label": {
+            "es": "Herramientas / software",
+            "en": "Tools / software"
+          }
+        }
+      ]
     },
     "what_is_missing": {
       "label": {
@@ -1400,6 +1456,21 @@
         "es": "No incluyás contraseñas ni credenciales en este formulario.",
         "en": "Do not include passwords or credentials in this form."
       }
+    },
+    "primary_challenge_other": {
+      "label": {
+        "es": "Contanos cuál es el otro reto",
+        "en": "Tell us about the other challenge"
+      },
+      "type": "textarea",
+      "required": true,
+      "group": "goals",
+      "max_length": 1000,
+      "when": {
+        "primary_challenge": [
+          "other"
+        ]
+      }
     }
   },
   "plans": {
@@ -1409,7 +1480,6 @@
       "initial_status": "intake_completed",
       "fields": [
         "project_start_date",
-        "property_stage",
         "primary_objective",
         "expectations",
         "priority_issue"
@@ -1421,10 +1491,10 @@
       "initial_status": "intake_completed",
       "fields": [
         "launch_date",
-        "project_stage",
         "readiness_items",
         "missing_items",
         "primary_challenge",
+        "primary_challenge_other",
         "goal_30_days",
         "expectations"
       ]

@@ -31,6 +31,7 @@
     if (className) node.className = className;
     return node;
   };
+  const fieldLabel = spec => (spec.label_by_plan?.[plan] || spec.label)[lang];
   const matches = (condition, values) => Object.entries(condition || {}).every(([key, list]) => list.includes(values[key]));
   const setNotice = message => { notice.textContent = message; notice.hidden = false; };
   function values() {
@@ -62,12 +63,10 @@
   }
   function buildField(key, group) {
     const spec = schema.fields[key];
-    // Both names remain in the API payload but derive from the initial stage question.
-    if (key === 'property_stage' || key === 'project_stage') return;
     const checkbox = spec.type === 'checkboxes';
     const wrapper = element(checkbox ? 'fieldset' : 'div', undefined, 'intake-field');
     wrapper.dataset.field = key;
-    const label = element(checkbox ? 'legend' : 'label', spec.label[lang]);
+    const label = element(checkbox ? 'legend' : 'label', fieldLabel(spec));
     if (!checkbox) label.htmlFor = 'hc-' + key;
     const marker = element('span', ' *', 'field-required');
     marker.setAttribute('aria-hidden', 'true'); label.append(marker); wrapper.append(label);
@@ -109,7 +108,7 @@
       if (!field) continue;
       field.error.textContent = message; field.error.hidden = false;
       field.controls.forEach(c => c.setAttribute('aria-invalid', 'true'));
-      const item = element('li'); const link = element('a', field.spec.label[lang]); link.href = '#' + field.controls[0].id;
+      const item = element('li'); const link = element('a', fieldLabel(field.spec)); link.href = '#' + field.controls[0].id;
       link.addEventListener('click', event => { event.preventDefault(); field.controls[0].focus(); }); item.append(link); list.append(item);
     }
     summary.append(list); summary.hidden = false;
@@ -170,7 +169,6 @@
       if (schema.common.includes(key) && key !== 'has_airbnb_listing') payload[key] = current[key];
       else payload.form_data[key] = current[key];
     }
-    for (const key of ['property_stage','project_stage']) if (schema.plans[plan].fields.includes(key)) payload.form_data[key] = current.listing_status;
     if (plan === 'diagnostic_session') payload.intake_token = intakeToken;
     const base = String((window.CONSULTING_CONFIG || {}).apiBaseUrl || '').replace(/\/$/,'');
     try {
