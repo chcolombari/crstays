@@ -150,8 +150,17 @@
   function confirm() {
     complete = true; intakeToken = ''; form.hidden = true; notice.hidden = true; success.hidden = false;
     document.getElementById('success-title').textContent = text('Recibimos tu información.', 'We received your information.');
-    const copy = plan === 'host_starter' ? text('Tu intake de Host Starter quedó registrado. El siguiente paso será el pago y, después, la agenda de tu primera sesión. El pago en línea aún no está disponible.', 'Your Host Starter intake has been recorded. The next step will be payment, followed by scheduling your first session. Online payment is not yet available.') : plan === 'diagnostic_session' ? text('Tu información de Diagnostic Session quedó registrada. El siguiente paso será coordinar tu sesión. La agenda en línea aún no está disponible.', 'Your Diagnostic Session information has been recorded. The next step will be arranging your session. Online scheduling is not yet available.') : text('Tu solicitud quedó registrada. El siguiente paso es una llamada introductoria para evaluar el encaje del programa. La agenda en línea aún no está disponible; no se realizó ningún cobro.', 'Your application has been recorded. The next step is an introductory call to assess program fit. Online scheduling is not yet available; no payment has been collected.');
+    const application = plan === 'launch_pro' || plan === 'growth_advisory';
+    const copy = plan === 'host_starter' ? text('Tu intake de Host Starter quedó registrado. El siguiente paso será el pago y, después, la agenda de tu primera sesión. El pago en línea aún no está disponible.', 'Your Host Starter intake has been recorded. The next step will be payment, followed by scheduling your first session. Online payment is not yet available.') : plan === 'diagnostic_session' ? text('Tu información de Diagnostic Session quedó registrada. El siguiente paso será coordinar tu sesión después de confirmar el pago.', 'Your Diagnostic Session information has been recorded. The next step will be arranging your session after payment is confirmed.') : text('Tu solicitud quedó registrada. El siguiente paso es agendar una llamada introductoria gratuita para evaluar el encaje del programa. No se realizó ningún cobro.', 'Your application has been recorded. The next step is to schedule a free introductory call to assess program fit. No payment has been collected.');
     document.getElementById('success-copy').textContent = copy;
+    const action = document.getElementById('success-action');
+    if (application) {
+      action.href = 'https://calendly.com/crstays/15min';
+      action.textContent = text('Agendar llamada introductoria gratuita', 'Schedule Free Introductory Call');
+      action.dataset.plan = plan;
+      action.dataset.source = 'application_success';
+      action.setAttribute('data-intro-call', '');
+    }
     success.focus(); success.scrollIntoView({block:'start'});
   }
   form.addEventListener('change', () => { visibility(); });
