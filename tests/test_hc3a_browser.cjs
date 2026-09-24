@@ -51,17 +51,17 @@ async function fillRequired(page){
       const route=(lang==='en'?'/En':'')+'/host-consulting/intro-call.html';
       await page.goto(origin+route,{waitUntil:'networkidle'});
       assert.equal(await page.locator('h1').count(),1);checks++;
-      assert.equal(await page.locator('a[href="https://calendly.com/crstays/15min"]').count(),2);checks++;
-      assert.equal(await page.locator('.btn-gold[href="https://calendly.com/crstays/15min"]').first().innerText(),lang==='es'?'AGENDAR LLAMADA INTRODUCTORIA GRATUITA':'SCHEDULE FREE INTRODUCTORY CALL');checks++;
+      assert.equal(await page.locator('a[href="https://calendar.app.google/GfiTX1axiVnAnA8HA"]').count(),2);checks++;
+      assert.equal(await page.locator('.btn-gold[href="https://calendar.app.google/GfiTX1axiVnAnA8HA"]').first().innerText(),lang==='es'?'AGENDAR LLAMADA INTRODUCTORIA GRATUITA':'SCHEDULE FREE INTRODUCTORY CALL');checks++;
       assert.equal(await page.locator('.next-steps li').count(),5);checks++;
       assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);checks++;
       assert.ok((await page.locator('.btn-gold').first().boundingBox()).height>=44);checks++;
-      await page.locator('a[href="https://calendly.com/crstays/15min"]').first().evaluate(el=>el.addEventListener('click',event=>event.preventDefault()));
-      await page.locator('a[href="https://calendly.com/crstays/15min"]').first().click();
+      await page.locator('a[href="https://calendar.app.google/GfiTX1axiVnAnA8HA"]').first().evaluate(el=>el.addEventListener('click',event=>event.preventDefault()));
+      await page.locator('a[href="https://calendar.app.google/GfiTX1axiVnAnA8HA"]').first().click();
       const tracked=await page.evaluate(()=>window.dataLayer.filter(item=>item[0]==='event').map(item=>item[1]));
-      assert.ok(tracked.includes('intro_call_click'));assert.ok(tracked.includes('calendly_click'));checks+=2;
+      assert.ok(tracked.includes('exploratory_call_click'));assert.ok(tracked.includes('scheduling_click'));checks+=2;
       assert.deepEqual(errors,[]);checks++;
-      cases.push({language:lang,width,page:'intro_call',calendlyUrl:'https://calendly.com/crstays/15min',overflow:false,consoleErrors:0});
+      cases.push({language:lang,width,page:'intro_call',schedulingUrl:'https://calendar.app.google/GfiTX1axiVnAnA8HA',overflow:false,consoleErrors:0});
       await page.close();
     }
     for(const lang of ['es','en'])for(const plan of ['launch-pro','growth-advisory']){
@@ -73,25 +73,25 @@ async function fillRequired(page){
       await fillRequired(page);await page.locator('button[type=submit]').click();
       await page.locator('#intake-success').waitFor({state:'visible'});
       const action=page.locator('#success-action');
-      assert.equal(await action.getAttribute('href'),'https://calendly.com/crstays/15min');checks++;
+      assert.equal(await action.getAttribute('href'),'https://calendar.app.google/GfiTX1axiVnAnA8HA');checks++;
       assert.equal(await action.innerText(),lang==='es'?'AGENDAR LLAMADA INTRODUCTORIA GRATUITA':'SCHEDULE FREE INTRODUCTORY CALL');checks++;
       assert.equal(await action.getAttribute('data-plan'),plan.replaceAll('-','_'));checks++;
       assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);checks++;
       assert.deepEqual(errors,[]);checks++;
-      cases.push({language:lang,width:390,page:'application_success',plan,calendlyUrl:'https://calendly.com/crstays/15min'});
+      cases.push({language:lang,width:390,page:'application_success',plan,schedulingUrl:'https://calendar.app.google/GfiTX1axiVnAnA8HA'});
       await page.close();
     }
     for(const lang of ['es','en']){
       let page=await browser.newPage({viewport:{width:390,height:900}});
       await page.goto(origin+(lang==='en'?'/En':'')+'/host-consulting/intake.html?plan=host-starter',{waitUntil:'networkidle'});
       assert.ok((await page.locator('#success-action').getAttribute('href')).startsWith('mailto:'));checks++;
-      assert.equal(await page.locator('a[href="https://calendly.com/crstays/15min"]').count(),0);checks++;
+      assert.equal(await page.locator('a[href="https://calendar.app.google/GfiTX1axiVnAnA8HA"]').count(),0);checks++;
       await page.close();
       page=await browser.newPage({viewport:{width:390,height:900}});
       await page.goto(origin+(lang==='en'?'/En':'')+'/host-consulting/intake.html?plan=diagnostic-session',{waitUntil:'networkidle'});
       assert.equal(await page.locator('#consulting-form').isVisible(),false);checks++;
       assert.ok((await page.locator('#intake-notice').innerText()).toLowerCase().includes(lang==='es'?'pago previo':'payment first'));checks++;
-      assert.equal(await page.locator('a[href="https://calendly.com/crstays/15min"]').count(),0);checks++;
+      assert.equal(await page.locator('a[href="https://calendar.app.google/GfiTX1axiVnAnA8HA"]').count(),0);checks++;
       await page.close();
       cases.push({language:lang,width:390,page:'payment_gates',hostStarterBypass:false,diagnosticBypass:false});
     }

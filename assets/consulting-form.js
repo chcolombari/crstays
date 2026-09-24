@@ -155,11 +155,13 @@
     document.getElementById('success-copy').textContent = copy;
     const action = document.getElementById('success-action');
     if (application) {
-      action.href = 'https://calendly.com/crstays/15min';
+      action.href = 'https://calendar.app.google/GfiTX1axiVnAnA8HA';
       action.textContent = text('Agendar llamada introductoria gratuita', 'Schedule Free Introductory Call');
       action.dataset.plan = plan;
       action.dataset.source = 'application_success';
-      action.setAttribute('data-intro-call', '');
+      action.dataset.sessionType = 'exploratory_15';
+      action.setAttribute('data-exploratory-call', '');
+      action.setAttribute('data-scheduling', '');
     }
     success.focus(); success.scrollIntoView({block:'start'});
   }
